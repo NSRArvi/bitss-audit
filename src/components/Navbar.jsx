@@ -85,7 +85,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-sm">
       <Container>
-        <div className="flex items-center justify-between py-3">
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <h2 className="font-bold text-xl md:text-2xl text-primary">
@@ -105,8 +105,8 @@ const Navbar = () => {
                       <NavigationMenuTrigger>
                         {item.label}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className={`${item.width} p-4 gap-2`}>
+                      <NavigationMenuContent className="bg-background/5 dark:bg-slate-950/5 backdrop-blur-3xl shadow-sm">
+                        <ul className={`${item.width} p-4 gap-2 `}>
                           {item.items.map((sub, idx) => (
                             <ListItem key={idx} href={sub.href}>
                               {sub.label}
@@ -133,8 +133,8 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="md:hidden fixed top-15 right-0 h-screen w-[85%] max-w-sm bg-background border-l z-50 shadow-lg overflow-y-auto">
-              <div className="flex flex-col gap-4 px-6 py-4 h-full bg-background shadow-md">
+              className="md:hidden fixed top-8 right-0 h-screen w-[85%] max-w-sm border-l z-50 shadow-lg overflow-y-auto">
+              <div className="flex flex-col gap-4 px-2 py-4 h-full bg-background dark:bg-slate-950/95 backdrop-blur-2xl shadow-md">
                 {navItems.map((item, i) =>
                   item.type === "link" ? (
                     <Link

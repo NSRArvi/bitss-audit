@@ -11,6 +11,7 @@ import {
   FileSearch,
 } from "lucide-react";
 import { FinalCTA } from "@/components/Home/FinalCTA";
+import { Badge } from "@/components/ui/badge";
 
 const AuditServices = () => {
   const lists = [
@@ -67,14 +68,13 @@ const AuditServices = () => {
   return (
     <Container>
       <div className="text-center mt-4">
-        <span className="border-y dark:border-white/20 border-gray-100 py-2">
-          {" "}
+        <Badge variant="secondary" className="text-xs text-muted-foreground">
           Operated by BFIN SASU • Division. Bitss Crypto Audits
-        </span>
+        </Badge>
       </div>
       <section className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 pt-16">
         <div className="flex-1 bg-transparent">
-          <h1 className="text-2xl md:text-4xl font-bold leading-tight text-center md:text-left">
+          <h1 className="font-heading text-2xl md:text-4xl font-bold leading-tight text-center md:text-left">
             Advanced Security Audits For <br />{" "}
             <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
               Blockchain, Smart Contracts,
@@ -84,7 +84,7 @@ const AuditServices = () => {
               Digital Assets
             </span>
           </h1>
-          <p className="mt-6 w-full md:w-1/2 text-center md:text-left">
+          <p className="mt-6 w-full md:w-2/3 text-center md:text-left">
             Professional security verification for smart contracts, wallet
             infrastructure, exchanges, protoccls, and blockchain-connected
             systems. Increase trust through in-depth technical audits and
@@ -94,12 +94,12 @@ const AuditServices = () => {
           <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
             <Link
               href="/"
-              className="py-3 rounded-md text-white font-semibold bg-primary cursor-pointer w-55 text-center">
+              className="py-3 px-2 rounded-md text-white font-medium bg-primary cursor-pointer w-55 text-center">
               Request a Security Review
             </Link>
             <Link
               href="/"
-              className="w-55 py-3 rounded-md border border-primary dark:text-white hover:text-white dark:hover:text-black font-semibold hover:bg-primary transition duration-500 cursor-pointer text-center">
+              className="w-55 py-3 rounded-md border border-primary dark:text-white hover:text-white dark:hover:text-black font-medium hover:bg-primary transition duration-500 cursor-pointer text-center">
               View Pricing
             </Link>
           </div>
@@ -133,7 +133,7 @@ const AuditServices = () => {
                   <p className="text-xs">Expect in Percentage</p>
                 </div>
                 <div className="bg-primary px-3 py-2 rounded-lg hover:scale-105 transition duration-300">
-                  <p className="text-white font-bold text-lg ">ASDF ASDF</p>
+                  <p className="text-white font-medium">ASDF ASDF</p>
                 </div>
               </div>
             </div>
@@ -141,16 +141,16 @@ const AuditServices = () => {
         </div>
       </section>
       <div className="w-full flex justify-center my-10">
-        <span className="border-y dark:border-white/20 border-gray-100 py-2">
+        <Badge variant="secondary" className="text-xs text-muted-foreground">
           BITSS • Cybersecurity • Crypto Security • Audits • Infrastructure
           Protection • Wallet Review
-        </span>
+        </Badge>
       </div>
       <section className="space-y-12 py-10 px-6">
         {carts.map((section, idx) => (
           <section key={idx} className="space-y-10">
             <div className="text-center md:text-left">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground">
+              <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground">
                 {section.heading}
               </h2>
               <p className="text-muted-foreground mt-2">{section.subHeading}</p>

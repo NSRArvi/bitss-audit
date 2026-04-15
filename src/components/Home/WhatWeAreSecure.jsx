@@ -85,7 +85,7 @@ export default function SecuritySections() {
       {carts.map((section, idx) => (
         <section key={idx} className="space-y-10">
           <div className="text-center md:text-left">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground">
+            <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground">
               {section.heading}
             </h2>
             <p className="text-muted-foreground mt-2">{section.subHeading}</p>
@@ -122,10 +122,6 @@ export default function SecuritySections() {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {item.text}
                   </p>
-                </div>
-
-                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-500 transition-all duration-300 group-hover:w-full">
-                  {" "}
                 </div>
               </motion.div>
             ))}

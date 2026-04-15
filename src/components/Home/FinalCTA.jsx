@@ -8,7 +8,7 @@ export const FinalCTA = ({ text1, text2, text3, text4, text5 }) => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+          className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-tight">
           {text1}
           <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
             {text2}
@@ -19,7 +19,7 @@ export const FinalCTA = ({ text1, text2, text3, text4, text5 }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-muted-foreground text-lg leading-relaxed">
+          className="text-muted-foreground text-lg leading-tight">
           {text3}
         </motion.p>
 
