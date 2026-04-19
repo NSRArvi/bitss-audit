@@ -121,15 +121,17 @@ const AuditServices = () => {
                     key={i}
                     className="flex w-full justify-between text-center border-b border-b-primary/50  my-3">
                     {" "}
-                    <p className="">{item.title && item.title}</p>
+                    <p className="text-muted-foreground">
+                      {item.title && item.title}
+                    </p>
                     <p className="text-lg font-semibold">
                       {item.value && item.value}
                     </p>
                   </li>
                 ))}
               </ul>
-              <div className="px-3 py-2 rounded-lg bg-white/5 backdrop-blur-sm flex justify-between gap-2 items-center">
-                <div>
+              <div className="py-2 rounded-lg bg-white/5 backdrop-blur-sm flex justify-between gap-2 items-center">
+                <div className="text-muted-foreground">
                   <h3 className="font-semibold text-lg">Audit Status</h3>
                   <p className="text-xs">Expect in Percentage</p>
                 </div>

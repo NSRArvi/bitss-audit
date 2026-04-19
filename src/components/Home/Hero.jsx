@@ -20,9 +20,9 @@ const Hero = () => {
       <div className="text-center mt-4">
         <CustomBadge text={"Operated by BFIN SAUS - Brand BITSS"} />
       </div>
-      <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 pt-16">
+      <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 pt-10">
         <div className="flex-1 bg-transparent">
-          <h1 className="font-heading text-2xl md:text-3xl font-bold leading-tight text-center md:text-left">
+          <h1 className="font-heading text-3xl md:text-6xl font-bold leading-none text-center md:text-left">
             Crypto Security For <br />{" "}
             <span className="text-heading bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
               Serious Blockchain Businesses
@@ -60,8 +60,8 @@ const Hero = () => {
                   </li>
                 ))}
               </ul>
-              <div className="px-4 py-2 rounded-lg bg-white/5 backdrop-blur-sm">
-                <h3 className="font-semibold text-base">
+              <div className="py-2 rounded-lg bg-white/5 backdrop-blur-sm">
+                <h3 className="font-semibold text-muted-foreground">
                   AutoAudit Risk Over 82/100
                 </h3>
               </div>

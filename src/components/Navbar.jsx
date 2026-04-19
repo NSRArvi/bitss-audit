@@ -92,13 +92,13 @@ const Navbar = () => {
             <Image
               src={"/image.png"}
               alt="Nav Logo"
-              width={50}
-              height={50}
+              width={37}
+              height={37}
               className="mx-auto -mt-0.5"
             />
             <span className="flex flex-col justify-center bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent leading-tight">
-              <h2 className="font-bold text-3xl md:text-4xl mt-1">BITSS</h2>
-              <p className="mb-2.5 -mt-0.5 text-xs">CRYPTO SECURITY</p>
+              <h2 className="font-bold text-[27px] mt-1">BITSS</h2>
+              <p className="mb-2.5 -mt-0.5 text-[9px]">CRYPTO SECURITY</p>
             </span>
           </Link>
           <NavigationMenu className="hidden md:flex">
@@ -131,48 +131,54 @@ const Navbar = () => {
             <ModeToggle />
           </NavigationMenu>
           <button className="md:hidden" onClick={() => setShowMenu(!showMenu)}>
-            {showMenu ? <X size={28} /> : <Menu size={28} />}
+            {showMenu ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
         <AnimatePresence>
           {showMenu && (
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="md:hidden fixed top-8 right-0 h-screen w-[85%] max-w-sm border-l z-50 shadow-lg overflow-y-auto">
-              <div className="flex flex-col gap-4 px-2 py-4 h-full bg-background dark:bg-slate-950/95 backdrop-blur-2xl shadow-md">
-                {navItems.map((item, i) =>
-                  item.type === "link" ? (
-                    <Link
-                      key={i}
-                      href={item.href}
-                      onClick={() => setShowMenu(false)}>
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <MobileDropdown
-                      key={i}
-                      title={item.label}
-                      openDropdown={openDropdown}
-                      setOpenDropdown={setOpenDropdown}>
-                      {item.items.map((sub, idx) => (
-                        <Link
-                          key={idx}
-                          href={sub.href}
-                          onClick={() => setShowMenu(false)}>
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </MobileDropdown>
-                  ),
-                )}
-                <div className="pt-4">
-                  <ModeToggle />
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 w-full top-14 bg-black/60 h-[calc(100vh-0px)]">
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="md:hidden fixed  right-0 h-screen w-[85%] max-w-sm border-l z-50 shadow-lg overflow-y-auto">
+                <div className="flex flex-col gap-4 px-8 py-4 h-full bg-background dark:bg-slate-950/95 backdrop-blur-2xl shadow-md">
+                  {navItems.map((item, i) =>
+                    item.type === "link" ? (
+                      <Link
+                        key={i}
+                        href={item.href}
+                        onClick={() => setShowMenu(false)}>
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <MobileDropdown
+                        key={i}
+                        title={item.label}
+                        openDropdown={openDropdown}
+                        setOpenDropdown={setOpenDropdown}>
+                        {item.items.map((sub, idx) => (
+                          <Link
+                            key={idx}
+                            href={sub.href}
+                            onClick={() => setShowMenu(false)}>
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </MobileDropdown>
+                    ),
+                  )}
+                  <div className="pt-4">
+                    <ModeToggle />
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
