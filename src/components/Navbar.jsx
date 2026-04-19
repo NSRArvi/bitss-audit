@@ -16,6 +16,7 @@ import ListItem from "./NabvarMenuItem/ListItem";
 import MobileDropdown from "./NabvarMenuItem/MobileDropdown";
 import ModeToggle from "./ModeToggle";
 import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
 
 const navItems = [
   {
@@ -87,10 +88,18 @@ const Navbar = () => {
       <Container>
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <h2 className="font-bold text-xl md:text-2xl text-primary">
-              BITSS
-            </h2>
+          <Link href="/" className="flex items-center">
+            <Image
+              src={"/image.png"}
+              alt="Nav Logo"
+              width={50}
+              height={50}
+              className="mx-auto -mt-0.5"
+            />
+            <span className="flex flex-col justify-center bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent leading-tight">
+              <h2 className="font-bold text-3xl md:text-4xl mt-1">BITSS</h2>
+              <p className="mb-2.5 -mt-0.5 text-xs">CRYPTO SECURITY</p>
+            </span>
           </Link>
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList className="gap-0 py-3">

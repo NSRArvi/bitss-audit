@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { FinalCTA } from "@/components/Home/FinalCTA";
 import { Badge } from "@/components/ui/badge";
+import CustomBadge from "@/components/CustomBadge";
 
 const AuditServices = () => {
   const lists = [
@@ -68,9 +69,9 @@ const AuditServices = () => {
   return (
     <Container>
       <div className="text-center mt-4">
-        <Badge variant="secondary" className="text-xs text-muted-foreground">
-          Operated by BFIN SASU • Division. Bitss Crypto Audits
-        </Badge>
+        <CustomBadge
+          text={"Operated by BFIN SASU • Division. Bitss Crypto Audits"}
+        />
       </div>
       <section className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 pt-16">
         <div className="flex-1 bg-transparent">
@@ -94,12 +95,12 @@ const AuditServices = () => {
           <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
             <Link
               href="/"
-              className="py-3 px-2 rounded-md text-white font-medium bg-primary cursor-pointer w-55 text-center">
+              className="rounded-md text-white font-medium bg-primary cursor-pointer text-center py-3 px-6 w-60 md:w-fit">
               Request a Security Review
             </Link>
             <Link
               href="/"
-              className="w-55 py-3 rounded-md border border-primary dark:text-white hover:text-white dark:hover:text-black font-medium hover:bg-primary transition duration-500 cursor-pointer text-center">
+              className="rounded-md border border-primary dark:text-white hover:text-white dark:hover:text-black font-medium hover:bg-primary transition duration-500 cursor-pointer text-center py-3 px-6 w-60 md:w-fit">
               View Pricing
             </Link>
           </div>
@@ -141,10 +142,11 @@ const AuditServices = () => {
         </div>
       </section>
       <div className="w-full flex justify-center my-10">
-        <Badge variant="secondary" className="text-xs text-muted-foreground">
-          BITSS • Cybersecurity • Crypto Security • Audits • Infrastructure
-          Protection • Wallet Review
-        </Badge>
+        <CustomBadge
+          text={
+            " BITSS • Cybersecurity • Crypto Security • Audits • Infrastructure Protection • Wallet Review"
+          }
+        />
       </div>
       <section className="space-y-12 py-10 px-6">
         {carts.map((section, idx) => (

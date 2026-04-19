@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Inter, Michroma } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/Navbar";
@@ -11,9 +11,10 @@ const geistSans = Geist({
 const inter = Inter({
   variable: "--font-inter",
 });
-const michroma = Michroma({
-  variable: "--font-michroma",
-  weight: ["400"],
+const barlow_Condensed = Barlow_Condensed({
+  variable: "--font-Barlow_Condensed",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
 });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -21,8 +22,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "BITSS",
-  description: "Next.js with Nebula Dark Mode",
+  title: "BITSS Audit",
+  description:
+    "Professional security audits for smart contracts, wallets, exchanges, and blockchain systems. Identify vulnerabilities and build trust.",
 };
 
 export default function RootLayout({ children }) {
@@ -30,7 +32,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${michroma.variable} ${inter.variable} ${geistSans.variable}  ${geistMono.variable} h-full antialiased`}>
+      className={`${barlow_Condensed.variable} ${inter.variable} ${geistSans.variable}  ${geistMono.variable} h-full antialiased`}>
       <body className="h-full">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="nebula-bg" aria-hidden="true" />

@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
+import CustomBadge from "../CustomBadge";
 
 const Hero = () => {
   const lists = [
@@ -17,10 +18,7 @@ const Hero = () => {
   return (
     <>
       <div className="text-center mt-4">
-        <Badge variant="secondary" className="text-xs text-muted-foreground">
-          {" "}
-          Operated by BFIN SAUS - Brand BITSS
-        </Badge>
+        <CustomBadge text={"Operated by BFIN SAUS - Brand BITSS"} />
       </div>
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 pt-16">
         <div className="flex-1 bg-transparent">
@@ -38,13 +36,13 @@ const Hero = () => {
           <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
             <Link
               href="/"
-              className="py-3 px-2 rounded-md text-white font-medium bg-primary cursor-pointer w-55 text-center">
+              className="rounded-md text-white font-medium bg-primary cursor-pointer  text-center py-3 px-6 w-60 md:w-fit">
               Request a Security Review
             </Link>
             <Link
               href="/"
-              className="w-55 px-2 py-3 rounded-md border border-primary dark:text-white hover:text-white dark:hover:text-black font-medium hover:bg-primary transition duration-500 cursor-pointer text-center">
-              View Pricing
+              className="rounded-md border border-primary dark:text-white hover:text-white dark:hover:text-black font-medium hover:bg-primary transition duration-500 cursor-pointer text-center py-3 px-6 w-60 md:w-fit">
+              Explore Services
             </Link>
           </div>
         </div>
@@ -72,11 +70,11 @@ const Hero = () => {
         </div>
       </div>
       <div className="w-full flex justify-center my-10">
-        <Badge variant="secondary" className="text-xs text-muted-foreground">
-          {" "}
-          BITSS • Cybersecurity • Crypto Security • Audits • Infrastructure
-          Protection • Wallet Review
-        </Badge>
+        <CustomBadge
+          text={
+            " BITSS • Cybersecurity • Crypto Security • Audits • Infrastructure Protection • Wallet Review"
+          }
+        />
       </div>
     </>
   );

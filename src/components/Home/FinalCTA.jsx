@@ -30,12 +30,12 @@ export const FinalCTA = ({ text1, text2, text3, text4, text5 }) => {
           className="flex flex-wrap justify-center gap-4">
           <Link
             href="/"
-            className="py-3 rounded-md text-white font-semibold bg-primary cursor-pointer w-55">
+            className="rounded-md text-white font-semibold bg-primary cursor-pointer py-3 px-6 w-60 md:w-fit">
             {text4}
           </Link>
           <Link
             href="/"
-            className="py-3 rounded-md border border-primary dark:text-white hover:text-white dark:hover:text-black font-semibold hover:bg-primary transition duration-500 cursor-pointer w-55">
+            className="rounded-md border border-primary dark:text-white hover:text-white dark:hover:text-black font-semibold hover:bg-primary transition duration-500 cursor-pointer py-3 px-6 w-60 md:w-fit">
             {text5}
           </Link>
         </motion.div>

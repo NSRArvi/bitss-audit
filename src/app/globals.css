@@ -32,7 +32,7 @@
   --color-nebula-blue: oklch(0.6 0.2 240);
 
   --font-inter: var(--font-inter);
-  --font-heading: var(--font-michroma);
+  --font-heading: var(--font-Barlow_Condensed);
 }
 html,
 body {
@@ -60,7 +60,7 @@ body {
   --ring: oklch(0.708 0 0);
   --radius: 0.625rem;
   --font-inter: var(--font-inter);
-  --font-heading: var(--font-michroma);
+  --font-heading: var(--font-Barlow_Condensed);
 }
 
 .dark {
@@ -85,7 +85,7 @@ body {
   --nebula-bright-cyan: 190 100% 50%;
   --nebula-soft-purple: 260 80% 30%;
   --font-inter: var(--font-inter);
-  --font-heading: var(--font-michroma);
+  --font-heading: var(--font-Barlow_Condensed);
 }
 
 .nebula-bg {
