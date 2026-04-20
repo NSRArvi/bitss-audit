@@ -1,7 +1,7 @@
 import React from "react";
 
 const Container = ({ children }) => {
-  return <div className="container px-5 mx-auto">{children}</div>;
+  return <main className="container px-5 mx-auto">{children}</main>;
 };
 
 export default Container;

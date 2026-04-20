@@ -2,7 +2,7 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-export const FinalCTA = ({ text1, text2, text3, text4, text5 }) => {
+export const FinalCTA = ({ text1, text2, text3, text4, text5, btnWidth }) => {
   return (
     <section className="relative overflow-hidden px-6 text-center pb-24">
       <div className="max-w-3xl mx-auto space-y-8">
@@ -30,7 +30,9 @@ export const FinalCTA = ({ text1, text2, text3, text4, text5 }) => {
           transition={{ delay: 0.2 }}
           className="flex flex-wrap justify-center gap-4">
           <Button>{text4}</Button>
-          <Button variant="outline">{text5}</Button>
+          <Button variant="outline" className={`${btnWidth}`}>
+            {text5}
+          </Button>
         </motion.div>
       </div>
     </section>

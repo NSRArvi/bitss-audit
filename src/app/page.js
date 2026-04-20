@@ -17,6 +17,7 @@ const page = () => {
         }
         text4={"Request A Security Review"}
         text5={"Contact Us"}
+        btnWidth={"w-47"}
       />
     </Container>
   );

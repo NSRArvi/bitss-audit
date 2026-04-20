@@ -24,7 +24,7 @@ const Hero = () => {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-16 md:gap-4 pt-10">
           <div className="flex-1 bg-transparent">
-            <h1 className="font-heading text-5xl md:text-6xl font-bold leading-none text-center md:text-left">
+            <h1 className="font-heading text-[45px] md:text-6xl font-bold leading-none text-center md:text-left">
               Crypto Security For <br />{" "}
               <span className="text-heading bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
                 Serious Blockchain Businesses

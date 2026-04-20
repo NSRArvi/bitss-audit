@@ -227,6 +227,7 @@ const AuditServices = () => {
               }
               text4={"Request a Crypto Audit"}
               text5={"Book a Consultation"}
+              btnWidth={"w-[168px]"}
             />
 
             <FinalCTA
@@ -237,6 +238,7 @@ const AuditServices = () => {
               }
               text4={"Request a Crypto Audit"}
               text5={"Book a Consultation"}
+              btnWidth={"w-42"}
             />
           </div>
         </section>
