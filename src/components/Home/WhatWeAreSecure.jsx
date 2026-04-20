@@ -9,6 +9,7 @@ import {
   FileSearch,
 } from "lucide-react";
 import { useTheme } from "next-themes";
+import CustomBadge from "../CustomBadge";
 
 const carts = [
   {
@@ -83,7 +84,15 @@ const carts = [
 export default function SecuritySections() {
   const { theme } = useTheme();
   return (
-    <div className="space-y-24 py-10 md:px-6">
+    <section className="space-y-24 py-24 md:px-6">
+      <div className="w-full flex justify-center ">
+        <CustomBadge
+          text={
+            " BITSS • Cybersecurity • Crypto Security • Audits • Infrastructure Protection • Wallet Review"
+          }
+          className={"h-10 md:h-5"}
+        />
+      </div>
       {carts.map((section, idx) => (
         <section key={idx} className="space-y-6">
           <div className="text-center md:text-left">
@@ -132,6 +141,6 @@ export default function SecuritySections() {
           </div>
         </section>
       ))}
-    </div>
+    </section>
   );
 }

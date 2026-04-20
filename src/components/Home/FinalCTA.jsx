@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 export const FinalCTA = ({ text1, text2, text3, text4, text5 }) => {
   return (
-    <section className="relative overflow-hidden px-6 text-center mt-24">
+    <section className="relative overflow-hidden px-6 text-center pb-24">
       <div className="max-w-3xl mx-auto space-y-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
