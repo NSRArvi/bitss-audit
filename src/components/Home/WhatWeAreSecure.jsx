@@ -8,6 +8,7 @@ import {
   Server,
   FileSearch,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const carts = [
   {
@@ -80,15 +81,16 @@ const carts = [
 ];
 
 export default function SecuritySections() {
+  const { theme } = useTheme();
   return (
-    <div className="space-y-12 py-10 md:px-6">
+    <div className="space-y-24 py-10 md:px-6">
       {carts.map((section, idx) => (
-        <section key={idx} className="space-y-10">
+        <section key={idx} className="space-y-6">
           <div className="text-center md:text-left">
-            <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground">
+            <h2 className="font-heading text-[40px] font-bold tracking-tight text-foreground">
               {section.heading}
             </h2>
-            <p className="text-muted-foreground mt-2">{section.subHeading}</p>
+            <p className="text-muted-foreground mt-1">{section.subHeading}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -99,9 +101,11 @@ export default function SecuritySections() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative rounded-xl border border-white/10 bg-white/5 dark:bg-slate-950/20 p-6 backdrop-blur-xs transition-all hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]">
+                className="group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/20 p-6 backdrop-blur-xs transition-all hover:border-blue-500/50 dark:hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]">
                 {/* for glow */}
-                <div className="absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                {theme === "dark" && (
+                  <div className="absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                )}
 
                 <div className="relative z-10">
                   {item.step && (
@@ -116,7 +120,7 @@ export default function SecuritySections() {
                     </div>
                   )}
 
-                  <h3 className="mb-2 font-semibold text-foreground leading-tight">
+                  <h3 className="mb-2 font-semibold text-foreground leading-tight text-xl">
                     {item.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">

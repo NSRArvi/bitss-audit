@@ -11,8 +11,8 @@ import {
   FileSearch,
 } from "lucide-react";
 import { FinalCTA } from "@/components/Home/FinalCTA";
-import { Badge } from "@/components/ui/badge";
 import CustomBadge from "@/components/CustomBadge";
+import { Button } from "@/components/ui/button";
 
 const AuditServices = () => {
   const lists = [
@@ -73,9 +73,9 @@ const AuditServices = () => {
           text={"Operated by BFIN SASU • Division. Bitss Crypto Audits"}
         />
       </div>
-      <section className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 pt-16">
+      <section className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-16 md:gap-4 pt-16">
         <div className="flex-1 bg-transparent">
-          <h1 className="font-heading text-2xl md:text-4xl font-bold leading-tight text-center md:text-left">
+          <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight text-center md:text-left">
             Advanced Security Audits For <br />{" "}
             <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
               Blockchain, Smart Contracts,
@@ -93,24 +93,18 @@ const AuditServices = () => {
           </p>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
-            <Link
-              href="/"
-              className="rounded-md text-white font-medium bg-primary cursor-pointer text-center py-3 px-6 w-60 md:w-fit">
-              Request a Security Review
-            </Link>
-            <Link
-              href="/"
-              className="rounded-md border border-primary dark:text-white hover:text-white dark:hover:text-black font-medium hover:bg-primary transition duration-500 cursor-pointer text-center py-3 px-6 w-60 md:w-fit">
-              View Pricing
-            </Link>
+            <Button>Request a Security Review</Button>
+            <Button variant="outline">View Pricing</Button>
           </div>
         </div>
         <div className="w-75">
           <div className="px-3 shadow-sm py-4 border rounded-xl ">
-            <h3 className="font-semibold text-lg">Crypto Risk Dashboard</h3>
-            <p className="text-xs mt-1">Current Risk Overview</p>
+            <h3 className="font-semibold text-base">Crypto Risk Dashboard</h3>
+            <p className="text-xs mt-1 text-muted-foreground">
+              Current Risk Overview
+            </p>
             <div className="justify-items-center">
-              <p className="text-xl font-semibold my-4">
+              <p className="text-xl font-semibold my-4 text-gray-600">
                 <span className="font-bold text-2xl">82</span>/100
               </p>
             </div>
@@ -119,12 +113,12 @@ const AuditServices = () => {
                 {lists.map((item, i) => (
                   <li
                     key={i}
-                    className="flex w-full justify-between text-center border-b border-b-primary/50  my-3">
+                    className="flex w-full justify-between text-center border-b border-b-primary/50 my-2 pb-2">
                     {" "}
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       {item.title && item.title}
                     </p>
-                    <p className="text-lg font-semibold">
+                    <p className="text-sm font-semibold text-gray-600">
                       {item.value && item.value}
                     </p>
                   </li>
@@ -132,10 +126,10 @@ const AuditServices = () => {
               </ul>
               <div className="py-2 rounded-lg bg-white/5 backdrop-blur-sm flex justify-between gap-2 items-center">
                 <div className="text-muted-foreground">
-                  <h3 className="font-semibold text-lg">Audit Status</h3>
+                  <h3 className="font-semibold text-base">Audit Status</h3>
                   <p className="text-xs">Expect in Percentage</p>
                 </div>
-                <div className="bg-primary px-3 py-2 rounded-lg hover:scale-105 transition duration-300">
+                <div className="bg-primary p-2 rounded-lg hover:scale-105 transition duration-300">
                   <p className="text-white font-medium">ASDF ASDF</p>
                 </div>
               </div>
@@ -143,24 +137,25 @@ const AuditServices = () => {
           </div>
         </div>
       </section>
-      <div className="w-full flex justify-center my-10">
+      <div className="w-full flex justify-center mt-24">
         <CustomBadge
           text={
             " BITSS • Cybersecurity • Crypto Security • Audits • Infrastructure Protection • Wallet Review"
           }
+          className={"h-10 md:h-5"}
         />
       </div>
-      <section className="space-y-12 py-10 px-6">
+      <section className="space-y-12 pt-24 px-6">
         {carts.map((section, idx) => (
           <section key={idx} className="space-y-10">
             <div className="text-center md:text-left">
-              <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground">
+              <h2 className="font-heading text-[40px] md:text-5xl font-bold tracking-tight text-foreground">
                 {section.heading}
               </h2>
               <p className="text-muted-foreground mt-2">{section.subHeading}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {carts[0].body.map((item, i) => {
                 const isLast = i === carts[0].body.length - 1;
 
@@ -171,7 +166,7 @@ const AuditServices = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                     viewport={{ once: true }}
-                    className={`group relative rounded-xl border border-white/10 bg-white/5 dark:bg-slate-950/40 p-6 backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(57,168,239,0.2)] 
+                    className={`group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/40 p-6 backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(57,168,239,0.2)] 
           ${isLast ? "lg:col-span-2" : "col-span-1"}`}>
                     {/* Glow */}
                     <div className="absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
@@ -216,16 +211,17 @@ const AuditServices = () => {
         {/* Background Glow Effect */}
         <div className="absolute top-1/2 left-1/2 -z-10 h-100 w-150 -translate-x-1/2 -translate-y-1/2 bg-blue-600/10 blur-[120px] rounded-full" />
 
-        <FinalCTA
-          text1={"Clear Pricing to Secure Your "}
-          text2={"Crypto Business"}
-          text3={
-            "Talk to Bitss for a professional security audit of your smart contracts, wallets, exhange platform, or crypto connected crgpta."
-          }
-          text4={"Request a Crypto Audit"}
-          text5={"Book a Consultation"}
-        />
-        <div className="mt-16">
+        <div className="flex flex-col space-y-20">
+          <FinalCTA
+            text1={"Clear Pricing to Secure Your "}
+            text2={"Crypto Business"}
+            text3={
+              "Talk to Bitss for a professional security audit of your smart contracts, wallets, exhange platform, or crypto connected crgpta."
+            }
+            text4={"Request a Crypto Audit"}
+            text5={"Book a Consultation"}
+          />
+
           <FinalCTA
             text1={"Protect Your "}
             text2={"Blockchain Infrastructure"}

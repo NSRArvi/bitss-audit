@@ -20,6 +20,12 @@ import Image from "next/image";
 
 const navItems = [
   {
+    type: "link",
+    label: "Home",
+    href: "/",
+  },
+  ,
+  {
     type: "dropdown",
     label: "Services",
     items: [
@@ -101,7 +107,7 @@ const Navbar = () => {
               <p className="mb-2.5 -mt-0.5 text-[9px]">CRYPTO SECURITY</p>
             </span>
           </Link>
-          <NavigationMenu className="hidden md:flex">
+          <NavigationMenu className="hidden md:flex font-medium">
             <NavigationMenuList className="gap-0 py-3">
               {navItems.map((item, i) => (
                 <NavigationMenuItem key={i}>
@@ -114,7 +120,7 @@ const Navbar = () => {
                       <NavigationMenuTrigger>
                         {item.label}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="bg-background/5 dark:bg-slate-950/5 backdrop-blur-3xl shadow-sm">
+                      <NavigationMenuContent className="bg-background/5 dark:bg-slate-950/5 backdrop-blur-3xl shadow-sm font-medium">
                         <ul className={`${item.width} p-4 gap-2 `}>
                           {item.items.map((sub, idx) => (
                             <ListItem key={idx} href={sub.href}>
