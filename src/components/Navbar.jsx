@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import {
@@ -17,6 +17,7 @@ import MobileDropdown from "./NabvarMenuItem/MobileDropdown";
 import ModeToggle from "./ModeToggle";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
+import useCloseMenu from "@/hooks/useCloseMenu";
 
 const navItems = [
   {
@@ -88,7 +89,13 @@ const navItems = [
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const menuRef = useRef(null);
 
+  useCloseMenu({
+    isShow: showMenu,
+    onClose: () => setShowMenu(false),
+    menuRef,
+  });
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-sm">
       <Container>
@@ -153,7 +160,8 @@ const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="md:hidden fixed  right-0 h-screen w-[85%] max-w-sm border-l z-50 shadow-lg overflow-y-auto">
+                ref={menuRef}
+                className="md:hidden fixed  right-0 h-screen w-[80%] max-w-sm border-l z-50 shadow-lg overflow-y-auto">
                 <div className="flex flex-col gap-4 px-8 py-4 h-full bg-background dark:bg-slate-950/95 backdrop-blur-2xl shadow-md">
                   {navItems.map((item, i) =>
                     item.type === "link" ? (
