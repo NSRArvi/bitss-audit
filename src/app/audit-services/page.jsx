@@ -1,6 +1,5 @@
 "use client";
 import Container from "@/components/Container/Container";
-import Link from "next/link";
 import React from "react";
 import { motion } from "motion/react";
 import {
@@ -13,8 +12,10 @@ import {
 import { FinalCTA } from "@/components/Home/FinalCTA";
 import CustomBadge from "@/components/CustomBadge";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
 
 const AuditServices = () => {
+  const { theme } = useTheme();
   const lists = [
     { title: "Findings", value: "" },
     { title: "Critical Findings", value: "02" },
@@ -173,10 +174,13 @@ const AuditServices = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.1 }}
                       viewport={{ once: true }}
-                      className={`group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/40 p-6 backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(57,168,239,0.2)] 
+                      className={`group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/20 p-6 backdrop-blur-xs transition-all hover:border-blue-500/50 dark:hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]
           ${isLast ? "lg:col-span-2" : "col-span-1"}`}>
                       {/* Glow */}
-                      <div className="absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                      {theme === "dark" && (
+                        <div className="absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                      )}
+
                       <div className="relative z-10">
                         <div className="mb-4 flex items-center gap-3">
                           {item.icon && (
@@ -205,8 +209,6 @@ const AuditServices = () => {
                           </div>
                         )}
                       </div>
-
-                      <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-500 transition-all duration-300 group-hover:w-full"></div>
                     </motion.div>
                   );
                 })}
