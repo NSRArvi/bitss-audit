@@ -10,8 +10,8 @@ function ListItem({ children, href }) {
       <NavigationMenuLink asChild>
         <Link
           href={href}
-          className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/50 hover:text-accent-foreground focus:bg-accent/50 ${
-            pathname === href ? "bg-accent/40" : ""
+          className={`block select-none space-y-1 rounded-md leading-none no-underline outline-none transition-colors hover:text-primary hover:bg-transparent ${
+            pathname === href ? "text-primary" : ""
           }`}>
           {children}
         </Link>

@@ -38,54 +38,8 @@ const navItems = [
         label: "Expert Crypto Security Audit",
         href: "/expert-crypto-security-audit",
       },
-      { label: "Services3", href: "/" },
     ],
-    width: "w-60",
-  },
-
-  {
-    type: "dropdown",
-    label: "Process",
-    items: [
-      {
-        label: "Process1",
-        href: "/",
-      },
-      { label: "Process2", href: "/" },
-      { label: "Process3", href: "/" },
-    ],
-    width: "w-60",
-  },
-  {
-    type: "dropdown",
-    label: "AutoAudit",
-    items: [
-      {
-        label: "AutoAudit1",
-        href: "/",
-      },
-      { label: "AutoAudit2", href: "/" },
-      { label: "AutoAudit3", href: "/" },
-    ],
-    width: "w-60",
-  },
-  {
-    type: "dropdown",
-    label: "About",
-    items: [
-      {
-        label: "About1",
-        href: "/",
-      },
-      { label: "About2", href: "/" },
-      { label: "About3", href: "/" },
-    ],
-    width: "w-60",
-  },
-  {
-    type: "link",
-    label: "Request Review",
-    href: "/",
+    width: "w-50",
   },
 ];
 
@@ -120,18 +74,20 @@ const Navbar = () => {
           <NavigationMenu className="hidden md:flex font-medium">
             <NavigationMenuList className="gap-0 py-3">
               {navItems.map((item, i) => (
-                <NavigationMenuItem key={i}>
+                <NavigationMenuItem key={i} className={"hover:text-primary"}>
                   {item.type === "link" ? (
-                    <NavigationMenuLink asChild>
+                    <NavigationMenuLink
+                      asChild
+                      className={"hover:bg-transparent"}>
                       <Link href={item.href}>{item.label}</Link>
                     </NavigationMenuLink>
                   ) : (
                     <>
-                      <NavigationMenuTrigger>
+                      <NavigationMenuTrigger className="hover:bg-transparent">
                         {item.label}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="bg-background/5 dark:bg-slate-950/5 backdrop-blur-3xl shadow-sm font-medium">
-                        <ul className={`${item.width} p-4 gap-2 `}>
+                      <NavigationMenuContent className="font-medium ">
+                        <ul className={`${item.width} gap-2 `}>
                           {item.items.map((sub, idx) => (
                             <ListItem key={idx} href={sub.href}>
                               {sub.label}

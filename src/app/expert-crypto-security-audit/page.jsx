@@ -122,9 +122,9 @@ const ExpertCryptoSecurityAudit = () => {
 
   return (
     <Container>
-      <section className="flex flex-col-reverse md:flex-row items-center gap-10 py-40 ">
+      <section className="flex flex-col-reverse md:flex-row items-end gap-10 py-20 sm:py-25 md:py-30 lg:py-40 ">
         <div className="w-full">
-          <h1 className="font-heading text-[40px] md:text-7xl font-bold leading-none text-center md:text-left">
+          <h1 className="font-heading text-[40px] sm:text-4xl md:text-4xl lg:text-7xl font-bold leading-none text-center md:text-left">
             EXPERT CRYPTO SECURITY AUDITS FOR{" "}
             <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
               COMPLETE SYSTEM PROTECTION
@@ -139,7 +139,7 @@ const ExpertCryptoSecurityAudit = () => {
               className="mx-auto"
             />
           </div>
-          <p className="my-6 md:my-10 justify-items-center text-left text-muted-foreground w-full md:w-2/3">
+          <p className="my-6 lg:my-10 justify-items-center text-left text-muted-foreground w-full md:w-2/3">
             Full-stack audits Of your smart contracts, wallets, infrastructure,
             and financial systems.
           </p>
@@ -154,9 +154,9 @@ const ExpertCryptoSecurityAudit = () => {
           <Image
             src={sectionHeroImg}
             alt="Section Hero Image"
-            width={500}
-            height={500}
-            className="mx-auto"
+            width={1000}
+            height={1000}
+            className="mx-auto w-full"
           />
         </div>
       </section>

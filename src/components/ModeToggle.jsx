@@ -23,7 +23,7 @@ const ModeToggle = () => {
       checked={isDark}
       onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
       className={cn(
-        "relative inline-flex h-6 w-10 items-center rounded-full transition-colors",
+        "cursor-pointer relative inline-flex h-6 w-10 items-center rounded-full transition-colors",
         isDark ? "bg-zinc-800" : "bg-zinc-300",
       )}>
       <SwitchPrimitive.Thumb
