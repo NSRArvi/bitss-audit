@@ -31,10 +31,13 @@ const navItems = [
     label: "Services",
     items: [
       {
-        label: "Services1",
-        href: "/audit-services",
+        label: "Advanced Security Audits",
+        href: "/advanced-security-audits",
       },
-      { label: "Services2", href: "/" },
+      {
+        label: "Expert Crypto Security Audit",
+        href: "/expert-crypto-security-audit",
+      },
       { label: "Services3", href: "/" },
     ],
     width: "w-60",

@@ -34,7 +34,6 @@ const Hero = () => {
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
               <Button> Request a Security Review</Button>
-
               <Button variant="outline">Explore Services</Button>
             </div>
           </div>
