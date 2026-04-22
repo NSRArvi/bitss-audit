@@ -122,9 +122,9 @@ const ExpertCryptoSecurityAudit = () => {
 
   return (
     <Container>
-      <section className="flex flex-col-reverse md:flex-row items-center gap-10 py-20 ">
+      <section className="flex flex-col-reverse md:flex-row items-center gap-10 py-40 ">
         <div className="w-full">
-          <h1 className="font-heading text-[40px] md:text-6xl font-bold leading-none text-center md:text-left">
+          <h1 className="font-heading text-[40px] md:text-7xl font-bold leading-none text-center md:text-left">
             EXPERT CRYPTO SECURITY AUDITS FOR{" "}
             <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
               COMPLETE SYSTEM PROTECTION
@@ -161,9 +161,6 @@ const ExpertCryptoSecurityAudit = () => {
         </div>
       </section>
       <section className="relative overflow-hidden md:px-6 text-center">
-        {/* Background Glow Effect */}
-        <div className="hidden md:block absolute top-1/2 left-1/2 -z-10 h-100 w-150 -translate-x-1/2 -translate-y-1/2 bg-primary/10 blur-[120px] rounded-full" />
-
         <div className="flex flex-col justify-center items-center pb-10">
           <h2 className="text-muted-foreground font-heading text-2xl leading-tight text-left md:text-center mb-4">
             <span className="font-medium  text-gray-600 dark:text-gray-400">
@@ -247,7 +244,7 @@ const ExpertCryptoSecurityAudit = () => {
             integrity.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-10 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10 pb-4 relative">
           {lists2.map((section, idx) => {
             return (
               <motion.div
@@ -295,17 +292,17 @@ const ExpertCryptoSecurityAudit = () => {
             );
           })}
         </div>
-        <h2 className="text-muted-foreground text-2xl font-heading leading-tight text-center pb-10">
+        <h2 className="text-muted-foreground text-sm font-heading leading-tight text-center pb-10">
           Confidential & Secure Submission — All data protected
         </h2>
       </section>
-      <section className="bg-slate-50/20 md:py-20 rounded-xl shadow-xs">
-        <h2 className="text-muted-foreground text-2xl font-heading leading-tight text-center pt-10 pb-4">
-          Request Your Crypto Audit
-        </h2>
-        <div className="w-full">
-          <div className="m">
-            <div className=" rounded-xl py-8 flex flex-col md:flex-row justify-center items-start gap-8">
+      <section className="">
+        <div className="dark:bg-black/30 backdrop-blur-xs md:py-20 rounded-xl">
+          <h2 className="text-muted-foreground text-3xl font-bold font-heading leading-tight text-left md:text-center px-6 md:px-0 pt-7 md:pt-5 md:pb-9 pb-7">
+            Request Your Crypto Audit
+          </h2>
+          <div className="w-full">
+            <div className=" rounded-xl px-6 md:px-0 pb-6 md:py-8 flex flex-col md:flex-row justify-center items-start gap-8">
               {auditItems.map((item, index) => (
                 <div key={index} className="flex items-start gap-4">
                   <div className="text-primary">
@@ -318,7 +315,7 @@ const ExpertCryptoSecurityAudit = () => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-bold text-gray-900 text-sm">
+                    <span className="font-bold text-gray-900 dark:text-gray-400 text-sm">
                       {item.title}
                     </span>
                     <span className="text-xs text-gray-500 leading-tight max-w-30">
