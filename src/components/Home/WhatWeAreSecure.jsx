@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { motion } from "motion/react";
 import {
   ShieldCheck,
@@ -8,7 +7,6 @@ import {
   Server,
   FileSearch,
 } from "lucide-react";
-import { useTheme } from "next-themes";
 import CustomBadge from "../CustomBadge";
 
 const carts = [
@@ -82,7 +80,6 @@ const carts = [
 ];
 
 export default function SecuritySections() {
-  const { theme } = useTheme();
   return (
     <section className="space-y-24 py-24 md:px-6">
       <div className="w-full flex justify-center ">
@@ -112,9 +109,7 @@ export default function SecuritySections() {
                 viewport={{ once: true }}
                 className="group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/20 p-6 backdrop-blur-xs transition-all hover:border-blue-500/50 dark:hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]">
                 {/* for glow */}
-                {theme === "dark" && (
-                  <div className="absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                )}
+                <div className="hidden dark:block absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
                 <div className="relative z-10">
                   {item.step && (

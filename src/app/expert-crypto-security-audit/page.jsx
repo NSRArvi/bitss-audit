@@ -1,20 +1,10 @@
 "use client";
 import Container from "@/components/Container/Container";
 import { Button } from "@/components/ui/button";
-import React from "react";
-import sectionHeroImg from "../../../public/section_hero.png";
+import sectionHeroImg from "../assets/section_hero1.png";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { useTheme } from "next-themes";
-import {
-  ShieldCog,
-  Users,
-  ShieldCheck,
-  Lock,
-  FileText,
-  Database,
-  Layers,
-} from "lucide-react";
+import { ShieldCog, Users, ShieldCheck } from "lucide-react";
 import CustomBadge from "@/components/CustomBadge";
 import isoImg from "../assets/iso.webp";
 import aseImg from "../assets/ase-removebg-preview.png";
@@ -22,7 +12,6 @@ import cdprImg from "../assets/cdpr-logo-removebg-preview.png";
 import gdprImg from "../assets/gdpr-removebg-preview.png";
 
 const ExpertCryptoSecurityAudit = () => {
-  const { theme } = useTheme();
   const lists = [
     {
       title: "Expertise",
@@ -190,9 +179,8 @@ const ExpertCryptoSecurityAudit = () => {
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true }}
                 className="group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/20 p-6 backdrop-blur-xs transition-all hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]">
-                {theme === "dark" && (
-                  <div className="absolute -inset-px rounded-xl bg-linear-to-b from-primary/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                )}
+                {/* for glow */}
+                <div className="hidden dark:block absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
                 <div className="relative z-10">
                   <div className="flex gap-3 items-center ">
@@ -254,9 +242,8 @@ const ExpertCryptoSecurityAudit = () => {
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true }}
                 className="group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/20 p-6 backdrop-blur-xs transition-all hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]">
-                {theme === "dark" && (
-                  <div className="absolute -inset-px rounded-xl bg-linear-to-b from-primary/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                )}
+                {/* for glow */}
+                <div className="hidden dark:block absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
                 <div className="relative z-10">
                   <h3 className="font-heading mb-5 flex flex-col justify-center font-semibold text-foreground leading-tight text-2xl md:text-3xl">
