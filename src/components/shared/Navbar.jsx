@@ -11,10 +11,10 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import Container from "./Container/Container";
-import ListItem from "./NabvarMenuItem/ListItem";
-import MobileDropdown from "./NabvarMenuItem/MobileDropdown";
-import ModeToggle from "./ModeToggle";
+import Container from "../Container/Container";
+import ListItem from "../NabvarMenuItem/ListItem";
+import MobileDropdown from "../NabvarMenuItem/MobileDropdown";
+import ModeToggle from "../ModeToggle";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import useCloseMenu from "@/hooks/useCloseMenu";
@@ -25,7 +25,6 @@ const navItems = [
     label: "Home",
     href: "/",
   },
-  ,
   {
     type: "dropdown",
     label: "Services",
@@ -40,6 +39,11 @@ const navItems = [
       },
     ],
     width: "w-50",
+  },
+  {
+    type: "link",
+    label: "Contact Us",
+    href: "/contact",
   },
 ];
 

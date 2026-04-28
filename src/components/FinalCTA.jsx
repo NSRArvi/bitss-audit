@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "motion/react";
-import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 export const FinalCTA = ({ text1, text2, text3, text4, text5, btnWidth }) => {
   return (
     <section className="relative overflow-hidden px-6 text-center pb-24">

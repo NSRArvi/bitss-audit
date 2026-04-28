@@ -9,10 +9,10 @@ import {
   Server,
   FileSearch,
 } from "lucide-react";
-import { FinalCTA } from "@/components/Home/FinalCTA";
 import CustomBadge from "@/components/CustomBadge";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import { FinalCTA } from "@/components/FinalCTA";
 
 const AuditServices = () => {
   const { theme } = useTheme();
