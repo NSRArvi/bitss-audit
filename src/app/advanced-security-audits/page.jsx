@@ -128,9 +128,11 @@ const AuditServices = () => {
                       </li>
                     ))}
                   </ul>
-                  <div className="py-2 rounded-lg bg-white/5 backdrop-blur-sm flex justify-between gap-2 items-center">
+                  <div className="py-2 rounded-lg  flex justify-between gap-2 items-center">
                     <div className="text-muted-foreground">
-                      <h3 className="font-semibold text-base">Audit Status</h3>
+                      <h3 className="font-semibold text-base text-start">
+                        Audit Status
+                      </h3>
                       <p className="text-xs">Expect in Percentage</p>
                     </div>
                     <div className="bg-primary p-2 rounded-lg hover:scale-105 transition duration-300">

@@ -11,13 +11,14 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import Container from "../Container/Container";
-import ListItem from "../NabvarMenuItem/ListItem";
-import MobileDropdown from "../NabvarMenuItem/MobileDropdown";
-import ModeToggle from "../ModeToggle";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import useCloseMenu from "@/hooks/useCloseMenu";
+import { useRouter } from "next/navigation";
+import Container from "@/components/Container/Container";
+import ModeToggle from "@/components/ModeToggle";
+import ListItem from "./NabvarMenuItem/ListItem";
+import MobileDropdown from "./NabvarMenuItem/MobileDropdown";
 
 const navItems = [
   {
@@ -40,17 +41,13 @@ const navItems = [
     ],
     width: "w-50",
   },
-  {
-    type: "link",
-    label: "Contact Us",
-    href: "/contact",
-  },
 ];
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const menuRef = useRef(null);
+  const navigate = useRouter();
 
   useCloseMenu({
     isShow: showMenu,
@@ -104,7 +101,14 @@ const Navbar = () => {
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
-            <ModeToggle />
+            <button
+              onClick={() => navigate.push("/contact")}
+              className="w-full mx-4 flex items-center justify-center gap-2.5 py-2 px-4 rounded-lg bg-primary/80 hover:bg-primary text-white text-[14px] font-semibold text-sm cursor-pointer">
+              Contact Us
+            </button>
+            <div className="ml-4">
+              <ModeToggle />
+            </div>
           </NavigationMenu>
           <button className="md:hidden" onClick={() => setShowMenu(!showMenu)}>
             {showMenu ? <X size={22} /> : <Menu size={22} />}

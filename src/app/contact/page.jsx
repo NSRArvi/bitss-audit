@@ -1,5 +1,5 @@
-import Banner from "@/components/Home/contact/Banner";
-import ContactForm from "@/components/Home/contact/ContactForm";
+import Banner from "@/components/contact/Banner";
+import ContactForm from "@/components/contact/ContactForm";
 import React from "react";
 
 const page = () => {

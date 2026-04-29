@@ -6,9 +6,7 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <Container>
-        <HeroBanner />
-      </Container>
+      <HeroBanner />
       <WhatWeSecure />
     </>
   );

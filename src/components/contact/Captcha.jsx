@@ -35,7 +35,7 @@ const Captcha = ({ onCaptchaGenerated }) => {
     context.lineTo(0, radius);
     context.quadraticCurveTo(0, 0, radius, 0);
     context.closePath();
-    context.fillStyle = "#DC2626";
+    context.fillStyle = "#0089e0";
     context.fill();
 
     // Slight noise lines for anti-bot feel
@@ -70,8 +70,7 @@ const Captcha = ({ onCaptchaGenerated }) => {
       <button
         type="button"
         onClick={generateCaptcha}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-[12px] text-slate-500 hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition-all duration-200 font-medium"
-      >
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-[12px] text-slate-500 hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition-all duration-200 font-medium">
         <RefreshCw size={12} />
         Refresh
       </button>

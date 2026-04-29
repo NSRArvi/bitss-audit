@@ -206,7 +206,7 @@ const ContactForm = () => {
   ];
 
   const inputBase =
-    "w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white dark:bg-transparent text-[14px] text-slate-800 placeholder:text-slate-300 focus:outline-none focus:border-red-400 focus:ring-2 focus:ring-red-100 transition-all duration-200";
+    "w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white dark:bg-transparent text-[14px] text-slate-800 dark:text-slate-300 placeholder:text-slate-300 focus:outline-none focus:border-red-400 focus:ring-2 focus:ring-red-100 transition-all duration-200";
 
   return (
     <section className="relative py-16 sm:py-20 bg-slate-50 dark:bg-transparent overflow-hidden">
@@ -245,7 +245,7 @@ const ContactForm = () => {
           <div className="w-full lg:w-1/2">
             <div className="bg-white dark:bg-transparent dark:backdrop-blur-md rounded-3xl border border-slate-200 shadow-xl dark:shadow-none shadow-slate-100/80 overflow-hidden">
               {/* Top gradient bar */}
-              <div className="h-1 w-full bg-linear-to-r from-red-600 via-red-500 to-amber-500" />
+              <div className="h-1 w-full bg-linear-to-r from-primary/33 via-primary/66 to-primary" />
 
               <form
                 ref={form}
@@ -463,7 +463,7 @@ const ContactForm = () => {
                     />
                   </div>
                   <p className="text-[11px] text-slate-400 text-center">
-                    This form is powered by BITSS cyber security
+                    This form is powered by BITSS crypto security
                   </p>
                   <p className="flex items-center gap-1 text-[11px] text-slate-400">
                     <Copyright size={11} /> 2026 BFIN. BITSS by BFIN. All rights
@@ -477,7 +477,7 @@ const ContactForm = () => {
           {/* ── MAP ── */}
           <div className="w-full lg:w-1/2">
             <div className="bg-white dark:bg-transparent rounded-3xl border border-slate-200 shadow-xl dark:shadow-none shadow-slate-100/80 overflow-hidden h-full min-h-125">
-              <div className="h-1 w-full bg-linear-to-r from-red-600 via-red-500 to-amber-500" />
+              <div className="h-1 w-full bg-linear-to-r from-primary/33 via-primary/66 to-primary" />
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5795.795980198256!2d3.708454!3d43.420958!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b1357c2efa6fbb%3A0xddfc93666aef9f37!2s8%20Rue%20de%20Dublin%2C%2034200%20S%C3%A8te%2C%20France!5e0!3m2!1sen!2sbd!4v1723619506631!5m2!1sen!2sbd"
                 width="100%"
