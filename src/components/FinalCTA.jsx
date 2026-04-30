@@ -9,7 +9,7 @@ export const FinalCTA = ({ text1, text2, text3, text4, text5, btnWidth }) => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="font-heading text-[40px] font-bold tracking-tight text-foreground leading-tight">
+          className="font-heading w-full text-[40px] font-bold tracking-tight text-foreground leading-tight">
           {text1}
           <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
             {text2}
@@ -31,12 +31,12 @@ export const FinalCTA = ({ text1, text2, text3, text4, text5, btnWidth }) => {
           className="flex flex-wrap justify-center gap-4">
           <Link
             href={"/audit-form"}
-            className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+            className="text-white w-4/5 md:w-fit px-6 py-2.5 rounded-lg bg-primary/80 hover:bg-primary hover:transition-all duration-300">
             {text4}
           </Link>
           <Link
             href={"/contact"}
-            className="bg-transparent hover:text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
+            className="bg-transparent md:w-fit hover:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
             {text5}
           </Link>
         </motion.div>

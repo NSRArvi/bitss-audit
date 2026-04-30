@@ -2,7 +2,7 @@
 import { Home, Mail, Phone } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import contactImg from "../../app/assets/contact01.png";
+import contactImg from "../../app/assets/contact.png";
 import { useEffect, useState } from "react";
 
 export default function Banner() {

@@ -78,12 +78,12 @@ const AuditServices = () => {
 
           <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-16 md:gap-4 pt-12">
             <div className="flex-1 bg-transparent">
-              <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight text-center md:text-left">
-                Advanced Security Audits For <br />{" "}
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[80px] font-black text-center md:text-left md:w-[85%]">
+                Advanced Security Audits For{" "}
                 <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
                   Blockchain, Smart Contracts,
                 </span>
-                <br /> and{" "}
+                and{" "}
                 <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
                   Digital Assets
                 </span>
@@ -95,15 +95,16 @@ const AuditServices = () => {
                 vulnerability identification.
               </p>
 
-              <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
+              <div className="flex flex-col md:flex-row gap-4 items-center space-y-3">
                 <Link
                   href={"/audit-form"}
-                  className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+                  className="text-white w-3/4 md:w-fit mt-3 px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
                   Request Crypto Security Review
                 </Link>
                 <Link
                   href={"/contact"}
-                  className="bg-transparent hover:text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
+                  target="blank"
+                  className="bg-transparent w-3/4 md:w-fit dark:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary rounded-lg hover:transition-all duration-300">
                   Contact Us
                 </Link>
               </div>
@@ -144,9 +145,6 @@ const AuditServices = () => {
                       </h3>
                       <p className="text-xs">Expect in Percentage</p>
                     </div>
-                    {/* <div className="bg-primary p-2 rounded-lg hover:scale-105 transition duration-300">
-                      <p className="text-white font-medium">ASDF ASDF</p>
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -240,7 +238,7 @@ const AuditServices = () => {
               }
               text4={"Request a Crypto Audit"}
               text5={"Book a Consultation"}
-              btnWidth={"w-[168px]"}
+              btnWidth={"w"}
             />
 
             <FinalCTA
@@ -251,7 +249,7 @@ const AuditServices = () => {
               }
               text4={"Request a Crypto Audit"}
               text5={"Book a Consultation"}
-              btnWidth={"w-42"}
+              btnWidth={"w-[100%]"}
             />
           </div>
         </section>

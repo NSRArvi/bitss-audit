@@ -41,7 +41,7 @@ const AuditForm = () => {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[80px] font-black tracking-tight text-slate-900 dark:text-white">
             Request Your{" "}
             <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
               Crypto Audit
@@ -57,7 +57,7 @@ const AuditForm = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative z-10 w-full max-w-2xl rounded-2xl border bg-white/5 border-slate-200 dark:bg-white/4 dark:backdrop-blur-md dark:border-white/4">
+          className="relative z-10 w-full max-w-5xl rounded-2xl border bg-white/5 border-slate-200 dark:bg-white/4 dark:backdrop-blur-md dark:border-white/4">
           {/* Top accent line */}
           <div className="h-px w-full bg-linear-to-r from-transparent via-primary to-transparent" />
 
@@ -86,12 +86,15 @@ const AuditForm = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-1.5">
+              <div className="flex w-full flex-col gap-1.5">
                 <Label className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
                   Blockchain
                 </Label>
-                <Select value={blockchain} onValueChange={setBlockchain}>
-                  <SelectTrigger>
+                <Select
+                  value={blockchain}
+                  onValueChange={setBlockchain}
+                  className="w-full">
+                  <SelectTrigger className={"w-full"}>
                     <SelectValue placeholder="Select chain" />
                   </SelectTrigger>
                   <SelectContent>
@@ -102,12 +105,12 @@ const AuditForm = () => {
                 </Select>
               </div>
 
-              <div className="flex flex-col gap-1.5">
+              <div className="flex w-full flex-col gap-1.5">
                 <Label className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
                   Audit Type
                 </Label>
                 <Select value={auditType} onValueChange={setAuditType}>
-                  <SelectTrigger>
+                  <SelectTrigger className={"w-full"}>
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
                   <SelectContent>

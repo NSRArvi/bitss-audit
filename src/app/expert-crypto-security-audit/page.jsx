@@ -115,9 +115,9 @@ const ExpertCryptoSecurityAudit = () => {
 
   return (
     <Container>
-      <section className="flex flex-col-reverse md:flex-row items-end gap-10 py-20 sm:py-25 md:py-30 lg:py-40 ">
-        <div className="w-full">
-          <h1 className="font-heading text-[40px] sm:text-4xl md:text-4xl lg:text-7xl font-bold leading-none text-center md:text-left">
+      <section className="relative flex flex-col-reverse md:flex-row items-end gap-10 py-20 sm:py-25 md:py-30">
+        <div className=" md:w-2/4">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[80px] font-black leading-none text-center md:text-left">
             EXPERT CRYPTO SECURITY AUDITS FOR{" "}
             <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
               COMPLETE SYSTEM PROTECTION
@@ -136,27 +136,27 @@ const ExpertCryptoSecurityAudit = () => {
             Full-stack audits Of your smart contracts, wallets, infrastructure,
             and financial systems.
           </p>
-          <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
+          <div className="flex flex-col md:flex-row justify-center md:justify-start items-center gap-4 mt-8">
             <Link
               href={"/contact"}
-              className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+              className="text-white w-3/4 md:w-fit px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
               {" "}
               Request a Free Consultation
             </Link>
             <Link
               href={"#features"}
-              className="bg-transparent hover:text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
+              className="bg-transparent w-3/4 md:w-fit hover:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
               Explore Services
             </Link>
           </div>
         </div>
-        <div className="w-full hidden md:flex">
+        <div className="w-fit flex-1 hidden md:flex">
           <Image
             src={sectionHeroImg}
             alt="Section Hero Image"
-            width={1000}
-            height={1000}
-            className="mx-auto w-full"
+            width={500}
+            height={500}
+            className="mx-auto absolute top-40 right-0 w-170"
           />
         </div>
       </section>

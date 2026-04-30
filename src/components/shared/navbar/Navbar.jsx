@@ -103,7 +103,7 @@ const Navbar = () => {
             </NavigationMenuList>
             <button
               onClick={() => navigate.push("/contact")}
-              className="w-full mx-4 flex items-center justify-center gap-2.5 py-2 px-4 rounded-lg bg-primary/80 hover:bg-primary text-white text-[14px] font-semibold text-sm cursor-pointer hover:transition-all duration-300">
+              className="w-full mx-4 flex items-center justify-center gap-2.5 py-2 px-4 rounded-sm bg-primary/80 hover:bg-primary text-white text-[14px] font-semibold text-sm cursor-pointer hover:transition-all duration-300">
               Contact Us
             </button>
             <div className="ml-4">
@@ -143,7 +143,8 @@ const Navbar = () => {
                         key={i}
                         title={item.label}
                         openDropdown={openDropdown}
-                        setOpenDropdown={setOpenDropdown}>
+                        setOpenDropdown={setOpenDropdown}
+                        setShowMenu={setShowMenu}>
                         {item.items.map((sub, idx) => (
                           <Link
                             key={idx}
