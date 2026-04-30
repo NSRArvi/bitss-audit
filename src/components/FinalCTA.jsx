@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 export const FinalCTA = ({ text1, text2, text3, text4, text5, btnWidth }) => {
   return (
     <section className="relative overflow-hidden px-6 text-center pb-24">
@@ -28,10 +29,16 @@ export const FinalCTA = ({ text1, text2, text3, text4, text5, btnWidth }) => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
           className="flex flex-wrap justify-center gap-4">
-          <Button>{text4}</Button>
-          <Button variant="outline" className={`${btnWidth}`}>
+          <Link
+            href={"/audit-form"}
+            className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+            {text4}
+          </Link>
+          <Link
+            href={"/contact"}
+            className="bg-transparent hover:text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
             {text5}
-          </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

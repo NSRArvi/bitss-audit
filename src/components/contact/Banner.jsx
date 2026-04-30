@@ -2,9 +2,20 @@
 import { Home, Mail, Phone } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import contactImg from "../../app/assets/contact01.png";
+import { useEffect, useState } from "react";
 
 export default function Banner() {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="absolute top-0 inset-x-0 h-1" />;
+  }
   const contacts = [
     {
       icon: Home,
@@ -43,7 +54,10 @@ export default function Banner() {
         />
       )}
       {/* Top accent line */}
-      <div className="absolute top-0 inset-x-0 h-1 bg-linear-to-r from-primary/33 via-primary/66 to-primary" />
+      <div
+        className="absolute top-0 inset-x-0 h-1 bg-linear-to-r from-primary/33 via-primary/66 to-primary"
+        suppressHydrationWarning
+      />
       {/* Radial glow */}
       {theme === "light" && (
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_30%_40%,rgba(254,242,242,0.85)_0%,transparent_70%)]" />
@@ -114,11 +128,13 @@ export default function Banner() {
 
           {/* RIGHT — Illustration */}
           <div className="w-full lg:w-1/2 flex items-center justify-center">
-            <div className="relative w-full max-w-md aspect-4/3">
+            <div className="relative w-full max-w-md aspect-4/3 dark:bg-white/5 py-6 rounded-xl dark:backdrop-blur-xl">
               <Image
-                src="/img/contact-banner.svg"
+                src={contactImg.src}
                 alt="Contact illustration"
                 fill
+                sizes="100"
+                loading="eager"
                 className="object-contain"
               />
             </div>

@@ -13,6 +13,7 @@ import CustomBadge from "@/components/CustomBadge";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { FinalCTA } from "@/components/FinalCTA";
+import Link from "next/link";
 
 const AuditServices = () => {
   const { theme } = useTheme();
@@ -95,8 +96,16 @@ const AuditServices = () => {
               </p>
 
               <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
-                <Button>Request a Security Review</Button>
-                <Button variant="outline">View Pricing</Button>
+                <Link
+                  href={"/audit-form"}
+                  className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+                  Request Crypto Security Review
+                </Link>
+                <Link
+                  href={"/contact"}
+                  className="bg-transparent hover:text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
+                  Contact Us
+                </Link>
               </div>
             </div>
             <div className="w-75">
@@ -135,9 +144,9 @@ const AuditServices = () => {
                       </h3>
                       <p className="text-xs">Expect in Percentage</p>
                     </div>
-                    <div className="bg-primary p-2 rounded-lg hover:scale-105 transition duration-300">
+                    {/* <div className="bg-primary p-2 rounded-lg hover:scale-105 transition duration-300">
                       <p className="text-white font-medium">ASDF ASDF</p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

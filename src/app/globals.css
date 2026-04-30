@@ -38,6 +38,7 @@ html,
 body {
   overflow-x: hidden;
   position: relative;
+  scroll-behavior: smooth;
 }
 :root {
   --background: oklch(1 0 0);

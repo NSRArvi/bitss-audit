@@ -70,6 +70,7 @@ export const BITSS_PROTECTION_PRODUCTS = [
       "Brute-force lockout",
       "Server login security",
     ],
+    href: "/audit-form",
   },
 
   {
@@ -88,6 +89,7 @@ export const BITSS_PROTECTION_PRODUCTS = [
       "Unauthorized access blocking",
       "Server dashboard security",
     ],
+    href: "/audit-form",
   },
 
   {
@@ -106,6 +108,7 @@ export const BITSS_PROTECTION_PRODUCTS = [
       "Auto quarantine threats",
       "Real-time file scanning",
     ],
+    href: "/audit-form",
   },
 
   {
@@ -124,6 +127,7 @@ export const BITSS_PROTECTION_PRODUCTS = [
       "Behavior monitoring",
       "Developer machine security",
     ],
+    href: "/audit-form",
   },
 
   {
@@ -142,6 +146,7 @@ export const BITSS_PROTECTION_PRODUCTS = [
       "Governance risk review",
       "Detailed audit reports",
     ],
+    href: "/audit-form",
   },
 ];
 export const OUR_SECURITY_PROCESS = [

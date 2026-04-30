@@ -10,6 +10,7 @@ import isoImg from "../assets/iso.webp";
 import aseImg from "../assets/ase-removebg-preview.png";
 import cdprImg from "../assets/cdpr-logo-removebg-preview.png";
 import gdprImg from "../assets/gdpr-removebg-preview.png";
+import Link from "next/link";
 
 const ExpertCryptoSecurityAudit = () => {
   const lists = [
@@ -60,6 +61,7 @@ const ExpertCryptoSecurityAudit = () => {
         "1-2 Weeks Completion",
       ],
       btnText: "Learn More",
+      href: "/contact",
     },
     {
       title: "Advanced Audit",
@@ -71,6 +73,7 @@ const ExpertCryptoSecurityAudit = () => {
         "1-2 Expert Auditors",
       ],
       btnText: "Request Audit",
+      href: "/audit-form",
       badge: "RECOMMENDED",
     },
     {
@@ -83,6 +86,7 @@ const ExpertCryptoSecurityAudit = () => {
         "3-3 Weeks Completion",
       ],
       btnText: "Request Audit",
+      href: "/audit-form",
       badge: "MOST purchased ",
     },
   ];
@@ -133,10 +137,17 @@ const ExpertCryptoSecurityAudit = () => {
             and financial systems.
           </p>
           <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
-            <Button> Request a Free Consultation</Button>
-            <Button variant="outline" className={"w-48"}>
+            <Link
+              href={"/contact"}
+              className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+              {" "}
+              Request a Free Consultation
+            </Link>
+            <Link
+              href={"#features"}
+              className="bg-transparent hover:text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
               Explore Services
-            </Button>
+            </Link>
           </div>
         </div>
         <div className="w-full hidden md:flex">
@@ -217,7 +228,7 @@ const ExpertCryptoSecurityAudit = () => {
           />
         </div>
       </section>
-      <section className="pt-20">
+      <section className="pt-20" id="features">
         <div className="flex flex-col justify-center items-center">
           <h2 className="text-muted-foreground text-2xl font-heading leading-tight text-left md:text-center mb-4">
             <span className="font-medium text-gray-600 dark:text-gray-400">
@@ -270,9 +281,11 @@ const ExpertCryptoSecurityAudit = () => {
                     ))}
                   </ul>
                   <div className="pt-10 pb-5">
-                    <Button className={"font-semibold px-6"}>
+                    <Link
+                      href={section.href}
+                      className="bg-transparent w-fit hover:text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
                       {section.btnText}
-                    </Button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>

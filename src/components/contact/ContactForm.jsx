@@ -74,6 +74,7 @@ const ContactForm = () => {
       .catch((e) => console.error("Error loading country data:", e));
     fetchForbiddenWords();
   }, []);
+  console.log(countries);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
