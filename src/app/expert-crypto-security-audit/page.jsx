@@ -296,7 +296,7 @@ const ExpertCryptoSecurityAudit = () => {
             Request Your Crypto Audit
           </h2>
           <div className="w-full">
-            <div className="rounded-xl md:px-6 md:px-0 pb-6 md:py-8 flex flex-col md:flex-row justify-center items-start gap-8">
+            <div className="rounded-xl px-6 md:px-0 pb-6 md:py-8 flex flex-col md:flex-row justify-center items-start gap-8">
               {auditItems.map((item, index) => (
                 <div key={index} className="flex items-start gap-4 px-6">
                   <div className="text-primary">

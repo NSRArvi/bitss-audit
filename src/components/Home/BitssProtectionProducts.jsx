@@ -55,6 +55,7 @@ const BitssProtectionProducts = () => {
               <div className="mt-auto flex justify-center">
                 <Link
                   href={item?.href}
+                  target="_blank"
                   className="block w-fit mt-6 px-6 py-2 text-sm rounded-lg border font-medium transition hover:opacity-80 bg-white dark:bg-transparent dark:hover:bg-white/5"
                   style={{
                     color: item.theme.color,
