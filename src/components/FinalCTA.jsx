@@ -28,15 +28,15 @@ export const FinalCTA = ({ text1, text2, text3, text4, text5, btnWidth }) => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4">
+          className="flex flex-wrap justify-center gap-4 mt-4">
           <Link
             href={"/audit-form"}
-            className="text-white w-4/5 md:w-fit px-6 py-2.5 rounded-lg bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+            className="text-white w-5/6 md:w-fit px-6 py-2.5 rounded-lg bg-primary/80 hover:bg-primary hover:transition-all duration-300 flex justify-center">
             {text4}
           </Link>
           <Link
             href={"/contact"}
-            className="bg-transparent md:w-fit hover:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
+            className="bg-transparent w-5/6 md:w-fit hover:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300 flex justify-center">
             {text5}
           </Link>
         </motion.div>

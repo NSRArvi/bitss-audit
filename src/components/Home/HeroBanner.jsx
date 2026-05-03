@@ -16,6 +16,12 @@ const HeroBanner = () => {
     { title: "Governance Risk", value: "Rated" },
     ,
   ];
+  const lists2 = [
+    { icon: ShieldCheck, title: "24/7 Protection" },
+    { icon: User, title: " Expert Security Team" },
+    { icon: Trophy, title: "Proven Methodology" },
+    { icon: Globe, title: "Global Trust" },
+  ];
   return (
     <>
       <div
@@ -39,16 +45,16 @@ const HeroBanner = () => {
                 cybersecurity products, audit intelligence, and continuous
                 protection.
               </p>
-              <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex flex-col md:flex-row gap-4 text-center mt-4">
                 <Link
                   href={"/audit-form"}
-                  className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+                  className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300 text-center justify-center">
                   Request Crypto Security Review <MoveRight className="mt-1" />
                 </Link>
                 <Link
                   href={"https://bitss.one/products"}
                   target="blank"
-                  className="bg-transparent text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
+                  className="bg-transparent text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300 justify-center">
                   Explore Protection Products <MoveRight className="mt-1" />
                 </Link>
               </div>
@@ -86,23 +92,16 @@ const HeroBanner = () => {
         </Container>
         <div className="bg-black/20 backdrop-blur-md py-6 md:px-8 mt-auto">
           <Container>
-            <div className="flex flex-wrap justify-between gap-4 text-white mt-auto md:w-2/3">
-              <span className="flex items-center gap-1 text-sm">
-                <ShieldCheck size={18} className="text-primary font-bold" />{" "}
-                24/7 Protection
-              </span>
-              <span className="flex items-center gap-1 text-sm">
-                <User size={18} className="text-primary font-bold" />
-                Expert Security Team
-              </span>
-              <span className="flex items-center gap-1 text-sm">
-                <Trophy size={18} className="text-primary font-bold" /> Proven
-                Methodology
-              </span>
-              <span className="flex items-center gap-1 text-sm">
-                <Globe size={18} className="text-primary font-bold" /> Global
-                Trust
-              </span>
+            <div className=" grid grid-cols-2 md:grid-cols-4 text-start gap-4 text-white mt-auto md:w-2/3">
+              {lists2.map((list, idx) => {
+                const Icon = list.icon;
+                return (
+                  <span key={idx} className="flex items-center gap-1 text-sm">
+                    <Icon size={18} className="text-primary font-bold" />{" "}
+                    {list.title}
+                  </span>
+                );
+              })}
             </div>
           </Container>
         </div>

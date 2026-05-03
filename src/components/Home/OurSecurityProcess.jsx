@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const OurSecurityProcess = () => {
   return (
-    <section className="py-20 px-6 max-w-7xl mx-auto">
+    <section className="py-20 ">
       <div className="text-center">
         <p className="text-primary text-sm font-semibold uppercase tracking-wider">
           Our Security Process
@@ -19,7 +19,7 @@ const OurSecurityProcess = () => {
         <span className="w-10 h-0.5 mt-4 bg-primary block text-center mx-auto"></span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-16 md:gap-6 mt-12">
         {OUR_SECURITY_PROCESS.map((step, index) => (
           <motion.div
             key={index}
@@ -35,8 +35,8 @@ const OurSecurityProcess = () => {
             )}
 
             {/* Card */}
-            <Card className="relative overflow-visible bg-white/80 dark:bg-white/5 backdrop-blur-md border-gray-200 dark:border-white/10 pt-10 pb-6 px-6 h-full">
-              <div className="absolute -top-8 shadow-sm left-1/2 -translate-x-1/2 p-3 rounded-full  overflow-visible">
+            <Card className="relative overflow-visible bg-white/80 dark:bg-white/5 backdrop-blur-md border-gray-200 dark:border-white/10 pt-10 pb-6 px-2.5 h-full">
+              <div className="absolute -top-8 shadow-sm left-1/2 -translate-x-1/2 p-3 rounded-full overflow-visible">
                 {/* <step.icon size={24} /> */}
                 <Image
                   src={step.icon}
@@ -47,13 +47,13 @@ const OurSecurityProcess = () => {
               </div>
 
               <CardContent className="text-center p-0 pt-4">
-                <div className="text-primary font-bold text-xl mb-2">
+                <div className="text-primary font-bold text-2xl my-5">
                   {step.number}
                 </div>
-                <h3 className="font-bold text-lg mb-3 dark:text-white">
+                <h3 className="font-black text-[15px] mb-8 dark:text-white">
                   {step.title}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <p className="text-sm text-muted-foreground px-8 md:px-0 mb-4 leading-loose">
                   {step.text}
                 </p>
               </CardContent>

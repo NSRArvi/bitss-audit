@@ -81,7 +81,7 @@ const AuditServices = () => {
               <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[80px] font-black text-center md:text-left md:w-[85%]">
                 Advanced Security Audits For{" "}
                 <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
-                  Blockchain, Smart Contracts,
+                  Blockchain, Smart Contracts,{" "}
                 </span>
                 and{" "}
                 <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
@@ -95,22 +95,22 @@ const AuditServices = () => {
                 vulnerability identification.
               </p>
 
-              <div className="flex flex-col md:flex-row gap-4 items-center space-y-3">
+              <div className="flex flex-col md:flex-row gap-4 items-center space-y-1 mt-4">
                 <Link
                   href={"/audit-form"}
-                  className="text-white w-3/4 md:w-fit mt-3 px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+                  className="text-white w-4/5 md:w-fit mt-3 px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
                   Request Crypto Security Review
                 </Link>
                 <Link
                   href={"/contact"}
                   target="blank"
-                  className="bg-transparent w-3/4 md:w-fit dark:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary rounded-lg hover:transition-all duration-300">
+                  className="bg-transparent w-4/5 md:w-fit dark:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary rounded-lg hover:transition-all duration-300">
                   Contact Us
                 </Link>
               </div>
             </div>
             <div className="w-75">
-              <div className="px-3 shadow-sm py-4 border rounded-xl ">
+              <div className="px-3 bg-white/5 backdrop-blur-md shadow-sm py-4 border rounded-xl ">
                 <h3 className="font-semibold text-base">
                   Crypto Risk Dashboard
                 </h3>
@@ -183,13 +183,8 @@ const AuditServices = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.1 }}
                       viewport={{ once: true }}
-                      className={`group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/20 p-6 backdrop-blur-xs transition-all hover:border-blue-500/50 dark:hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]
+                      className={`group relative rounded-xl border dark:border-primary/10 border-black/10 bg-white/5 dark:bg-white/5 p-6 backdrop-blur-md hover:border-primary/60 dark:hover:border-primary/60 transition-all duration-300
           ${isLast ? "lg:col-span-2" : "col-span-1"}`}>
-                      {/* Glow */}
-                      {theme === "dark" && (
-                        <div className="absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                      )}
-
                       <div className="relative z-10">
                         <div className="mb-4 flex items-center gap-3">
                           {item.icon && (

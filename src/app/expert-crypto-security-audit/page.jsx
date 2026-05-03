@@ -115,8 +115,8 @@ const ExpertCryptoSecurityAudit = () => {
 
   return (
     <Container>
-      <section className="relative flex flex-col-reverse md:flex-row items-end gap-10 py-20 sm:py-25 md:py-30">
-        <div className=" md:w-2/4">
+      <section className="relative flex flex-col-reverse md:flex-row items-end gap-10 py-20 sm:py-25 md:py-30 lg:py-40">
+        <div className=" md:w-1/2">
           <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[80px] font-black leading-none text-center md:text-left">
             EXPERT CRYPTO SECURITY AUDITS FOR{" "}
             <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
@@ -139,13 +139,13 @@ const ExpertCryptoSecurityAudit = () => {
           <div className="flex flex-col md:flex-row justify-center md:justify-start items-center gap-4 mt-8">
             <Link
               href={"/contact"}
-              className="text-white w-3/4 md:w-fit px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+              className="text-white w-3/4 md:w-fit px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300 flex justify-center">
               {" "}
               Request a Free Consultation
             </Link>
             <Link
               href={"#features"}
-              className="bg-transparent w-3/4 md:w-fit hover:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
+              className="bg-transparent w-3/4 md:w-fit hover:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300 flex justify-center">
               Explore Services
             </Link>
           </div>
@@ -156,7 +156,7 @@ const ExpertCryptoSecurityAudit = () => {
             alt="Section Hero Image"
             width={500}
             height={500}
-            className="mx-auto absolute top-40 right-0 w-170"
+            className="mx-auto absolute top-50 right-0 w-170"
           />
         </div>
       </section>
@@ -189,10 +189,7 @@ const ExpertCryptoSecurityAudit = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/20 p-6 backdrop-blur-xs transition-all hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]">
-                {/* for glow */}
-                <div className="hidden dark:block absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-
+                className="group relative rounded-xl border dark:border-primary/10 border-black/10 bg-white/5 dark:bg-white/5 p-6 backdrop-blur-md hover:border-primary/60 dark:hover:border-primary/60 transition-all duration-300">
                 <div className="relative z-10">
                   <div className="flex gap-3 items-center ">
                     {Icon && (
@@ -252,10 +249,7 @@ const ExpertCryptoSecurityAudit = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative rounded-xl border dark:border-white/10 border-black/10 bg-white/5 dark:bg-slate-950/20 p-6 backdrop-blur-xs transition-all hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]">
-                {/* for glow */}
-                <div className="hidden dark:block absolute -inset-px rounded-xl bg-linear-to-b from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-
+                className="group relative rounded-xl border dark:border-primary/10 border-black/10 bg-white/5 dark:bg-white/5 p-6 backdrop-blur-md hover:border-primary/60 dark:hover:border-primary/60 transition-all duration-300">
                 <div className="relative z-10">
                   <h3 className="font-heading mb-5 flex flex-col justify-center font-semibold text-foreground leading-tight text-2xl md:text-3xl">
                     <span> {section.title}</span>
@@ -302,9 +296,9 @@ const ExpertCryptoSecurityAudit = () => {
             Request Your Crypto Audit
           </h2>
           <div className="w-full">
-            <div className=" rounded-xl px-6 md:px-0 pb-6 md:py-8 flex flex-col md:flex-row justify-center items-start gap-8">
+            <div className="rounded-xl md:px-6 md:px-0 pb-6 md:py-8 flex flex-col md:flex-row justify-center items-start gap-8">
               {auditItems.map((item, index) => (
-                <div key={index} className="flex items-start gap-4">
+                <div key={index} className="flex items-start gap-4 px-6">
                   <div className="text-primary">
                     <Image
                       src={item.img}

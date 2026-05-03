@@ -168,9 +168,7 @@ const AuditForm = () => {
               </div>
 
               <div className="sm:col-span-2 flex flex-col sm:flex-row gap-3 pt-2">
-                <Button
-                  type="submit"
-                  className="w-full flex-1 h-11 font-semibold text-sm rounded-xl bg-primary/80 hover:bg-primary text-white cursor-pointer">
+                <Button className="w-full flex-1 h-11 py-3 font-semibold text-sm rounded-xl bg-primary/80 hover:bg-primary text-white cursor-pointer">
                   Submit Audit Request
                 </Button>
 
@@ -178,7 +176,7 @@ const AuditForm = () => {
                   <Button
                     type="button"
                     variant="outline"
-                    className="w-full h-11 font-semibold text-sm rounded-xl dark:border-white/10 dark:text-white/80 dark:hover:bg-white/5">
+                    className="w-full flex-1 h-11 font-semibold text-sm rounded-xl dark:border-white/10 dark:text-white/80 dark:hover:bg-white/5">
                     Request Call
                   </Button>
                 </a>

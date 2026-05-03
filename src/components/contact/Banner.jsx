@@ -133,9 +133,9 @@ export default function Banner() {
                 src={contactImg.src}
                 alt="Contact illustration"
                 fill
-                sizes="100"
+                sizes="200"
                 loading="eager"
-                className="object-contain"
+                className="object-contain py-6 md:py-12"
               />
             </div>
           </div>
