@@ -1,7 +1,7 @@
 export const auditProducts = [
   {
     title: "Standard Audit",
-    amount: "2,000",
+    
     body: [
       "Smart Contract Review",
       "Security Scan",
@@ -17,10 +17,16 @@ export const auditProducts = [
     ],
     btnText: "Request Audit",
     href: "/order/standard-audit",
+    discounts:[
+     
+      "Pay Using USFRANC & SPUMP they also get 15% Discount for All Packag",
+      "Pay Using USDC they also get 5% Discount for All Package"
+    ],
+    payment_system : "30% in advance and 70% Before Deliver"
   },
   {
     title: "Advance Audit",
-    amount: "5,000",
+    
     body: [
       "Everything in Standard Audit",
       "Full Code Review",
@@ -39,10 +45,16 @@ export const auditProducts = [
     btnText: "Request Audit",
     href: "/order/advanced-audit",
     badge: "RECOMMENDED",
+     discounts:[
+      " For BITSS User Flat 30% applicable for Advance & Premium Packag",
+      "Pay Using USFRANC & SPUMP they also get 15% Discount for All Packag",
+      "Pay Using USDC they also get 5% Discount for All Package"
+    ],
+    payment_system : "30% in advance and 70% Before Deliver"
   },
   {
     title: "Premium Audit",
-    amount: "7,500",
+
     body: [
       "Everything in Standard Audit",
       "Everything in Advanced Audit",
@@ -62,5 +74,11 @@ export const auditProducts = [
     btnText: "Request Audit",
     href: "/order/premium-audit",
     badge: "MOST PURCHASED",
+     discounts:[
+      " For BITSS User Flat 30% applicable for Advance & Premium Packag",
+      "Pay Using USFRANC & SPUMP they also get 15% Discount for All Packag",
+      "Pay Using USDC they also get 5% Discount for All Package"
+    ],
+    payment_system : "30% in advance and 70% Before Deliver"
   },
 ];

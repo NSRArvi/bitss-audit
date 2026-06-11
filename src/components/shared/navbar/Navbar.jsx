@@ -19,6 +19,7 @@ import Container from "@/components/Container/Container";
 import ModeToggle from "@/components/ModeToggle";
 import ListItem from "./NabvarMenuItem/ListItem";
 import MobileDropdown from "./NabvarMenuItem/MobileDropdown";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   {
@@ -43,7 +44,8 @@ const navItems = [
   },
 ];
 
-const Navbar = () => {
+const Navbar = ({ onOpenDialog }) => {
+  console.log(onOpenDialog);
   const [showMenu, setShowMenu] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const menuRef = useRef(null);
@@ -79,7 +81,8 @@ const Navbar = () => {
                   {item.type === "link" ? (
                     <NavigationMenuLink
                       asChild
-                      className={"hover:bg-transparent"}>
+                      className={"hover:bg-transparent"}
+                    >
                       <Link href={item.href}>{item.label}</Link>
                     </NavigationMenuLink>
                   ) : (
@@ -101,11 +104,20 @@ const Navbar = () => {
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
-            <button
+            <Button
               onClick={() => navigate.push("/contact")}
-              className="w-full mx-4 flex items-center justify-center gap-2.5 py-2 px-4 rounded-sm bg-primary/80 hover:bg-primary text-white text-[14px] font-semibold text-sm cursor-pointer hover:transition-all duration-300">
+              className="bg-primary/80 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300 mr-4"
+            >
               Contact Us
-            </button>
+            </Button>
+
+            <Button
+              onClick={onOpenDialog}
+              className="bg-primary/80 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300"
+            >
+              Request a Quote
+            </Button>
+
             <div className="ml-4">
               <ModeToggle />
             </div>
@@ -121,21 +133,24 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 w-full top-14 bg-black/60 h-[calc(100vh-0px)]">
+              className="fixed inset-0 z-40 w-full top-14 bg-black/60 h-[calc(100vh-0px)]"
+            >
               <motion.div
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 ref={menuRef}
-                className="md:hidden fixed  right-0 h-screen w-[80%] max-w-sm border-l z-50 shadow-lg overflow-y-auto">
+                className="md:hidden fixed  right-0 h-screen w-[80%] max-w-sm border-l z-50 shadow-lg overflow-y-auto"
+              >
                 <div className="flex flex-col gap-4 px-8 py-4 h-full bg-background dark:bg-slate-950/95 backdrop-blur-2xl shadow-md">
                   {navItems.map((item, i) =>
                     item.type === "link" ? (
                       <Link
                         key={i}
                         href={item.href}
-                        onClick={() => setShowMenu(false)}>
+                        onClick={() => setShowMenu(false)}
+                      >
                         {item.label}
                       </Link>
                     ) : (
@@ -144,12 +159,14 @@ const Navbar = () => {
                         title={item.label}
                         openDropdown={openDropdown}
                         setOpenDropdown={setOpenDropdown}
-                        setShowMenu={setShowMenu}>
+                        setShowMenu={setShowMenu}
+                      >
                         {item.items.map((sub, idx) => (
                           <Link
                             key={idx}
                             href={sub.href}
-                            onClick={() => setShowMenu(false)}>
+                            onClick={() => setShowMenu(false)}
+                          >
                             {sub.label}
                           </Link>
                         ))}

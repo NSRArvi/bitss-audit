@@ -101,13 +101,15 @@ const ExpertCryptoSecurityAudit = () => {
           <div className="flex flex-col md:flex-row justify-center md:justify-start items-center gap-4 mt-8">
             <Link
               href={"/contact"}
-              className="text-white w-3/4 md:w-fit px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300 flex justify-center">
+              className="text-white w-3/4 md:w-fit px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300 flex justify-center"
+            >
               {" "}
               Request a Free Consultation
             </Link>
             <Link
               href={"#features"}
-              className="bg-transparent w-3/4 md:w-fit hover:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300 flex justify-center">
+              className="bg-transparent w-3/4 md:w-fit hover:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300 flex justify-center"
+            >
               Explore Services
             </Link>
           </div>
@@ -151,7 +153,8 @@ const ExpertCryptoSecurityAudit = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative rounded-xl border dark:border-primary/10 border-black/10 bg-white/5 dark:bg-white/5 p-6 backdrop-blur-md hover:border-primary/60 dark:hover:border-primary/60 transition-all duration-300">
+                className="group relative rounded-xl border dark:border-primary/10 border-black/10 bg-white/5 dark:bg-white/5 p-6 backdrop-blur-md hover:border-primary/60 dark:hover:border-primary/60 transition-all duration-300"
+              >
                 <div className="relative z-10">
                   <div className="flex gap-3 items-center ">
                     {Icon && (
@@ -202,7 +205,7 @@ const ExpertCryptoSecurityAudit = () => {
             integrity.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10 pb-4 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10 pb-4 relative items-stretch">
           {auditProducts.map((section, idx) => {
             return (
               <motion.div
@@ -211,11 +214,11 @@ const ExpertCryptoSecurityAudit = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative rounded-xl border dark:border-primary/10 border-black/10 bg-white/5 dark:bg-white/5 p-6 backdrop-blur-md hover:border-primary/60 dark:hover:border-primary/60 transition-all duration-300">
-                <div className="relative z-10">
+                className="group  flex flex-col relative rounded-xl border dark:border-primary/10 border-black/10 bg-white/5 dark:bg-white/5 p-6 backdrop-blur-md hover:border-primary/60 dark:hover:border-primary/60 transition-all duration-300"
+              >
+                <div className="relative z-10 flex flex-1 flex-col">
                   <h3 className="font-heading mb-5 flex flex-col justify-center font-semibold text-foreground leading-tight text-2xl md:text-3xl">
                     <span> {section.title}</span>
-                    <span className="text-2xl">€{section.amount}</span>
                   </h3>
                   {section.badge && (
                     <div className="absolute -top-6.5 -right-6 ">
@@ -236,10 +239,11 @@ const ExpertCryptoSecurityAudit = () => {
                       </li>
                     ))}
                   </ul>
-                  <div className="pt-10 pb-5">
+                  <div className="pt-10 pb-5 mt-auto">
                     <Link
                       href={section.href}
-                      className="bg-transparent w-fit hover:text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300">
+                      className="bg-transparent w-fit hover:text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300"
+                    >
                       {section.btnText}
                     </Link>
                   </div>

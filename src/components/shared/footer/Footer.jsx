@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -14,16 +15,20 @@ const Footer = () => {
         <span className="text-white/10">|</span>
         <a
           href="mailto:contact@bitss.one"
-          className="hover:text-blue-500 transition-colors">
+          className="hover:text-blue-500 transition-colors"
+        >
           contact@bitss.one
         </a>
         <span className="text-white/10">|</span>
         <a
           href="https://bitss.one"
           target="_"
-          className="hover:text-blue-500 transition-colors">
+          className="hover:text-blue-500 transition-colors"
+        >
           bitss.one
         </a>
+        <span className="text-white/10">|</span>
+        <Link href={"/terms-and-conditions"}>Terms & Conditions</Link>
       </div>
     </footer>
   );
