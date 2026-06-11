@@ -378,7 +378,7 @@ const ContactForm = () => {
                         </p>
                       </div>
                     )}
-                    {invalidKey && (
+                    {/* {invalidKey && (
                       <div className="flex items-center gap-2.5 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
                         <AlertCircle
                           size={14}
@@ -388,7 +388,7 @@ const ContactForm = () => {
                           Invalid API key.
                         </p>
                       </div>
-                    )}
+                    )} */}
                   </div>
                 )}
 

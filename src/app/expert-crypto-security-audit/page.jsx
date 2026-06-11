@@ -1,6 +1,5 @@
 "use client";
 import Container from "@/components/Container/Container";
-import { Button } from "@/components/ui/button";
 import sectionHeroImg from "../assets/section_hero1.png";
 import Image from "next/image";
 import { motion } from "motion/react";
@@ -11,6 +10,7 @@ import aseImg from "../assets/ase-removebg-preview.png";
 import cdprImg from "../assets/cdpr-logo-removebg-preview.png";
 import gdprImg from "../assets/gdpr-removebg-preview.png";
 import Link from "next/link";
+import { auditProducts } from "../../../public/product";
 
 const ExpertCryptoSecurityAudit = () => {
   const lists = [
@@ -45,51 +45,13 @@ const ExpertCryptoSecurityAudit = () => {
       ],
     },
   ];
+
   const iconMap = {
     ShieldCog,
     Users,
     ShieldCheck,
   };
-  const lists2 = [
-    {
-      title: "Standard Audit",
-      amount: "5,000",
-      body: [
-        "Smart contract audit",
-        "Infrastructure review",
-        "Financial overview",
-        "1-2 Weeks Completion",
-      ],
-      btnText: "Learn More",
-      href: "/contact",
-    },
-    {
-      title: "Advanced Audit",
-      amount: "10,000",
-      body: [
-        "Full system audit",
-        "Tokenomics analysis",
-        "Risk scoring & priority support",
-        "1-2 Expert Auditors",
-      ],
-      btnText: "Request Audit",
-      href: "/audit-form",
-      badge: "RECOMMENDED",
-    },
-    {
-      title: "Enterprise Audit",
-      amount: "25,000+",
-      body: [
-        "Full security + financial audit",
-        "Intensive economic analysis",
-        "3+ Expert Auditors",
-        "3-3 Weeks Completion",
-      ],
-      btnText: "Request Audit",
-      href: "/audit-form",
-      badge: "MOST purchased ",
-    },
-  ];
+
   const auditItems = [
     {
       img: isoImg,
@@ -241,7 +203,7 @@ const ExpertCryptoSecurityAudit = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10 pb-4 relative">
-          {lists2.map((section, idx) => {
+          {auditProducts.map((section, idx) => {
             return (
               <motion.div
                 key={idx}
