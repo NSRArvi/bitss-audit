@@ -15,20 +15,75 @@ import { ArrowRight, ChevronDown, Lock } from "lucide-react";
 import { auditProducts } from "../../../public/product";
 
 export default function OrderForm({ title }) {
-  console.log({ title });
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState({});
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
-  const isLocked = !!title;
+  const [formData, setFormData] = useState({
+    companyName: "",
+    email: "",
+    contactMethod: "",
+    contactHandle: "",
+    fullName: "",
+    jobTitle: "",
+    additionalInfo: "",
+  });
 
-  function handleSelect(title) {
-    setSelected(selected === title ? null : title);
-    setOpen(false);
-  }
+  const isLocked = !!title;
 
   const selectedProduct = title
     ? auditProducts.find((p) => p.href === `/order/${title}`)
     : auditProducts.find((p) => p.title === selected);
+
+  function handleChange(field, value) {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: undefined }));
+  }
+
+  function handleSelect(itemTitle) {
+    setSelected(selected === itemTitle ? null : itemTitle);
+    setErrors((prev) => ({ ...prev, serviceInterest: undefined }));
+    setOpen(false);
+  }
+
+  function validate() {
+    const newErrors = {};
+
+    if (!formData.companyName.trim())
+      newErrors.companyName = "Company / Project name is required.";
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!formData.contactMethod)
+      newErrors.contactMethod = "Please select a platform.";
+
+    if (!formData.contactHandle.trim())
+      newErrors.contactHandle = "Please enter your handle or number.";
+
+    if (!selected && !title)
+      newErrors.serviceInterest = "Please select a service.";
+
+    return newErrors;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const newErrors = validate();
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    console.log("Form Data:", {
+      ...formData,
+      serviceInterest: selectedProduct?.title ?? null,
+    });
+  }
 
   return (
     <div>
@@ -45,8 +100,9 @@ export default function OrderForm({ title }) {
           </p>
         </div>
       )}
-      <form className="space-y-6">
-        {/* Project / Company name */}
+
+      <form className="space-y-6" onSubmit={handleSubmit}>
+        {/* Project / Company Name */}
         <div>
           <label className="block text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-1.5">
             Project / Company Name <span className="text-primary">*</span>
@@ -54,18 +110,19 @@ export default function OrderForm({ title }) {
           <input
             type="text"
             placeholder="Project / Company Name"
-            // value={form.fullName}
-            // onChange={set("fullName")}
+            value={formData.companyName}
+            onChange={(e) => handleChange("companyName", e.target.value)}
             className={`w-full rounded-lg border ${
-              errors.fullName
+              errors.companyName
                 ? "border-red-500"
                 : "border-black/10 dark:border-white/10"
             } bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors`}
           />
-          {errors.fullName && (
-            <p className="text-xs text-red-500 mt-1">{errors.fullName}</p>
+          {errors.companyName && (
+            <p className="text-xs text-red-500 mt-1">{errors.companyName}</p>
           )}
         </div>
+
         <div className="flex flex-col md:flex-row gap-5">
           {/* Email */}
           <div className="w-full">
@@ -75,54 +132,68 @@ export default function OrderForm({ title }) {
             <input
               type="text"
               placeholder="example@gmail.com"
-              // value={form.fullName}
-              // onChange={set("fullName")}
+              value={formData.email}
+              onChange={(e) => handleChange("email", e.target.value)}
               className={`w-full rounded-lg border ${
                 errors.email
                   ? "border-red-500"
                   : "border-black/10 dark:border-white/10"
               } bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors`}
             />
-            {errors.fullName && (
-              <p className="text-xs text-red-500 mt-1">{errors.fullName}</p>
+            {errors.email && (
+              <p className="text-xs text-red-500 mt-1">{errors.email}</p>
             )}
           </div>
+
           {/* Contact Method */}
           <div className="w-full">
             <label className="block text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-1.5">
               Contact Method <span className="text-primary">*</span>
             </label>
-            <div className="flex flex-row border border-black/10 dark:border-white/10 rounded-lg overflow-hidden">
-              <Select>
-                <SelectTrigger className="w-1/2 rounded-none border-0 border-r border-black/10 dark:border-white/10 ">
+            <div
+              className={`flex flex-row border rounded-lg overflow-hidden ${
+                errors.contactMethod || errors.contactHandle
+                  ? "border-red-500"
+                  : "border-black/10 dark:border-white/10"
+              }`}
+            >
+              <Select
+                value={formData.contactMethod}
+                onValueChange={(value) => handleChange("contactMethod", value)}
+              >
+                <SelectTrigger className="w-1/2 rounded-none border-0 border-r border-black/10 dark:border-white/10">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
+                    <SelectLabel>Platform</SelectLabel>
                     <SelectItem value="whatsapp">WhatsApp</SelectItem>
-                    <SelectItem value="wechat">We Chat</SelectItem>
+                    <SelectItem value="wechat">WeChat</SelectItem>
                     <SelectItem value="telegram">Telegram</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
-
               <input
                 type="text"
-                placeholder="example@gmail.com"
-                className={`w-full border-0 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none transition-colors ${
-                  errors.email
-                    ? "ring-red-500"
-                    : "border-black/10 dark:border-white/10"
-                }`}
+                placeholder="Your handle / number"
+                value={formData.contactHandle}
+                onChange={(e) => handleChange("contactHandle", e.target.value)}
+                className="w-full border-0 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none transition-colors"
               />
             </div>
-
-            {errors.fullName && (
-              <p className="text-xs text-red-500 mt-1">{errors.fullName}</p>
+            {errors.contactMethod && (
+              <p className="text-xs text-red-500 mt-1">
+                {errors.contactMethod}
+              </p>
+            )}
+            {errors.contactHandle && (
+              <p className="text-xs text-red-500 mt-1">
+                {errors.contactHandle}
+              </p>
             )}
           </div>
         </div>
+
         <div className="flex flex-col md:flex-row gap-5">
           {/* Full Name */}
           <div className="w-full">
@@ -132,55 +203,45 @@ export default function OrderForm({ title }) {
             <input
               type="text"
               placeholder="Full Name"
-              // value={form.fullName}
-              // onChange={set("fullName")}
-              className={`w-full rounded-lg border ${
-                errors.email
-                  ? "border-red-500"
-                  : "border-black/10 dark:border-white/10"
-              } bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors`}
+              value={formData.fullName}
+              onChange={(e) => handleChange("fullName", e.target.value)}
+              className="w-full rounded-lg border border-black/10 dark:border-white/10 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
             />
-            {errors.fullName && (
-              <p className="text-xs text-red-500 mt-1">{errors.fullName}</p>
-            )}
           </div>
+
           {/* Job Title */}
           <div className="w-full">
             <label className="block text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-1.5">
-              Job title
+              Job Title
             </label>
             <input
               type="text"
               placeholder="Job Title"
-              // value={form.fullName}
-              // onChange={set("fullName")}
-              className={`w-full rounded-lg border ${
-                errors.email
-                  ? "border-red-500"
-                  : "border-black/10 dark:border-white/10"
-              } bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors`}
+              value={formData.jobTitle}
+              onChange={(e) => handleChange("jobTitle", e.target.value)}
+              className="w-full rounded-lg border border-black/10 dark:border-white/10 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
             />
-            {errors.fullName && (
-              <p className="text-xs text-red-500 mt-1">{errors.fullName}</p>
-            )}
           </div>
         </div>
 
+        {/* Service Interest */}
         <div>
           <label className="block text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-1.5">
             Service Interest <span className="text-primary">*</span>
           </label>
-
           <div className="relative">
             <button
               type="button"
               onClick={() => !isLocked && setOpen(!open)}
-              className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg border border-black/10 dark:border-white/10 bg-transparent text-sm transition-colors
-            ${
-              isLocked
-                ? "opacity-70 cursor-not-allowed"
-                : "hover:bg-muted cursor-pointer"
-            }`}
+              className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg border ${
+                errors.serviceInterest
+                  ? "border-red-500"
+                  : "border-black/10 dark:border-white/10"
+              } bg-transparent text-sm transition-colors ${
+                isLocked
+                  ? "opacity-70 cursor-not-allowed"
+                  : "hover:bg-muted cursor-pointer"
+              }`}
             >
               <span className="text-foreground">
                 {isLocked
@@ -191,7 +252,9 @@ export default function OrderForm({ title }) {
                 <Lock className="h-3.5 w-3.5 text-muted-foreground" />
               ) : (
                 <ChevronDown
-                  className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${
+                    open ? "rotate-180" : ""
+                  }`}
                 />
               )}
             </button>
@@ -213,6 +276,12 @@ export default function OrderForm({ title }) {
               </div>
             )}
           </div>
+          {errors.serviceInterest && (
+            <p className="text-xs text-red-500 mt-1">
+              {errors.serviceInterest}
+            </p>
+          )}
+
           {selectedProduct && (
             <>
               <ul className="mt-2 px-4 py-3 bg-muted rounded-lg flex flex-col gap-1.5">
@@ -235,7 +304,6 @@ export default function OrderForm({ title }) {
                   </li>
                 ))}
               </ul>
-
               <ul className="mt-2 px-4 py-3 bg-muted rounded-lg flex flex-col gap-1.5">
                 {selectedProduct?.discounts?.map((discount, k) => (
                   <li
@@ -247,7 +315,6 @@ export default function OrderForm({ title }) {
                   </li>
                 ))}
               </ul>
-
               <div className="mt-2 px-4 py-3 bg-muted rounded-lg flex flex-col gap-1.5">
                 {selectedProduct?.payment_system && (
                   <span className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -259,20 +326,25 @@ export default function OrderForm({ title }) {
             </>
           )}
         </div>
+
+        {/* Additional Information */}
         <div>
           <label className="block text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-1.5">
             Additional Information
           </label>
           <textarea
-            name=""
-            id=""
             placeholder="Explain Your Project in details"
-            className="w-full rounded-lg border bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-          ></textarea>
+            value={formData.additionalInfo}
+            onChange={(e) => handleChange("additionalInfo", e.target.value)}
+            className="w-full rounded-lg border border-black/10 dark:border-white/10 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+          />
         </div>
 
         <div className="flex justify-end">
-          <Button className="bg-primary/80 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300">
+          <Button
+            type="submit"
+            className="bg-primary/80 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300"
+          >
             Request Audit <ArrowRight />
           </Button>
         </div>

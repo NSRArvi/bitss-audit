@@ -11,7 +11,7 @@ import OrderForm from "./shared/OrderForm";
 export function OrderModal({ open, onClose }) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-4xl overflow-y-scroll">
+      <DialogContent className="sm:max-w-4xl max-h-[calc(100dvh-5rem)] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Crypto Audit Order</DialogTitle>
           <DialogDescription>
