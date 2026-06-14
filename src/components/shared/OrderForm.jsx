@@ -15,6 +15,7 @@ import { ArrowRight, ChevronDown, Lock } from "lucide-react";
 import { auditProducts } from "../../../public/product";
 
 export default function OrderForm({ title }) {
+  console.log({ title });
   const [errors, setErrors] = useState("");
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
@@ -212,17 +213,25 @@ export default function OrderForm({ title }) {
               </div>
             )}
           </div>
-
           {selectedProduct && (
             <>
               <ul className="mt-2 px-4 py-3 bg-muted rounded-lg flex flex-col gap-1.5">
-                {selectedProduct?.body?.map((feature, j) => (
-                  <li
-                    key={j}
-                    className="flex items-center gap-2 text-xs text-muted-foreground"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-primary shrink-0" />
-                    {feature}
+                {selectedProduct?.body?.map((group, j) => (
+                  <li key={j} className="flex flex-col gap-1">
+                    <span className="text-xs font-semibold text-primary uppercase tracking-widest">
+                      {group.subtitle}
+                    </span>
+                    <ul className="flex flex-col gap-1 ml-2">
+                      {group.items.map((item, k) => (
+                        <li
+                          key={k}
+                          className="flex items-center gap-2 text-xs text-muted-foreground"
+                        >
+                          <span className="w-1 h-1 rounded-full bg-primary shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   </li>
                 ))}
               </ul>

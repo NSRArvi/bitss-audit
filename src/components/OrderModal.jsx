@@ -6,14 +6,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import OrderForm from "./shared/OrderForm";
 
 export function OrderModal({ open, onClose }) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-4xl">
+      <DialogContent className="sm:max-w-4xl overflow-y-scroll">
         <DialogHeader>
           <DialogTitle>Crypto Audit Order</DialogTitle>
           <DialogDescription>

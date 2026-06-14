@@ -45,7 +45,6 @@ const navItems = [
 ];
 
 const Navbar = ({ onOpenDialog }) => {
-  console.log(onOpenDialog);
   const [showMenu, setShowMenu] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const menuRef = useRef(null);
