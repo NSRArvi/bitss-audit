@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-// import Navbar from "@/components/shared/navbar/Navbar";
+import { Toaster } from 'react-hot-toast';
 import Footer from "@/components/shared/footer/Footer";
 import NavbarWrapper from "@/components/shared/navbar/NavbarWrapper";
 
@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
           <div className="relative z-10">{children}</div>
           <Footer />
         </ThemeProvider>
+          <Toaster />
       </body>
     </html>
   );

@@ -13,11 +13,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, Lock } from "lucide-react";
 import { auditProducts } from "../../../public/product";
+import toast from "react-hot-toast";
 
 export default function OrderForm({ title }) {
   const [errors, setErrors] = useState({});
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     companyName: "",
     email: "",
@@ -69,7 +71,7 @@ export default function OrderForm({ title }) {
     return newErrors;
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const newErrors = validate();
@@ -78,11 +80,28 @@ export default function OrderForm({ title }) {
       setErrors(newErrors);
       return;
     }
-
-    console.log("Form Data:", {
-      ...formData,
-      serviceInterest: selectedProduct?.title ?? null,
-    });
+    try {
+      setLoading(true);
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          serviceInterest: selectedProduct?.title ?? null,
+        }),
+      });
+      const data = await response.json();
+      if (data.data.id) {
+        setLoading(false);
+        toast.success("Message Sent");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -345,7 +364,13 @@ export default function OrderForm({ title }) {
             type="submit"
             className="bg-primary/80 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300"
           >
-            Request Audit <ArrowRight />
+            {loading ? (
+              "Sending..."
+            ) : (
+              <>
+                Request Audit <ArrowRight />{" "}
+              </>
+            )}
           </Button>
         </div>
       </form>
