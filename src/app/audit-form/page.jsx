@@ -22,7 +22,6 @@ const AuditForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(project);
   };
 
   return (
@@ -33,7 +32,8 @@ const AuditForm = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 text-center mb-10">
+          className="relative z-10 text-center mb-10"
+        >
           <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-primary/30 bg-primary/10">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             <span className="text-[11px] font-bold tracking-widest uppercase text-primary">
@@ -57,7 +57,8 @@ const AuditForm = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative z-10 w-full max-w-5xl rounded-2xl border bg-white/5 border-slate-200 dark:bg-white/4 dark:backdrop-blur-md dark:border-white/4">
+          className="relative z-10 w-full max-w-5xl rounded-2xl border bg-white/5 border-slate-200 dark:bg-white/4 dark:backdrop-blur-md dark:border-white/4"
+        >
           {/* Top accent line */}
           <div className="h-px w-full bg-linear-to-r from-transparent via-primary to-transparent" />
 
@@ -93,7 +94,8 @@ const AuditForm = () => {
                 <Select
                   value={blockchain}
                   onValueChange={setBlockchain}
-                  className="w-full">
+                  className="w-full"
+                >
                   <SelectTrigger className={"w-full"}>
                     <SelectValue placeholder="Select chain" />
                   </SelectTrigger>
@@ -176,7 +178,8 @@ const AuditForm = () => {
                   <Button
                     type="button"
                     variant="outline"
-                    className="w-full flex-1 h-11 font-semibold text-sm rounded-xl dark:border-white/10 dark:text-white/80 dark:hover:bg-white/5">
+                    className="w-full flex-1 h-11 font-semibold text-sm rounded-xl dark:border-white/10 dark:text-white/80 dark:hover:bg-white/5"
+                  >
                     Request Call
                   </Button>
                 </a>

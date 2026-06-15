@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import OrderForm from "./shared/OrderForm";
 
-export function OrderModal({ open, onClose }) {
+export function OrderModal({ open, setOpen, onClose }) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-4xl max-h-[calc(100dvh-5rem)] overflow-y-auto">
@@ -19,7 +19,7 @@ export function OrderModal({ open, onClose }) {
             and encrypted.
           </DialogDescription>
         </DialogHeader>
-        <OrderForm />
+        <OrderForm setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );

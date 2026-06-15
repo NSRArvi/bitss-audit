@@ -15,10 +15,10 @@ import { ArrowRight, ChevronDown, Lock } from "lucide-react";
 import { auditProducts } from "../../../public/product";
 import toast from "react-hot-toast";
 
-export default function OrderForm({ title }) {
+export default function OrderForm({ setOpen = () => {}, title = "" }) {
   const [errors, setErrors] = useState({});
   const [selected, setSelected] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [checkOpen, setCheckOpenOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -45,7 +45,7 @@ export default function OrderForm({ title }) {
   function handleSelect(itemTitle) {
     setSelected(selected === itemTitle ? null : itemTitle);
     setErrors((prev) => ({ ...prev, serviceInterest: undefined }));
-    setOpen(false);
+    setCheckOpenOpen(false);
   }
 
   function validate() {
@@ -74,7 +74,6 @@ export default function OrderForm({ title }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(formData);
 
     const newErrors = validate();
 
@@ -95,10 +94,10 @@ export default function OrderForm({ title }) {
         }),
       });
       const data = await response.json();
-      console.log(data);
       if (data.success) {
         setLoading(false);
         toast.success("Message Sent");
+        setOpen(false);
       }
     } catch (error) {
       console.log(error);
@@ -254,7 +253,7 @@ export default function OrderForm({ title }) {
           <div className="relative">
             <button
               type="button"
-              onClick={() => !isLocked && setOpen(!open)}
+              onClick={() => !isLocked && setCheckOpenOpen(!checkOpen)}
               className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg border ${
                 errors.serviceInterest
                   ? "border-red-500"
@@ -275,13 +274,13 @@ export default function OrderForm({ title }) {
               ) : (
                 <ChevronDown
                   className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${
-                    open ? "rotate-180" : ""
+                    checkOpen ? "rotate-180" : ""
                   }`}
                 />
               )}
             </button>
 
-            {!isLocked && open && (
+            {!isLocked && checkOpen && (
               <div className="absolute z-50 w-full mt-1 rounded-lg border border-black/10 dark:border-white/10 bg-background shadow-md overflow-hidden">
                 {auditProducts?.map((item, i) => (
                   <label

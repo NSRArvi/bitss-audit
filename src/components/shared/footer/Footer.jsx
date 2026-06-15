@@ -13,12 +13,9 @@ const Footer = () => {
           Bitss Crypto Security
         </a>
         <span className="text-white/10">|</span>
-        <a
-          href="mailto:contact@bitss.one"
-          className="hover:text-blue-500 transition-colors"
-        >
-          contact@bitss.one
-        </a>
+        <Link href="/contact" className="hover:text-blue-500 transition-colors">
+          Contact
+        </Link>
         <span className="text-white/10">|</span>
         <a
           href="https://bitss.one"

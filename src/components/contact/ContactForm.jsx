@@ -74,7 +74,6 @@ const ContactForm = () => {
       .catch((e) => console.error("Error loading country data:", e));
     fetchForbiddenWords();
   }, []);
-  console.log(countries);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -233,7 +232,8 @@ const ContactForm = () => {
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",
               fontSize: "clamp(28px,5vw,50px)",
-            }}>
+            }}
+          >
             FILL OUT THE <span className="text-primary">FORM</span>
           </h2>
           <p className="text-slate-500 text-[14px] max-w-sm mx-auto leading-relaxed">
@@ -251,14 +251,16 @@ const ContactForm = () => {
               <form
                 ref={form}
                 onSubmit={submitForm}
-                className="p-7 sm:p-9 flex flex-col gap-4">
+                className="p-7 sm:p-9 flex flex-col gap-4"
+              >
                 {/* Standard fields */}
                 {fields.map(
                   ({ id, label, type, icon: Icon, placeholder, required }) => (
                     <div key={id} className="flex flex-col gap-1.5">
                       <label
                         htmlFor={id}
-                        className="text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                        className="text-[11px] font-bold uppercase tracking-widest text-slate-500"
+                      >
                         {label}{" "}
                         {required && <span className="text-red-500">*</span>}
                       </label>
@@ -286,7 +288,8 @@ const ContactForm = () => {
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="country"
-                    className="text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                    className="text-[11px] font-bold uppercase tracking-widest text-slate-500"
+                  >
                     Country <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -299,7 +302,8 @@ const ContactForm = () => {
                       name="country"
                       required
                       onChange={handleChange}
-                      className={`${inputBase} appearance-none`}>
+                      className={`${inputBase} appearance-none`}
+                    >
                       <option value="">Select a country</option>
                       {countries.map((country) => (
                         <option key={country.name} value={country.name}>
@@ -314,7 +318,8 @@ const ContactForm = () => {
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="message"
-                    className="text-[11px] font-bold uppercase tracking-widest text-slate-500">
+                    className="text-[11px] font-bold uppercase tracking-widest text-slate-500"
+                  >
                     Message <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -439,7 +444,8 @@ const ContactForm = () => {
                 <button
                   type="submit"
                   disabled={loader}
-                  className="mt-2 w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl bg-primary/80 hover:bg-primary disabled:opacity-60 disabled:cursor-not-allowed text-white text-[14px] font-semibold transition-all duration-200 shadow-sm shadow-red-200 hover:shadow-red-300 hover:-translate-y-0.5 active:translate-y-0">
+                  className="mt-2 w-full flex items-center justify-center gap-2.5 py-3.5 rounded-xl bg-primary/80 hover:bg-primary disabled:opacity-60 disabled:cursor-not-allowed text-white text-[14px] font-semibold transition-all duration-200 shadow-sm shadow-red-200 hover:shadow-red-300 hover:-translate-y-0.5 active:translate-y-0"
+                >
                   {loader ? (
                     <>
                       <Loader2 size={15} className="animate-spin" />

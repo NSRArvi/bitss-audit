@@ -12,7 +12,6 @@ const useCloseMenu = ({ isShow, onClose, menuRef }) => {
 
       const clickX = e.clientX;
       const rect = menuEl.getBoundingClientRect();
-      console.log(rect);
       const isLeftArea = clickX < rect.left;
 
       if (!clickedInsideMenu && isLeftArea) {

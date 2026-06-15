@@ -9,7 +9,11 @@ export default function NavbarWrapper() {
   return (
     <div>
       <Navbar onOpenDialog={() => setOpen(true)} />
-      <OrderModal open={open} onClose={() => setOpen(false)} />
+      <OrderModal
+        open={open}
+        setOpen={setOpen}
+        onClose={() => setOpen(false)}
+      />
     </div>
   );
 }
