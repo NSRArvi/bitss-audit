@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ShieldCheck,
   FileText,
@@ -123,13 +122,13 @@ const TermsAndConditions = () => {
             <p className="text-primary font-bold text-xs tracking-widest mb-3">
               BITSS CRYPTO SECURITY
             </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-heading text-white leading-tight w-full md:w-2/3">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-heading  leading-tight w-full md:w-2/3">
               Terms &{" "}
               <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
                 Conditions
               </span>
             </h2>
-            <p className="text-sm text-white/60 mt-4 w-full md:w-1/2">
+            <p className="text-sm  mt-4 w-full md:w-1/2">
               By using BITSS services, you agree to the following terms. Please
               read them carefully before proceeding.
             </p>
@@ -154,18 +153,18 @@ const TermsAndConditions = () => {
                 <div key={section.id}>
                   {/* Section Title */}
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-primary/50 text-xs font-mono font-bold">
+                    <span className="text-primary text-xs font-mono font-bold">
                       {section.id}
                     </span>
                     <Icon size={16} className="text-primary shrink-0" />
-                    <h3 className="text-white font-semibold text-base">
+                    <h3 className=" font-semibold text-base">
                       {section.title}
                     </h3>
                   </div>
 
                   {/* Highlight text (Section 03 only) */}
                   {section.highlight && (
-                    <p className="text-sm text-white/60 mb-3 pl-13 italic">
+                    <p className="text-sm mb-3 pl-13 italic">
                       {section.highlight}
                     </p>
                   )}
@@ -173,10 +172,7 @@ const TermsAndConditions = () => {
                   {/* Items */}
                   <ul className="pl-13 space-y-2.5">
                     {section.items.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-3 text-sm text-white/60"
-                      >
+                      <li key={i} className="flex items-start gap-3 text-sm">
                         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                         {item}
                       </li>
@@ -192,7 +188,7 @@ const TermsAndConditions = () => {
 
           {/* Footer note */}
           <div className="mt-12 w-full md:w-3/4">
-            <p className="text-xs text-white/30 leading-relaxed">
+            <p className="text-xs leading-relaxed">
               BITSS reserves the right to update these Terms & Conditions at any
               time. Continued use of our services constitutes acceptance of the
               most current version of these terms.

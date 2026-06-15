@@ -21,16 +21,17 @@ export default function OrderForm({ title }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
+    fullName: "",
     companyName: "",
     email: "",
-    contactMethod: "",
-    contactHandle: "",
-    fullName: "",
     jobTitle: "",
+    contactHandle: "",
+    contactMethod: "",
     additionalInfo: "",
   });
 
   const isLocked = !!title;
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   const selectedProduct = title
     ? auditProducts.find((p) => p.href === `/order/${title}`)
@@ -73,6 +74,7 @@ export default function OrderForm({ title }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log(formData);
 
     const newErrors = validate();
 
@@ -82,7 +84,7 @@ export default function OrderForm({ title }) {
     }
     try {
       setLoading(true);
-      const response = await fetch("/api/send-email", {
+      const response = await fetch(`${BASE_URL}/manual-orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +95,8 @@ export default function OrderForm({ title }) {
         }),
       });
       const data = await response.json();
-      if (data.data.id) {
+      console.log(data);
+      if (data.success) {
         setLoading(false);
         toast.success("Message Sent");
       }
@@ -149,7 +152,7 @@ export default function OrderForm({ title }) {
               Email <span className="text-primary">*</span>
             </label>
             <input
-              type="text"
+              type="email"
               placeholder="example@gmail.com"
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
