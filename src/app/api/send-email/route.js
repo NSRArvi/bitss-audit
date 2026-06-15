@@ -32,7 +32,7 @@ const { fullName,
   try {
     const data = await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: "robiul99hossen@gmail.com",
+      to: "bitss@bobosohomail.com",
       replyTo: email,
       subject: serviceInterest,
     html :html
