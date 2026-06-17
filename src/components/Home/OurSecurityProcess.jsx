@@ -19,14 +19,15 @@ const OurSecurityProcess = () => {
         <span className="w-10 h-0.5 mt-4 bg-primary block text-center mx-auto"></span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-16 md:gap-6 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-16 md:gap-6 mt-12 py-8 md:py-16">
         {OUR_SECURITY_PROCESS.map((step, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="relative">
+            className="relative"
+          >
             {index < OUR_SECURITY_PROCESS.length - 1 && (
               <div className="hidden lg:flex absolute top-8 left-[70%] w-[60%] items-center z-0">
                 <div className="w-full border-t-2 border-dashed border-gray-300 dark:border-gray-700" />

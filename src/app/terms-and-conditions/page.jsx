@@ -114,7 +114,7 @@ const termsData = [
 
 const TermsAndConditions = () => {
   return (
-    <div className="bg-background min-h-screen w-full">
+    <div className="min-h-screen w-full">
       <Container>
         <div className="px-5 md:px-10 py-14 md:py-20">
           {/* Header */}

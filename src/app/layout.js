@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import Footer from "@/components/shared/footer/Footer";
 import NavbarWrapper from "@/components/shared/navbar/NavbarWrapper";
 
@@ -31,15 +31,15 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${barlow_Condensed.variable} ${geistSans.variable}  ${geistMono.variable} h-full antialiased`}>
+      className={`${barlow_Condensed.variable} ${geistSans.variable}  ${geistMono.variable} h-full antialiased`}
+    >
       <body className="h-full">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="nebula-bg" aria-hidden="true" />
-          <NavbarWrapper />
-          <div className="relative z-10">{children}</div>
-          <Footer />
-        </ThemeProvider>
-          <Toaster />
+        <div className="nebula-bg" aria-hidden="true" />
+        <NavbarWrapper />
+        <div className="relative z-10">{children}</div>
+        <Footer />
+
+        <Toaster />
       </body>
     </html>
   );

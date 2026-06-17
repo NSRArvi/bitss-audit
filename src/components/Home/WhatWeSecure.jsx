@@ -1,5 +1,3 @@
-"use client";
-import { ShieldCheck, ArrowUpDown } from "lucide-react";
 import React from "react";
 import Container from "../Container/Container";
 import Image from "next/image";
@@ -19,12 +17,13 @@ const WhatWeSecure = () => {
           </h1>
           <span className="w-10 h-0.5 mt-4 bg-primary block text-center mx-auto"></span>
         </section>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 py-8 md:py-16">
           {WHAT_WE_SECURE.map((item, idx) => {
             return (
               <div
                 key={idx}
-                className="bg-white dark:bg-white/5 px-6 py-8 border border-primary/40 rounded-2xl backdrop-blur-md shadow-xs hover:border-primary/80 space-y-4">
+                className="bg-white dark:bg-white/5 px-6 py-8 border border-primary/40 rounded-2xl backdrop-blur-md shadow-xs hover:border-primary/80 space-y-4"
+              >
                 {item.icon && (
                   <span className="text-primary">
                     {

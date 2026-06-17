@@ -1,6 +1,4 @@
-"use client";
-import React from "react";
-import bgImage from "../../app/assets/hero_banner.webp";
+import bgImage from "../../app/assets/hero_banner1.webp";
 import { Globe, MoveRight, ShieldCheck, Trophy, User } from "lucide-react";
 import { Badge } from "../ui/badge";
 import Container from "../Container/Container";
@@ -26,9 +24,10 @@ const HeroBanner = () => {
     <>
       <div
         style={{ backgroundImage: `url(${bgImage.src})` }}
-        className="relative h-auto w-full bg-center bg-cover overflow-hidden">
+        className="relative h-auto w-full bg-center bg-cover overflow-hidden py-16"
+      >
         <Container>
-          <div className="relative z-20 flex flex-col md:flex-row gap-20 md:gap-0 p-5 md:px-10 md:py-10">
+          <div className="relative z-20 flex flex-col md:flex-row gap-20 md:gap-0 p-5 md:px-10 md:py-16">
             <div className="flex-1">
               <p className="text-primary font-bold text-xs">
                 BITSS CRYPTO SECURITY
@@ -48,13 +47,15 @@ const HeroBanner = () => {
               <div className="flex flex-col md:flex-row gap-4 text-center mt-4">
                 <Link
                   href={"/audit-form"}
-                  className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300 text-center justify-center">
+                  className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300 text-center justify-center"
+                >
                   Request Crypto Security Review <MoveRight className="mt-1" />
                 </Link>
                 <Link
                   href={"https://bitss.one/products"}
                   target="blank"
-                  className="bg-transparent text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300 justify-center">
+                  className="bg-transparent text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300 justify-center"
+                >
                   Explore Protection Products <MoveRight className="mt-1" />
                 </Link>
               </div>
@@ -72,7 +73,8 @@ const HeroBanner = () => {
                     {lists.map((item, i) => (
                       <li
                         key={i}
-                        className="flex text-sm text-white w-full justify-between text-center border-b border-b-primary/50  my-2 pb-2 gap-16">
+                        className="flex text-sm text-white w-full justify-between text-center border-b border-b-primary/50  my-2 pb-2 gap-16"
+                      >
                         <p className="">{item.title && item.title}</p>
                         <Badge variant="secondary" className="">
                           {item.value && item.value}

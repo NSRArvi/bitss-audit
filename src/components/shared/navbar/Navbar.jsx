@@ -117,9 +117,9 @@ const Navbar = ({ onOpenDialog }) => {
               Request a Quote
             </Button>
 
-            <div className="ml-4">
+            {/* <div className="ml-4">
               <ModeToggle />
-            </div>
+            </div> */}
           </NavigationMenu>
           <button className="md:hidden" onClick={() => setShowMenu(!showMenu)}>
             {showMenu ? <X size={22} /> : <Menu size={22} />}
@@ -172,9 +172,9 @@ const Navbar = ({ onOpenDialog }) => {
                       </MobileDropdown>
                     ),
                   )}
-                  <div className="pt-4">
+                  {/* <div className="pt-4">
                     <ModeToggle />
-                  </div>
+                  </div> */}
                 </div>
               </motion.div>
             </motion.div>

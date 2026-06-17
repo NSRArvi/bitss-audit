@@ -1,10 +1,9 @@
-import React from "react";
 import { BITSS_PROTECTION_PRODUCTS } from "@/data/what_we_secure_data";
 import Link from "next/link";
 
 const BitssProtectionProducts = () => {
   return (
-    <section className="py-10">
+    <section className="py-20">
       <div className="text-center mb-4">
         <p className="text-primary text-sm font-semibold">
           BITSS PROTECTION PRODUCTS
@@ -15,7 +14,7 @@ const BitssProtectionProducts = () => {
         </h1>
         <span className="w-10 h-0.5 mt-4 bg-primary block text-center mx-auto"></span>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 py-8 md:py-16">
         {BITSS_PROTECTION_PRODUCTS.map((item, idx) => {
           const Icon = item.icon;
           return (
@@ -25,10 +24,12 @@ const BitssProtectionProducts = () => {
               style={{
                 "--card-bg": item.theme.bg,
                 "--card-border": item.theme.border,
-              }}>
+              }}
+            >
               <span
                 className="mx-auto block"
-                style={{ color: item.theme.color }}>
+                style={{ color: item.theme.color }}
+              >
                 <Icon size={42} className="mx-auto" />
               </span>
 
@@ -41,10 +42,12 @@ const BitssProtectionProducts = () => {
                 {item.body.map((list, i) => (
                   <li
                     key={i}
-                    className="text-start text-muted-foreground flex items-center gap-2 text-sm">
+                    className="text-start text-muted-foreground flex items-center gap-2 text-sm"
+                  >
                     <span
                       className="min-w-4 w-4 h-4 rounded-full flex items-center justify-center text-white text-[10px]"
-                      style={{ backgroundColor: item.theme.color }}>
+                      style={{ backgroundColor: item.theme.color }}
+                    >
                       ✓
                     </span>
                     {list}
@@ -60,7 +63,8 @@ const BitssProtectionProducts = () => {
                   style={{
                     color: item.theme.color,
                     borderColor: item.theme.border,
-                  }}>
+                  }}
+                >
                   Learn More
                 </Link>
               </div>
