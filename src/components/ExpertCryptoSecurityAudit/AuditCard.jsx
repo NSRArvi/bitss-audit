@@ -5,8 +5,10 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import CustomBadge from "../CustomBadge";
 
-export default function AuditCard({ section, idx }) {
+export default function AuditCard({ product, idx }) {
   const [expanded, setExpanded] = useState(false);
+
+  const href = product.name.toLowerCase().trim().replace(" ", "-");
 
   return (
     <motion.div
@@ -18,17 +20,17 @@ export default function AuditCard({ section, idx }) {
     >
       <div className="relative z-10 flex flex-col">
         <h3 className="font-heading mb-5 flex flex-col justify-center font-semibold text-foreground leading-tight text-2xl md:text-3xl">
-          <span>{section.title}</span>
+          <span>{product?.name}</span>
         </h3>
 
-        {section.badge && (
+        {/* {section.badge && (
           <div className="absolute -top-6.5 -right-6">
             <CustomBadge
               text={section.badge}
               className="uppercase px-2 h-6 font-heading font-medium rounded-l-none rounded-br-none rounded-tr-xl"
             />
           </div>
-        )}
+        )} */}
 
         <div
           className={`overflow-hidden transition-all duration-500 relative ${
@@ -36,10 +38,10 @@ export default function AuditCard({ section, idx }) {
           }`}
         >
           <div className="space-y-6">
-            {section.body.map((group, i) => (
+            {product?.item_sections?.map((group, i) => (
               <div key={i}>
                 <h4 className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">
-                  {group.subtitle}
+                  {group?.title}
                 </h4>
                 <ul className="space-y-2">
                   {group.items.map((item, j) => (
@@ -58,9 +60,9 @@ export default function AuditCard({ section, idx }) {
         </div>
 
         <div className="flex items-center justify-between pt-4 mt-4 border-t border-border">
-          <Link href={section.href}>
+          <Link href={`/order/${product?.slug}`}>
             <button className="bg-primary text-primary-foreground text-sm font-medium px-4 py-2 rounded-md hover:opacity-90 transition-opacity">
-              {section.btnText}
+              Request Audit
             </button>
           </Link>
 

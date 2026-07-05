@@ -112,10 +112,7 @@ export const auditProducts = [
       },
       {
         subtitle: "Dashboard Access — 6 Months",
-        items: [
-          "Everything in Standard",
-          "Payment Status Tracking",
-        ],
+        items: ["Everything in Standard", "Payment Status Tracking"],
       },
       {
         subtitle: "Deliverables",
@@ -215,7 +212,7 @@ export const auditProducts = [
       },
     ],
     discounts: [
-      "For BITSS User Flat 30% applicable for Advance & Premium Package",
+      "c",
       "Pay Using USFRANC & SPUMP they also get 15% Discount for All Package",
       "Pay Using USDC they also get 5% Discount for All Package",
     ],
