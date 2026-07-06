@@ -6,6 +6,7 @@ function MobileDropdown({
   openDropdown,
   setOpenDropdown,
   setShowMenu,
+  onOpenDialog,
 }) {
   const isOpen = openDropdown === title;
   const navigate = useRouter();
@@ -15,7 +16,7 @@ function MobileDropdown({
   };
 
   return (
-    <div>
+    <>
       <button
         onClick={() => setOpenDropdown(isOpen ? null : title)}
         className="w-full text-left font-medium"
@@ -36,7 +37,13 @@ function MobileDropdown({
       >
         Contact Us
       </button>
-    </div>
+      <button
+        onClick={onOpenDialog}
+        className="w-fit mt-6 flex items-center justify-center gap-2.5 py-2 px-4 rounded-sm bg-primary/80 hover:bg-primary text-white text-sm font-semibold cursor-pointer hover:transition-all duration-300"
+      >
+        Request a Quote
+      </button>
+    </>
   );
 }
 

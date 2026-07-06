@@ -159,6 +159,7 @@ const Navbar = ({ onOpenDialog }) => {
                         openDropdown={openDropdown}
                         setOpenDropdown={setOpenDropdown}
                         setShowMenu={setShowMenu}
+                        onOpenDialog={onOpenDialog}
                       >
                         {item.items.map((sub, idx) => (
                           <Link
