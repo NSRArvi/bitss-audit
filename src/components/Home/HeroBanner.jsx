@@ -20,6 +20,7 @@ const HeroBanner = () => {
     { icon: Trophy, title: "Proven Methodology" },
     { icon: Globe, title: "Global Trust" },
   ];
+
   return (
     <>
       <div

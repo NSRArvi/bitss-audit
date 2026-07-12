@@ -4,6 +4,8 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/shared/footer/Footer";
 import NavbarWrapper from "@/components/shared/navbar/NavbarWrapper";
+import { AuthProvider } from "@/context/AuthContext";
+import { CurrencyProvider } from "@/context/CurrencyContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,10 +36,14 @@ export default function RootLayout({ children }) {
       className={`${barlow_Condensed.variable} ${geistSans.variable}  ${geistMono.variable} h-full antialiased`}
     >
       <body className="h-full">
-        <div className="nebula-bg" aria-hidden="true" />
-        <NavbarWrapper />
-        <div className="relative z-10">{children}</div>
-        <Footer />
+        <AuthProvider>
+          <CurrencyProvider>
+            <div className="nebula-bg" aria-hidden="true" />
+            <NavbarWrapper />
+            <div className="relative z-10">{children}</div>
+            <Footer />
+          </CurrencyProvider>
+        </AuthProvider>
 
         <Toaster />
       </body>

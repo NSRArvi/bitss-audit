@@ -20,6 +20,7 @@ import ModeToggle from "@/components/ModeToggle";
 import ListItem from "./NabvarMenuItem/ListItem";
 import MobileDropdown from "./NabvarMenuItem/MobileDropdown";
 import { Button } from "@/components/ui/button";
+import TopNav from "./TopNav";
 
 const navItems = [
   {
@@ -31,16 +32,26 @@ const navItems = [
     type: "dropdown",
     label: "Services",
     items: [
-      {
-        label: "Advanced Security Audits",
-        href: "/advanced-security-audits",
-      },
+      // {
+      //   label: "Advanced Security Audits",
+      //   href: "/advanced-security-audits",
+      // },
       {
         label: "Expert Crypto Security Audit",
         href: "/expert-crypto-security-audit",
       },
     ],
     width: "w-50",
+  },
+  {
+    type: "link",
+    label: "Orders",
+    href: "/orders",
+  },
+  {
+    type: "link",
+    label: "Contact Us",
+    href: "/contact",
   },
 ];
 
@@ -55,134 +66,143 @@ const Navbar = ({ onOpenDialog }) => {
     onClose: () => setShowMenu(false),
     menuRef,
   });
+
   return (
-    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-sm">
-      <Container>
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <Image
-              src={"/image.png"}
-              alt="Nav Logo"
-              width={37}
-              height={37}
-              className="mx-auto -mt-0.5"
-            />
-            <span className="flex flex-col justify-center bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent leading-tight">
-              <h2 className="font-bold text-[27px] mt-1">BITSS</h2>
-              <p className="mb-2.5 -mt-0.5 text-[9px]">CRYPTO SECURITY</p>
-            </span>
-          </Link>
-          <NavigationMenu className="hidden md:flex font-medium">
-            <NavigationMenuList className="gap-0 py-3">
-              {navItems.map((item, i) => (
-                <NavigationMenuItem key={i} className={"hover:text-primary"}>
-                  {item.type === "link" ? (
-                    <NavigationMenuLink
-                      asChild
-                      className={"hover:bg-transparent"}
+    <div className="fixed w-full top-0 z-99">
+      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-sm">
+        <Container>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-10">
+              {/* Logo */}
+              <Link href="/" className="flex items-center">
+                <Image
+                  src={"/image.png"}
+                  alt="Nav Logo"
+                  width={37}
+                  height={37}
+                  className="mx-auto -mt-0.5"
+                />
+                <span className="flex flex-col justify-center bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent leading-tight">
+                  <h2 className="font-bold text-[27px] mt-1">BITSS</h2>
+                  <p className="mb-2.5 -mt-0.5 text-[9px]">CRYPTO SECURITY</p>
+                </span>
+              </Link>
+              <NavigationMenu className="hidden md:flex font-medium">
+                <NavigationMenuList className="gap-0 py-3">
+                  {navItems.map((item, i) => (
+                    <NavigationMenuItem
+                      key={i}
+                      className={"hover:text-primary text-lg"}
                     >
-                      <Link href={item.href}>{item.label}</Link>
-                    </NavigationMenuLink>
-                  ) : (
-                    <>
-                      <NavigationMenuTrigger className="hover:bg-transparent">
-                        {item.label}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent className="font-medium ">
-                        <ul className={`${item.width} gap-2 `}>
-                          {item.items.map((sub, idx) => (
-                            <ListItem key={idx} href={sub.href}>
-                              {sub.label}
-                            </ListItem>
-                          ))}
-                        </ul>
-                      </NavigationMenuContent>
-                    </>
-                  )}
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-            <Button
-              onClick={() => navigate.push("/contact")}
-              className="bg-primary/80 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300 mr-4"
-            >
-              Contact Us
-            </Button>
-
-            <Button
-              onClick={onOpenDialog}
-              className="bg-primary/80 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300"
-            >
-              Request a Quote
-            </Button>
-
-            {/* <div className="ml-4">
-              <ModeToggle />
-            </div> */}
-          </NavigationMenu>
-          <button className="md:hidden" onClick={() => setShowMenu(!showMenu)}>
-            {showMenu ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-
-        <AnimatePresence>
-          {showMenu && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 w-full top-14 bg-black/60 h-[calc(100vh-0px)]"
-            >
-              <motion.div
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "100%" }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                ref={menuRef}
-                className="md:hidden fixed  right-0 h-screen w-[80%] max-w-sm border-l z-50 shadow-lg overflow-y-auto"
+                      {item.type === "link" ? (
+                        <NavigationMenuLink
+                          asChild
+                          className={"hover:bg-transparent"}
+                        >
+                          <Link href={item.href}>{item.label}</Link>
+                        </NavigationMenuLink>
+                      ) : (
+                        <>
+                          <NavigationMenuTrigger className="hover:bg-transparent">
+                            {item.label}
+                          </NavigationMenuTrigger>
+                          <NavigationMenuContent className="font-medium ">
+                            <ul className={`${item.width} gap-2 `}>
+                              {item.items.map((sub, idx) => (
+                                <ListItem key={idx} href={sub.href}>
+                                  {sub.label}
+                                </ListItem>
+                              ))}
+                            </ul>
+                          </NavigationMenuContent>
+                        </>
+                      )}
+                    </NavigationMenuItem>
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+            </div>
+            <div className="flex items-center gap-2">
+              {/* <Button
+                onClick={() => navigate.push("/contact")}
+                className="bg-primary/80 hover:bg-primary cursor-pointer"
               >
-                <div className="flex flex-col gap-4 px-8 py-4 h-full bg-background dark:bg-slate-950/95 backdrop-blur-2xl shadow-md">
-                  {navItems.map((item, i) =>
-                    item.type === "link" ? (
-                      <Link
-                        key={i}
-                        href={item.href}
-                        onClick={() => setShowMenu(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <MobileDropdown
-                        key={i}
-                        title={item.label}
-                        openDropdown={openDropdown}
-                        setOpenDropdown={setOpenDropdown}
-                        setShowMenu={setShowMenu}
-                        onOpenDialog={onOpenDialog}
-                      >
-                        {item.items.map((sub, idx) => (
-                          <Link
-                            key={idx}
-                            href={sub.href}
-                            onClick={() => setShowMenu(false)}
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
-                      </MobileDropdown>
-                    ),
-                  )}
-                  {/* <div className="pt-4">
+                Contact Us
+              </Button> */}
+              <TopNav />
+              <Button
+                onClick={onOpenDialog}
+                className="bg-primary/80 hover:bg-primary cursor-pointer"
+              >
+                Request a Quote
+              </Button>
+            </div>
+            <button
+              className="md:hidden"
+              onClick={() => setShowMenu(!showMenu)}
+            >
+              {showMenu ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+
+          <AnimatePresence>
+            {showMenu && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-40 w-full top-14 bg-black/60 h-[calc(100vh-0px)]"
+              >
+                <motion.div
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  ref={menuRef}
+                  className="md:hidden fixed  right-0 h-screen w-[80%] max-w-sm border-l z-50 shadow-lg overflow-y-auto"
+                >
+                  <div className="flex flex-col gap-4 px-8 py-4 h-full bg-background dark:bg-slate-950/95 backdrop-blur-2xl shadow-md">
+                    {navItems.map((item, i) =>
+                      item.type === "link" ? (
+                        <Link
+                          key={i}
+                          href={item.href}
+                          onClick={() => setShowMenu(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <MobileDropdown
+                          key={i}
+                          title={item.label}
+                          openDropdown={openDropdown}
+                          setOpenDropdown={setOpenDropdown}
+                          setShowMenu={setShowMenu}
+                          onOpenDialog={onOpenDialog}
+                        >
+                          {item.items.map((sub, idx) => (
+                            <Link
+                              key={idx}
+                              href={sub.href}
+                              onClick={() => setShowMenu(false)}
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </MobileDropdown>
+                      ),
+                    )}
+                    {/* <div className="pt-4">
                     <ModeToggle />
                   </div> */}
-                </div>
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </Container>
-    </nav>
+            )}
+          </AnimatePresence>
+        </Container>
+      </nav>
+    </div>
   );
 };
 

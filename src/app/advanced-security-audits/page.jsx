@@ -10,7 +10,6 @@ import {
   FileSearch,
 } from "lucide-react";
 import CustomBadge from "@/components/CustomBadge";
-import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { FinalCTA } from "@/components/FinalCTA";
 import Link from "next/link";
@@ -98,13 +97,15 @@ const AuditServices = () => {
               <div className="flex flex-col md:flex-row gap-4 items-center space-y-1 mt-4">
                 <Link
                   href={"/audit-form"}
-                  className="text-white w-4/5 md:w-fit mt-3 px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300">
+                  className="text-white w-4/5 md:w-fit mt-3 px-6 py-2.5 rounded-lg cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300"
+                >
                   Request Crypto Security Review
                 </Link>
                 <Link
                   href={"/contact"}
                   target="blank"
-                  className="bg-transparent w-4/5 md:w-fit dark:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary rounded-lg hover:transition-all duration-300">
+                  className="bg-transparent w-4/5 md:w-fit dark:text-white px-6 py-2.5 cursor-pointer hover:bg-primary hover:border-primary border border-primary rounded-lg hover:transition-all duration-300"
+                >
                   Contact Us
                 </Link>
               </div>
@@ -127,7 +128,8 @@ const AuditServices = () => {
                     {lists.map((item, i) => (
                       <li
                         key={i}
-                        className="flex w-full justify-between text-center border-b border-b-primary/50 my-2 pb-2">
+                        className="flex w-full justify-between text-center border-b border-b-primary/50 my-2 pb-2"
+                      >
                         {" "}
                         <p className="text-muted-foreground text-sm">
                           {item.title && item.title}
@@ -184,7 +186,8 @@ const AuditServices = () => {
                       transition={{ delay: i * 0.1 }}
                       viewport={{ once: true }}
                       className={`group relative rounded-xl border dark:border-primary/10 border-black/10 bg-white/5 dark:bg-white/5 p-6 backdrop-blur-md hover:border-primary/60 dark:hover:border-primary/60 transition-all duration-300
-          ${isLast ? "lg:col-span-2" : "col-span-1"}`}>
+          ${isLast ? "lg:col-span-2" : "col-span-1"}`}
+                    >
                       <div className="relative z-10">
                         <div className="mb-4 flex items-center gap-3">
                           {item.icon && (

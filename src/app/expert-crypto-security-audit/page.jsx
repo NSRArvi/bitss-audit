@@ -1,12 +1,28 @@
+"use client";
+
 import Container from "@/components/Container/Container";
 import AuditProducts from "@/components/ExpertCryptoSecurityAudit/AuditProducts";
 import HeroBanner from "@/components/ExpertCryptoSecurityAudit/HeroBanner";
 import CybersecurityAndRiskManagement from "@/components/ExpertCryptoSecurityAudit/CybersecurityAndRiskManagement";
 import RequestLists from "@/components/ExpertCryptoSecurityAudit/RequestLists";
+import { useState } from "react";
+import CurrencyModal from "@/components/CurrencyModal/CurrencyModal.jsx";
+import { useCurrency } from "@/hooks/useCurrency";
 
 const ExpertCryptoSecurityAudit = () => {
+  const { hasSelectedCurrency } = useCurrency();
+
+  const [open, setOpen] = useState(!hasSelectedCurrency);
+
   return (
     <Container>
+      <div className="relative">
+        <CurrencyModal
+          open={open || !hasSelectedCurrency}
+          setOpen={setOpen}
+          allowClose={hasSelectedCurrency}
+        />
+      </div>
       <HeroBanner />
       <CybersecurityAndRiskManagement />
       <section className="pt-20" id="features">
@@ -24,7 +40,9 @@ const ExpertCryptoSecurityAudit = () => {
             integrity.
           </p>
         </div>
+
         <AuditProducts />
+
         <h2 className="text-muted-foreground text-sm font-heading leading-tight text-center pb-10">
           Confidential & Secure Submission — All data protected
         </h2>

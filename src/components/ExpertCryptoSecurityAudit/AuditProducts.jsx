@@ -1,8 +1,8 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import AuditCard from "./AuditCard";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { BASE_URL } from "@/lib/base_url";
 
 export default function AuditProducts() {
   const [products, setProducts] = useState([]);
@@ -26,7 +26,7 @@ export default function AuditProducts() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10 pb-4 relative items-start">
       {products?.map((product, idx) => (
-        <AuditCard key={idx} product={product} idx={idx} />
+        <AuditCard key={product.id ?? idx} product={product} idx={idx} />
       ))}
     </div>
   );

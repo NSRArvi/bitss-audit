@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import OrderForm from "./shared/OrderForm";
+import OrderForm from "./OrderForm/OrderForm";
 
 export function OrderModal({ open, setOpen, onClose }) {
   return (
