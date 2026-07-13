@@ -36,7 +36,7 @@ const OurSecurityProcess = () => {
             )}
 
             {/* Card */}
-            <Card className="relative overflow-visible bg-white/80 dark:bg-white/5 backdrop-blur-md border-gray-200 dark:border-white/10 pt-10 pb-6 px-2.5 h-full">
+            <Card className="relative overflow-visible bg-white/80 dark:bg-white/5 backdrop-blur-md border-none shadow pt-10 pb-6 px-2.5 h-full">
               <div className="absolute -top-8 shadow-sm left-1/2 -translate-x-1/2 p-3 rounded-full overflow-visible">
                 {/* <step.icon size={24} /> */}
                 <Image

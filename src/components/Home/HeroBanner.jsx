@@ -1,8 +1,40 @@
-import bgImage from "../../app/assets/hero_banner1.webp";
-import { Globe, MoveRight, ShieldCheck, Trophy, User } from "lucide-react";
-import { Badge } from "../ui/badge";
-import Container from "../Container/Container";
-import Link from "next/link";
+import { ArrowRightIcon, Globe, ShieldCheck, Trophy, User } from "lucide-react";
+import SlotCounter from "react-slot-counter";
+import { Button } from "../ui/button";
+import { FlowingLogos } from "../ui/flowing-logos";
+
+import Image from "next/image";
+
+const logos = [
+  {
+    image: "/assets/logo1.svg",
+    name: "Logo 1",
+  },
+  {
+    image: "/assets/logo2.svg",
+    name: "Logo 2",
+  },
+  {
+    image: "/assets/logo3.svg",
+    name: "Logo 3",
+  },
+  {
+    image: "/assets/logo4.png",
+    name: "Logo 4",
+  },
+  {
+    image: "/assets/logo5.png",
+    name: "Logo 5",
+  },
+  {
+    image: "/assets/logo6.svg",
+    name: "Logo 6",
+  },
+  {
+    image: "/assets/logo7.svg",
+    name: "Logo 7",
+  },
+];
 
 const HeroBanner = () => {
   const lists = [
@@ -22,94 +54,98 @@ const HeroBanner = () => {
   ];
 
   return (
-    <>
-      <div
-        style={{ backgroundImage: `url(${bgImage.src})` }}
-        className="relative h-auto w-full bg-center bg-cover overflow-hidden py-16"
-      >
-        <Container>
-          <div className="relative z-20 flex flex-col md:flex-row gap-20 md:gap-0 p-5 md:px-10 md:py-16">
-            <div className="flex-1">
-              <p className="text-primary font-bold text-xs">
-                BITSS CRYPTO SECURITY
-              </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[80px] text-white font-black font-heading pt-2 pb-1 md:py-5 w-full md:w-3/4">
-                Crypto Security For{" "}
-                <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
-                  Serious Blockchain Businesses
-                </span>
-              </h2>
-              <p className="text-sm text-white py-3 md:pb-6 w-full md:w-2/3">
-                Bitss protects crypto websites, wallets, exchanges, APIs, smart
-                contracts, server logins, and blockchain infrastructure using
-                cybersecurity products, audit intelligence, and continuous
-                protection.
-              </p>
-              <div className="flex flex-col md:flex-row gap-4 text-center mt-4">
-                <Link
-                  href={"/audit-form"}
-                  className="text-white px-6 py-2.5 rounded-lg flex gap-3 items-center cursor-pointer bg-primary/80 hover:bg-primary hover:transition-all duration-300 text-center justify-center"
-                >
-                  Request Crypto Security Review <MoveRight className="mt-1" />
-                </Link>
-                <Link
-                  href={"https://bitss.one/products"}
-                  target="blank"
-                  className="bg-transparent text-white px-6 py-2.5 flex gap-3 items-center cursor-pointer hover:bg-primary hover:border-primary border border-primary  rounded-lg hover:transition-all duration-300 justify-center"
-                >
-                  Explore Protection Products <MoveRight className="mt-1" />
-                </Link>
-              </div>
-            </div>
-            <div className="w-full md:w-75 h-fit backdrop-blur-md flex flex-col items-center justify-center rounded-xl ">
-              <div className="px-2 shadow-sm py-2 md:py-6 rounded-xl ">
-                <h3 className="font-semibold text-lg text-white flex justify-between items-center">
-                  Security Coverage{" "}
-                  <span className="text-green-400">
-                    <ShieldCheck />
-                  </span>
-                </h3>
-                <div>
-                  <ul>
-                    {lists.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex text-sm text-white w-full justify-between text-center border-b border-b-primary/50  my-2 pb-2 gap-16"
-                      >
-                        <p className="">{item.title && item.title}</p>
-                        <Badge variant="secondary" className="">
-                          {item.value && item.value}
-                        </Badge>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="py-2 ">
-                    <h3 className="text-white text-sm">
-                      AutoAudit Risk Over 82/100
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div className="mt-20">
+      <div className="flex flex-col md:flex-row justify-between gap-6 py-20">
+        <div className="space-y-5 w-full lg:w-2/3">
+          <p className="text-lg">
+            Elevate Your <span className="text-primary">Web3 Journey</span>
+          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-8xl lg:leading-28 font-inter">
+            Largest Blockchain Security Auditor
+          </h2>
+          <p className="text-lg text-muted-foreground w-full lg:w-2/3">
+            Bitss is the largest Web3 security platform combining formal
+            verification with audits and comprehensive security solutions.
+          </p>
+          <div className="flex items-center gap-4 mt-10">
+            <Button
+              variant="outline"
+              className="px-6 lg:px-10 h-14 cursor-pointer"
+            >
+              Talk to an expert
+            </Button>
+            <Button className="bg-primary hover:bg-primary flex items-center gap-1 px-6 lg:px-10 h-14 cursor-pointer">
+              Skynet Rating <ArrowRightIcon size={20} />
+            </Button>
           </div>
-        </Container>
-        <div className="bg-black/20 backdrop-blur-md py-6 md:px-8 mt-auto">
-          <Container>
-            <div className=" grid grid-cols-2 md:grid-cols-4 text-start gap-4 text-white mt-auto md:w-2/3">
-              {lists2.map((list, idx) => {
-                const Icon = list.icon;
-                return (
-                  <span key={idx} className="flex items-center gap-1 text-sm">
-                    <Icon size={18} className="text-primary font-bold" />{" "}
-                    {list.title}
-                  </span>
-                );
-              })}
-            </div>
-          </Container>
+        </div>
+        <div className="md:text-right hidden lg:flex lg:flex-col gap-6 font-inter">
+          <div>
+            <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
+              $<SlotCounter value={470} />B
+            </p>
+            <span className="text-xs md:text-sm lg:text-base leading-1">
+              Market Cap Assessed
+            </span>
+          </div>
+          <div>
+            <p className="text-lg md:text-5xl lg:text-6xl flex justify-end">
+              <SlotCounter value={5197} />
+            </p>
+            <span className="text-xs md:text-sm lg:text-base">
+              Client Served
+            </span>
+          </div>
+          <div>
+            <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
+              $<SlotCounter value={2} />B
+            </p>
+            <span className="text-xs md:text-sm lg:text-base">Valuation</span>
+          </div>
+          <div>
+            <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
+              <SlotCounter value={1.8} />M
+            </p>
+            <span className="text-xs md:text-sm lg:text-base">
+              Monthly Skynet User
+            </span>
+          </div>
         </div>
       </div>
-    </>
+      <FlowingLogos data={logos} />
+      <div className="flex flex-col md:flex-row md:justify-around items-center text-center lg:hidden gap-10 mt-20 font-inter">
+        <div>
+          <p className="text-5xl flex items-center justify-center">
+            $<SlotCounter value={470} />B
+          </p>
+          <span className="text-base md:text-sm lg:text-base">
+            Market Cap Assessed
+          </span>
+        </div>
+        <div>
+          <p className="text-5xl">
+            <SlotCounter value={5197} />
+          </p>
+          <span className="text-base md:text-sm lg:text-base">
+            Client Served
+          </span>
+        </div>
+        <div>
+          <p className="text-5xl items-center justify-center">
+            $<SlotCounter value={2} />B
+          </p>
+          <span className="text-base md:text-sm lg:text-base">Valuation</span>
+        </div>
+        <div>
+          <p className="text-5xl items-center justify-center">
+            <SlotCounter value={1.8} />M
+          </p>
+          <span className="text-base md:text-sm lg:text-base">
+            Monthly Skynet User
+          </span>
+        </div>
+      </div>
+    </div>
   );
 };
 

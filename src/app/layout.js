@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Barlow_Condensed } from "next/font/google";
+import { Geist, Geist_Mono, Barlow_Condensed, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
@@ -22,6 +22,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-Inter",
+});
+
 export const metadata = {
   title: "BITSS Audit",
   description:
@@ -33,7 +38,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${barlow_Condensed.variable} ${geistSans.variable}  ${geistMono.variable} h-full antialiased`}
+      className={`${barlow_Condensed.variable} ${geistSans.variable}  ${geistMono.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="h-full">
         <AuthProvider>

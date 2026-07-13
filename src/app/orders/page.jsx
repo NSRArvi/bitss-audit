@@ -49,7 +49,7 @@ export default function OrderPage() {
   return (
     <PrivateRoute>
       <Container>
-        <div className="pt-10 w-full flex items-center justify-between">
+        <div className="pt-20 w-full flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-semibold">All Your Orders Here </h2>
             <p className="text-xs text-muted-foreground">

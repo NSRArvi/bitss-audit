@@ -4,6 +4,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* @theme{
+    --font-inter: var(--font-inter);
+
+} */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -31,8 +36,26 @@
   --color-nebula-purple: oklch(0.5 0.2 280);
   --color-nebula-blue: oklch(0.6 0.2 240);
 
-  --font-inter: var(--font-inter);
+  /* --font-inter: var(--font-inter); */
+    --font-inter: var(--font-Inter);
+
   --font-heading: var(--font-Barlow_Condensed);
+  @keyframes canopy-x {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes canopy-y {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
 }
 html,
 body {
@@ -60,7 +83,7 @@ body {
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --radius: 0.625rem;
-  --font-inter: var(--font-inter);
+  --font-inter: var(--font-Inter);
   --font-heading: var(--font-Barlow_Condensed);
 }
 
@@ -85,7 +108,7 @@ body {
   --nebula-deep-blue: 220 100% 15%;
   --nebula-bright-cyan: 190 100% 50%;
   --nebula-soft-purple: 260 80% 30%;
-  --font-inter: var(--font-inter);
+  --font-inter: var(--font-Inter);
   --font-heading: var(--font-Barlow_Condensed);
 }
 
@@ -186,5 +209,23 @@ body {
   body {
     background-color: var(--background);
     color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  .animate-canopy-horizontal {
+    animation: canopy-x var(--duration) infinite linear;
+  }
+  .animate-canopy-vertical {
+    animation: canopy-y var(--duration) linear infinite;
+  }
+  .direction-reverse.animate-canopy-horizontal {
+    animation-direction: reverse;
+  }
+  .direction-reverse.animate-canopy-vertical {
+    animation-direction: reverse;
+  }
+  .group:hover .group-hover\:paused {
+    animation-play-state: paused;
   }
 }

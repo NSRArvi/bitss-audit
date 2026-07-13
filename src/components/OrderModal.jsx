@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -6,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import OrderForm from "./OrderForm/OrderForm";
+import ManualOrder from "./ManualOrder/ManualOrder";
 
 export function OrderModal({ open, setOpen, onClose }) {
   return (
@@ -19,7 +18,7 @@ export function OrderModal({ open, setOpen, onClose }) {
             and encrypted.
           </DialogDescription>
         </DialogHeader>
-        <OrderForm setOpen={setOpen} />
+        <ManualOrder setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );
