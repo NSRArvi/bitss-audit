@@ -16,7 +16,7 @@ const AnimatedCanopy = ({
   <div
     {...props}
     className={cn(
-      "group relative flex h-full lg:h-1/2 w-full overflow-hidden p-2 [--duration:10s] [--gap:12px] gap-(--gap)",
+      "group relative flex h-full lg:h-[50dvh] w-full overflow-hidden p-2 [--duration:10s] [--gap:12px] gap-(--gap)",
       vertical ? "flex-row lg:flex-col" : "flex-row",
       className,
     )}

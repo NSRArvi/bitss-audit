@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const FlowingLogo = ({
   children,
@@ -54,13 +55,15 @@ const LogoCard = ({ logo, className, variant = "square" }) => (
       className,
     )}
   >
-    <img
+    <Image
       src={logo.image}
       alt={logo.name}
-      className={cn("rounded-xl", {
+      width={20}
+      height={20}
+      className={cn("rounded-xl grayscale", {
         "h-full w-full object-cover": variant === "square",
-        "h-full w-auto object-contain max-h-8": variant === "wide",
-        "max-h-12 w-auto object-contain": variant === "auto",
+        "h-full w-auto object-contain max-h-3": variant === "wide",
+        "max-h-4 w-auto object-contain": variant === "auto",
       })}
     />
   </div>

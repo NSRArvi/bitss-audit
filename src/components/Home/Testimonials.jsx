@@ -1,19 +1,5 @@
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 const testimonials = [
-  // {
-  //   description:
-  //     "We were impressed with the comprehensive suite of products offered by the team, ranging from full-scope smart contract auditing to continuous security monitoring and white-hat support. Their proactive communication, deep technical expertise, and commitment to long-term collaboration gave us confidence throughout the entire development lifecycle. They consistently identified potential vulnerabilities before deployment and provided practical recommendations that significantly strengthened our platform's security.",
-  //   image: "/assets/testimonials/justin-hyun.jpg",
-  //   name: "Justin Hyun",
-  //   handle: "Head of Incubation",
-  // },
-  // {
-  //   description:
-  //     "The audit process exceeded our expectations from start to finish. Every finding was thoroughly explained, the remediation guidance was clear, and the team remained available throughout the implementation phase. Their detailed reports and security-first mindset helped us launch with greater confidence while reassuring both our community and investors about the safety of our protocol.",
-  //   image: "/assets/testimonials/sarah-chen.jpg",
-  //   name: "Sarah Chen",
-  //   handle: "Chief Technology Officer",
-  // },
   {
     description:
       "Working with this security team has been one of the best decisions for our Web3 project. They didn't simply identify vulnerabilities—they helped us understand the underlying risks and improve our overall architecture. Their responsiveness, professionalism, and in-depth blockchain knowledge made the entire engagement smooth and highly valuable for our engineering team.",

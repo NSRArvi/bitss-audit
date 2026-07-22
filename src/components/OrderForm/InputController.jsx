@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { Field, FieldError, FieldLabel } from "../ui/field";
+import { Controller } from "react-hook-form";
+import { ArrowRight, ChevronDown, Lock } from "lucide-react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import {
   Select,
   SelectContent,
@@ -10,32 +13,55 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { Field, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
-import { Controller, useWatch } from "react-hook-form";
-import { ChevronDown, Lock } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
+import { Button } from "../ui/button";
+import CheckoutForm from "./CheckoutForm";
+import { STRIPE_PUBLISHABLE_KEY } from "@/lib/base_url";
+import { Spinner } from "../ui/spinner";
 
 const selectItems = ["standard-audit", "advanced-audit", "enterprise-audit"];
+const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
 export default function InputController({
   control,
   discountInfo,
-  selected,
-  setSelected,
   isLocked,
   productData,
   finalPrice,
+  loading,
+  payment_type,
+  stripeClientSecret,
+  pendingOrderData,
+  errors,
+  isPriceAvailable,
+  available,
   originalPrice,
+  title = { title },
 }) {
-  const [errors, setErrors] = useState({});
   const [checkOpen, setCheckOpen] = useState(false);
 
-  const payment_type = useWatch({ control, name: "payment_type" });
-
-  function handleSelect(itemTitle) {
-    setSelected(selected === itemTitle ? null : itemTitle);
-    setErrors((prev) => ({ ...prev, serviceInterest: undefined }));
-    setCheckOpen(false);
+  if (stripeClientSecret && pendingOrderData) {
+    return (
+      <Elements
+        stripe={stripePromise}
+        options={{
+          clientSecret: stripeClientSecret,
+          appearance: { theme: "none" },
+        }}
+      >
+        <CheckoutForm
+          pendingOrderData={pendingOrderData}
+          clientSecret={stripeClientSecret}
+          title={title}
+          // onBack={() => {
+          //   setStripeClientSecret(null);
+          //   setPendingOrderData(null);
+          // }}
+        />
+      </Elements>
+    );
   }
 
   return (
@@ -175,6 +201,30 @@ export default function InputController({
             )}
           </>
         )}
+
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            disabled={loading || !available || !isPriceAvailable}
+            className={`bg-primary/90 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300 ${
+              loading || !available || !isPriceAvailable
+                ? "cursor-not-allowed"
+                : ""
+            }`}
+          >
+            {loading ? (
+              <>
+                Processing <Spinner />
+              </>
+            ) : payment_type === "stripe" ? (
+              "Proceed To Payment"
+            ) : (
+              <>
+                Request Audit <ArrowRight />
+              </>
+            )}
+          </Button>
+        </div>
       </div>
 
       <div className="bg-white p-4 shadow rounded">
@@ -186,7 +236,7 @@ export default function InputController({
             type="button"
             onClick={() => !isLocked && setCheckOpen(!checkOpen)}
             className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg border ${
-              errors.serviceInterest
+              errors?.serviceInterest
                 ? "border-red-500"
                 : "border-black/10 dark:border-white/10"
             } bg-transparent text-sm transition-colors ${
@@ -196,7 +246,7 @@ export default function InputController({
             }`}
           >
             <span className="text-foreground">
-              {isLocked ? productData?.name : (selected ?? "Select a service")}
+              {isLocked ? productData?.name : "Select a service"}
             </span>
             {isLocked ? (
               <Lock className="h-3.5 w-3.5 text-muted-foreground" />
@@ -216,17 +266,14 @@ export default function InputController({
                   key={i}
                   className="flex items-center gap-3 px-4 py-2.5 cursor-pointer hover:bg-muted transition-colors"
                 >
-                  <Checkbox
-                    checked={selected === item}
-                    onCheckedChange={() => handleSelect(item)}
-                  />
+                  <Checkbox />
                   <span className="text-sm flex-1">{item}</span>
                 </label>
               ))}
             </div>
           )}
         </div>
-        {errors.serviceInterest && (
+        {errors?.serviceInterest && (
           <p className="text-xs text-red-500 mt-1">{errors.serviceInterest}</p>
         )}
 

@@ -37,7 +37,7 @@ export default function CurrencyModal({ open, setOpen, allowClose = false }) {
             </p>
           )}
 
-          {!currenciesLoading && !currenciesError && currencies.length > 0 && (
+          {!currenciesLoading && !currenciesError && currencies?.length > 0 && (
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 py-6">
               {currencies.map((currency) => (
                 <button

@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Field, FieldError, FieldLabel } from "../ui/field";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Input } from "../ui/input";
-import { useAuth } from "@/hooks/useAuth";
-import { BASE_URL } from "@/lib/base_url";
 import { Button } from "../ui/button";
 import { Spinner } from "../ui/spinner";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
-import toast from "react-hot-toast";
+import { useAuth } from "@/hooks/useAuth";
+import { BASE_URL } from "@/lib/base_url";
 
 export default function CheckBiitssCustomer({
   onDiscountVerified,

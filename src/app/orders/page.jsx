@@ -1,10 +1,12 @@
 "use client";
 import Container from "@/components/Container/Container";
+import { OrderCardSkeleton } from "@/components/skeleton/OrderCardSkeleton";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { useAuth } from "@/hooks/useAuth";
 import { BASE_URL } from "@/lib/base_url";
 import PrivateRoute from "@/PrivateRoute/PrivateRoute";
+import { Building2Icon, CreditCardIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -16,6 +18,7 @@ export default function OrderPage() {
 
   const fetchOrder = async (user) => {
     try {
+      setLoading(true);
       const res = await fetch(`${BASE_URL}/order/list`, {
         method: "GET",
         headers: {
@@ -23,8 +26,12 @@ export default function OrderPage() {
         },
       });
       const data = await res.json();
+      if (!res.ok) {
+        throw data;
+      }
       if (data.success) {
-        setOrderData(data?.data);
+        setOrderData(data?.data?.data);
+
         setLoading(false);
       }
     } catch (error) {
@@ -35,16 +42,8 @@ export default function OrderPage() {
   };
 
   useEffect(() => {
-    fetchOrder(user);
+    if (user) fetchOrder(user);
   }, [user]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen w-full flex items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
 
   return (
     <PrivateRoute>
@@ -62,13 +61,16 @@ export default function OrderPage() {
             </Button>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-6 mt-10">
-          {orderData?.map((order) => {
-            const img = order.manual_payment.payment_document;
-            console.log(order);
-            return (
+        <div className="py-10 lg:pb-20 space-y-6">
+          {loading ? (
+            <>
+              <OrderCardSkeleton />
+              <OrderCardSkeleton />
+            </>
+          ) : (
+            orderData?.map((order) => (
               <div key={order.id}>
-                <div className="w-full border border-slate-200 shadow-sm bg-white rounded-xl overflow-hidden">
+                <div className="w-full shadow bg-white rounded-xl overflow-hidden">
                   <div className="p-5 pb-4 border-b border-slate-100 bg-slate-50/50">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-mono text-muted-foreground tracking-wider">
@@ -100,42 +102,57 @@ export default function OrderPage() {
                           Total Paid
                         </p>
                         <div className="flex items-baseline gap-2 mt-0.5">
-                          <span className="text-2xl font-extrabold text-slate-900">
-                            $
-                            {parseFloat(
-                              order.manual_payment?.amount || 0,
-                            ).toFixed(2)}
-                          </span>
-                          {order.discounts?.length > 0 && (
+                          <p className="text-2xl font-extrabold text-slate-900">
+                            <span className="text-2xl font-black leading-tight text-foreground">
+                              {order?.order_discount && (
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: order?.currency,
+                                  }}
+                                  className="text-black"
+                                />
+                              )}
+                            </span>
+
+                            {order?.order_discount &&
+                              parseFloat(
+                                order?.amount -
+                                  parseFloat(order?.amount || 0) *
+                                    (parseFloat(
+                                      order?.order_discount?.discount_amount,
+                                    ) /
+                                      100),
+                              )}
+                          </p>
+                          {order?.currency && (
                             <span className="text-sm text-muted-foreground line-through">
-                              $
-                              {(
-                                parseFloat(order.manual_payment?.amount || 0) /
-                                (1 -
-                                  parseFloat(
-                                    order.discounts[0].discount_amount,
-                                  ) /
-                                    100)
-                              ).toFixed(2)}
+                              <span
+                                dangerouslySetInnerHTML={{
+                                  __html: order?.currency,
+                                }}
+                                className="text-black"
+                              />
+                              {parseFloat(order?.amount || 0).toFixed(2)}
                             </span>
                           )}
                         </div>
                       </div>
 
-                      {order.discounts?.length > 0 && (
+                      {order?.order_discount?.email && (
                         <span className="bg-red-50 text-red-700 border border-red-100 flex items-center gap-1 font-bold rounded-lg text-xs px-2 py-1">
-                          {parseInt(order.discounts[0].discount_amount)}% OFF
+                          {parseInt(order?.order_discount?.discount_amount)}%
+                          OFF
                         </span>
                       )}
                     </div>
 
-                    {order.discounts?.length > 0 && (
+                    {order?.order_discount && (
                       <div className="flex items-start gap-2 text-xs text-amber-800">
                         <p>
                           Discount offer terms valid until:{" "}
                           <span className="font-semibold">
                             {new Date(
-                              order.discounts[0].discount_expire_at,
+                              order?.order_discount?.discount_expire_at,
                             ).toLocaleDateString()}
                           </span>
                         </p>
@@ -148,8 +165,16 @@ export default function OrderPage() {
                           Payment Method
                         </span>
                         <span className="font-medium capitalize flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                          {order.manual_payment?.payment_type} Transfer
+                          {order?.payment_type === "manual" ? (
+                            <>
+                              <Building2Icon size={14} /> Bank{" "}
+                            </>
+                          ) : (
+                            <>
+                              <CreditCardIcon size={14} /> Stripe{" "}
+                            </>
+                          )}{" "}
+                          Transfer
                         </span>
                       </div>
                       <div className="flex justify-between items-center text-muted-foreground">
@@ -182,8 +207,8 @@ export default function OrderPage() {
                   )}
                 </div>
               </div>
-            );
-          })}
+            ))
+          )}
         </div>
       </Container>
     </PrivateRoute>

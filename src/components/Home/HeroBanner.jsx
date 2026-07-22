@@ -1,9 +1,12 @@
-import { ArrowRightIcon, Globe, ShieldCheck, Trophy, User } from "lucide-react";
+"use client";
 import SlotCounter from "react-slot-counter";
 import { Button } from "../ui/button";
 import { FlowingLogos } from "../ui/flowing-logos";
 
-import Image from "next/image";
+import Container from "../Container/Container";
+import { useEffect, useState } from "react";
+import { OrderModal } from "../OrderModal";
+import { Badge } from "../ui/badge";
 
 const logos = [
   {
@@ -37,114 +40,119 @@ const logos = [
 ];
 
 const HeroBanner = () => {
-  const lists = [
-    { title: "Smart Contracts", value: "Reviewed" },
-    { title: "Wallets Control", value: "Checked" },
-    { title: "Infrastructure", value: "In Scope" },
-    { title: "Admin Access", value: "Assessed" },
-    { title: "APIs/Frontend", value: "Tested" },
-    { title: "Governance Risk", value: "Rated" },
-    ,
-  ];
-  const lists2 = [
-    { icon: ShieldCheck, title: "24/7 Protection" },
-    { icon: User, title: " Expert Security Team" },
-    { icon: Trophy, title: "Proven Methodology" },
-    { icon: Globe, title: "Global Trust" },
-  ];
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="mt-20">
-      <div className="flex flex-col md:flex-row justify-between gap-6 py-20">
-        <div className="space-y-5 w-full lg:w-2/3">
-          <p className="text-lg">
-            Elevate Your <span className="text-primary">Web3 Journey</span>
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-8xl lg:leading-28 font-inter">
-            Largest Blockchain Security Auditor
-          </h2>
-          <p className="text-lg text-muted-foreground w-full lg:w-2/3">
-            Bitss is the largest Web3 security platform combining formal
-            verification with audits and comprehensive security solutions.
-          </p>
-          <div className="flex items-center gap-4 mt-10">
-            <Button
-              variant="outline"
-              className="px-6 lg:px-10 h-14 cursor-pointer"
+    <div className="relative overflow-hidden bg-white">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
+          backgroundSize: "100px 100px",
+        }}
+      />
+      <OrderModal
+        open={open}
+        setOpen={setOpen}
+        onClose={() => setOpen(false)}
+      />
+      <Container>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6 py-10 lg:py-20 relative z-10">
+          <div className="space-y-5 w-full lg:w-1/2 text-center">
+            {/* <p className="text-lg">
+              Elevate Your <span className="text-primary">Web3 Journey</span>
+            </p> */}
+            <Badge
+              className="text-primary px-4 py-2.5 text-lg h-10"
+              variant="secondary"
             >
-              Talk to an expert
-            </Button>
-            <Button className="bg-primary hover:bg-primary flex items-center gap-1 px-6 lg:px-10 h-14 cursor-pointer">
-              Skynet Rating <ArrowRightIcon size={20} />
-            </Button>
+              Elevate Your Web3 Journey
+            </Badge>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-28 font-inter font-black">
+              Largest Blockchain{" "}
+              <span className="text-primary">Security Auditor</span>
+            </h2>
+            <p className="text-lg text-muted-foreground w-full lg:w-2/3 text-center">
+              Bitss is the largest Web3 security platform combining formal
+              verification with audits and comprehensive security solutions.
+            </p>
+            <div className="flex items-center justify-center gap-4 mt-10">
+              <Button
+                onClick={() => setOpen(true)}
+                className="bg-primary hover:bg-primary flex items-center gap-1 px-6 lg:px-10 h-12 cursor-pointer text-white"
+              >
+                Talk to an expert
+              </Button>
+            </div>
           </div>
+          {/* <div className="md:text-right hidden lg:flex lg:flex-col gap-6 font-inter">
+            <div>
+              <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
+                $<SlotCounter value={470} />B
+              </p>
+              <span className="text-xs md:text-sm lg:text-base leading-1">
+                Market Cap Assessed
+              </span>
+            </div>
+            <div>
+              <p className="text-lg md:text-5xl lg:text-6xl flex justify-end">
+                <SlotCounter value={5197} />
+              </p>
+              <span className="text-xs md:text-sm lg:text-base">
+                Client Served
+              </span>
+            </div>
+            <div>
+              <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
+                $<SlotCounter value={2} />B
+              </p>
+              <span className="text-xs md:text-sm lg:text-base">Valuation</span>
+            </div>
+            <div>
+              <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
+                <SlotCounter value={1.8} />M
+              </p>
+              <span className="text-xs md:text-sm lg:text-base">
+                Monthly Skynet User
+              </span>
+            </div>
+          </div> */}
         </div>
-        <div className="md:text-right hidden lg:flex lg:flex-col gap-6 font-inter">
+        {/* <FlowingLogos data={logos} /> */}
+        {/* <div className="flex flex-col md:flex-row md:justify-around items-center text-center lg:hidden gap-10 mt-20 font-inter">
           <div>
-            <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
+            <p className="text-5xl flex items-center justify-center">
               $<SlotCounter value={470} />B
             </p>
-            <span className="text-xs md:text-sm lg:text-base leading-1">
+            <span className="text-base md:text-sm lg:text-base">
               Market Cap Assessed
             </span>
           </div>
           <div>
-            <p className="text-lg md:text-5xl lg:text-6xl flex justify-end">
+            <p className="text-5xl">
               <SlotCounter value={5197} />
             </p>
-            <span className="text-xs md:text-sm lg:text-base">
+            <span className="text-base md:text-sm lg:text-base">
               Client Served
             </span>
           </div>
           <div>
-            <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
+            <p className="text-5xl items-center justify-center">
               $<SlotCounter value={2} />B
             </p>
-            <span className="text-xs md:text-sm lg:text-base">Valuation</span>
+            <span className="text-base md:text-sm lg:text-base">Valuation</span>
           </div>
           <div>
-            <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
+            <p className="text-5xl items-center justify-center">
               <SlotCounter value={1.8} />M
             </p>
-            <span className="text-xs md:text-sm lg:text-base">
+            <span className="text-base md:text-sm lg:text-base">
               Monthly Skynet User
             </span>
           </div>
-        </div>
-      </div>
-      <FlowingLogos data={logos} />
-      <div className="flex flex-col md:flex-row md:justify-around items-center text-center lg:hidden gap-10 mt-20 font-inter">
-        <div>
-          <p className="text-5xl flex items-center justify-center">
-            $<SlotCounter value={470} />B
-          </p>
-          <span className="text-base md:text-sm lg:text-base">
-            Market Cap Assessed
-          </span>
-        </div>
-        <div>
-          <p className="text-5xl">
-            <SlotCounter value={5197} />
-          </p>
-          <span className="text-base md:text-sm lg:text-base">
-            Client Served
-          </span>
-        </div>
-        <div>
-          <p className="text-5xl items-center justify-center">
-            $<SlotCounter value={2} />B
-          </p>
-          <span className="text-base md:text-sm lg:text-base">Valuation</span>
-        </div>
-        <div>
-          <p className="text-5xl items-center justify-center">
-            <SlotCounter value={1.8} />M
-          </p>
-          <span className="text-base md:text-sm lg:text-base">
-            Monthly Skynet User
-          </span>
-        </div>
-      </div>
+        </div> */}
+      </Container>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 function MobileDropdown({
@@ -35,26 +34,10 @@ function MobileDropdown({
       </div>
       <div className="flex flex-col sm:flex-row gap-3 mt-6">
         <Button
-          onClick={handleContact}
-          className="w-full sm:w-40 flex items-center justify-center gap-2.5 py-2 px-4 rounded-sm bg-primary/80 hover:bg-primary text-white text-sm font-semibold cursor-pointer transition-all duration-300"
-        >
-          Contact Us
-        </Button>
-
-        <Button
           onClick={onOpenDialog}
           className="w-full sm:w-40 flex items-center justify-center gap-2.5 py-2 px-4 rounded-sm bg-primary/80 hover:bg-primary text-white text-sm font-semibold cursor-pointer transition-all duration-300"
         >
           Request a Quote
-        </Button>
-
-        <Button
-          asChild
-          className="w-full sm:w-40 bg-primary/80 hover:bg-primary text-white font-semibold text-xs cursor-pointer transition-all duration-300"
-        >
-          <Link href="/register" className="flex items-center justify-center">
-            Login
-          </Link>
         </Button>
       </div>
     </>

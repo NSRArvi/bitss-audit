@@ -1,26 +1,25 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import toast from "react-hot-toast";
-import { BASE_URL } from "@/lib/base_url";
-import { useForm } from "react-hook-form";
-import CheckBiitssCustomer from "../CheckBiitssCustomer/CheckBiitssCustomer";
-import Link from "next/link";
-import InputController from "./InputController";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import toast from "react-hot-toast";
+import { useForm, useWatch } from "react-hook-form";
+import CheckBiitssCustomer from "../CheckBiitssCustomer/CheckBiitssCustomer";
+import InputController from "./InputController";
+import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/hooks/useCurrency";
 import { getProductPrice } from "@/lib/getProductPrice";
-import { useAuth } from "@/hooks/useAuth";
+import { BASE_URL } from "@/lib/base_url";
 
 export default function OrderForm({ setOpen = () => {}, title = "" }) {
-  const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const [discountInfo, setDiscountInfo] = useState(null);
   const [productData, setProductData] = useState({});
   const [openDiscountModal, setOpenDiscountModal] = useState(true);
+  const [stripeClientSecret, setStripeClientSecret] = useState(null);
+  const [pendingOrderData, setPendingOrderData] = useState(null);
 
   const { user } = useAuth();
   const { selectedCurrency } = useCurrency();
@@ -37,29 +36,26 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
       email: "",
     },
   });
-
-  const fetchProductData = async (selected, title) => {
-    const fetchUrl = selected
-      ? `${BASE_URL}/public/package/${selected}`
-      : `${BASE_URL}/public/package/${title}`;
-
-    try {
-      const res = await fetch(fetchUrl);
-      const data = await res.json();
-      setProductData(data?.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const payment_type = useWatch({ control, name: "payment_type" });
 
   useEffect(() => {
-    if (selected || title) {
-      fetchProductData(selected, title);
-    }
-  }, [selected, title]);
-  const isLocked = !!title;
+    const fetchProductData = async (title) => {
+      const fetchUrl = `${BASE_URL}/public/package/${title}`;
 
-  const handleDiscountModal = () => {};
+      try {
+        const res = await fetch(fetchUrl);
+        const data = await res.json();
+        setProductData(data?.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (title) {
+      fetchProductData(title);
+    }
+  }, [title]);
+  const isLocked = !!title;
 
   const {
     price: originalPrice,
@@ -76,42 +72,106 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
       ? originalPrice - (originalPrice * discountInfo.amount) / 100
       : originalPrice - discountInfo.amount;
 
-  const handleOrderSubmit = async (data) => {
+  // Stripe order functionality
+  const handleCheckOutProceed = async () => {
+    setErrors({});
     setLoading(true);
     const formData = new FormData();
-    if (data.payment_document?.[0]) {
-      formData.append("payment_document", data.payment_document[0]);
-    }
     formData.append("user_id", user?.user?.id);
     formData.append("package_id", productData?.id);
     formData.append("country_id", countryId);
-    formData.append("payment_type", data.payment_type);
-    formData.append("account_no", data.account_no);
-    formData.append("transaction_id", data.transaction_id);
-    formData.append("amount", data.amount);
+    formData.append("payment_type", payment_type);
+    formData.append("amount", finalPrice);
     formData.append("bitss_customer_discount", Boolean(discountInfo));
-    formData.append("email", data.email);
+    formData.append("email", "jubayer.hossain1616@gmail.com"); //TODO: Chang the email to dynamic
 
     try {
-      const res = await fetch(`${BASE_URL}/order`, {
+      const orderRes = await fetch(`${BASE_URL}/order`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${user?.token}`,
         },
         body: formData,
       });
-      const result = await res.json();
-      if (!res.ok) {
-        throw result;
+      const orderData = await orderRes.json();
+      if (!orderRes.ok) {
+        throw orderData;
       }
-      toast.success("Order submitted successfully");
-      setOpen(false);
-      router.push("/orders");
+      if (orderData.success) {
+        setPendingOrderData(orderData?.data);
+        const intentRes = await fetch(`${BASE_URL}/payment/create-intent`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            order_id: orderData?.data?.id,
+            amount: 50,
+            currency: "EUR",
+            payment_type: "regular",
+          }),
+        });
+        const intentData = await intentRes.json();
+        const client_secret = intentData?.client_secret;
+        if (client_secret) {
+          setPendingOrderData({
+            orderInfo: orderData?.data,
+            payment_intent_id: intentData?.payment_intent_id,
+          });
+          setStripeClientSecret(client_secret);
+        } else {
+          console.error("No client_secret in response");
+        }
+      }
     } catch (error) {
-      console.error(error);
-      toast.error("Failed to submit order");
+      console.log(error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleOrderSubmit = async (data) => {
+    if (payment_type === "stripe") {
+      await handleCheckOutProceed();
+      return;
+    } else {
+      setLoading(true);
+      const formData = new FormData();
+      if (data.payment_document?.[0]) {
+        formData.append("payment_document", data.payment_document[0]);
+      }
+      formData.append("user_id", user?.user?.id);
+      formData.append("package_id", productData?.id);
+      formData.append("country_id", countryId);
+      formData.append("payment_type", data.payment_type);
+      formData.append("account_no", data.account_no);
+      formData.append("transaction_id", data.transaction_id);
+      formData.append("amount", data.amount);
+      formData.append("bitss_customer_discount", Boolean(discountInfo));
+      formData.append("email", data.email);
+
+      try {
+        const res = await fetch(`${BASE_URL}/order`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+          body: formData,
+        });
+        const result = await res.json();
+        if (!res.ok) {
+          throw result;
+        }
+        toast.success("Order submitted successfully");
+        setOpen(false);
+        router.push("/orders");
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to submit order");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -210,29 +270,19 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
         <InputController
           control={control}
           discountInfo={discountInfo}
-          selected={selected}
-          setSelected={setSelected}
           isLocked={isLocked}
           productData={productData}
           finalPrice={finalPrice}
+          loading={loading}
+          payment_type={payment_type}
+          stripeClientSecret={stripeClientSecret}
+          pendingOrderData={pendingOrderData}
+          errors={errors}
+          isPriceAvailable={isPriceAvailable}
+          available={available}
           originalPrice={originalPrice}
+          title={title}
         />
-
-        <div className="flex justify-end">
-          <Button
-            type="submit"
-            disabled={loading || !available || !isPriceAvailable}
-            className={`bg-primary/90 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300 ${loading || !available || !isPriceAvailable ? "cursor-not-allowed" : ""} `}
-          >
-            {loading ? (
-              "Sending..."
-            ) : (
-              <>
-                Request Audit <ArrowRight />
-              </>
-            )}
-          </Button>
-        </div>
       </form>
     </div>
   );

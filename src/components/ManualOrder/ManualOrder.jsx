@@ -33,28 +33,28 @@ export default function ManualOrder({ setOpen = () => {}, title = "" }) {
   });
   const [productData, setProductData] = useState({});
 
-  const fetchProductData = async (selected, title) => {
-    let fetchUrl = "";
-
-    if (title) {
-      fetchUrl = `${BASE_URL}/public/package/${title}`;
-    } else {
-      fetchUrl = `${BASE_URL}/public/package/${selected}`;
-    }
-
-    try {
-      const res = await fetch(fetchUrl);
-      const data = await res.json();
-      if (!res.ok) {
-        throw data;
-      }
-      setProductData(data?.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchProductData = async (selected, title) => {
+      let fetchUrl = "";
+
+      if (title) {
+        fetchUrl = `${BASE_URL}/public/package/${title}`;
+      } else {
+        fetchUrl = `${BASE_URL}/public/package/${selected}`;
+      }
+
+      try {
+        const res = await fetch(fetchUrl);
+        const data = await res.json();
+        if (!res.ok) {
+          throw data;
+        }
+        setProductData(data?.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     if (selected || title) {
       fetchProductData(selected, title);
     }
@@ -129,7 +129,7 @@ export default function ManualOrder({ setOpen = () => {}, title = "" }) {
       }
     } catch (error) {
       toast.error(error.message);
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
