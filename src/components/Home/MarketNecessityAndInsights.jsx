@@ -41,7 +41,7 @@ export default function MarketNecessityAndInsights() {
           {items.map((item) => (
             <div
               key={item.fact}
-              className="bg-white p-4 shadow rounded-lg space-y-2 "
+              className="bg-white p-4 shadow rounded-lg space-y-2 hover:scale-102 transition duration-300"
             >
               <CustomBadge
                 text={item.fact}

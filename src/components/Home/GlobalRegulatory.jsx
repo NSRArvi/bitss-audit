@@ -19,17 +19,17 @@ export default function GlobalRegulatory() {
   return (
     <div className="py-20 bg-[#FAFAFA]">
       <Container>
-        <div className="flex justify-between">
+        <div className="flex flex-col lg:flex-row justify-between">
           <div className="w-full">
-            <div className="pr-6 rounded-lg">
+            <div className=" rounded-lg">
               <Lottie
                 animationData={animation}
                 loop
-                style={{ width: 500, height: 500, background: "none" }}
+                style={{ width: 350, height: 350, background: "none" }}
               />
             </div>
           </div>
-          <div className="w-full text-right">
+          <div className="w-full ">
             <Heading
               subHeading="Global Regulatory Compliance & Advocacy"
               heading="BITSS - Pioneering Crypto Security Regulation Worldwide"

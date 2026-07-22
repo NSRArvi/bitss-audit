@@ -8,7 +8,6 @@ import PrivateRoute from "@/PrivateRoute/PrivateRoute";
 export default function OrderPage() {
   const params = useParams();
   const slug = params?.slug;
-  console.log(slug);
 
   return (
     <div className="bg-[#FAF9F6]">

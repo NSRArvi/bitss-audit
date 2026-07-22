@@ -1,6 +1,5 @@
 "use client";
 
-import Container from "@/components/Container/Container";
 import CurrencyModal from "@/components/CurrencyModal/CurrencyModal";
 import { useCurrency } from "@/hooks/useCurrency";
 import { ChevronDown, ChevronUp } from "lucide-react";

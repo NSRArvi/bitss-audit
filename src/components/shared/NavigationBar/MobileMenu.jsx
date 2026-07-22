@@ -17,7 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { navItems } from "@/data/navItems";
-import TopNav from "../navbar/TopNav";
+import TopNav from "./TopNav";
 
 export default function MobileMenu({ onOpenDialog }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function MobileMenu({ onOpenDialog }) {
                   height={37}
                   className="mx-auto -mt-3"
                 />
-                <span className="flex flex-col justify-center bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent leading-tight">
+                <span className="flex flex-col justify-center bg-linear-to-r from-[#0818A8] to-[#1E88E5] bg-clip-text text-transparent leading-tight">
                   <h2 className="font-bold text-[27px] mt-1">BITSS</h2>
                   <p className="mb-2.5 -mt-0.5 text-[9px]">CRYPTO SECURITY</p>
                 </span>

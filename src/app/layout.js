@@ -3,9 +3,9 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/shared/footer/Footer";
-import NavbarWrapper from "@/components/shared/navbar/NavbarWrapper";
 import { AuthProvider } from "@/context/AuthContext";
 import { CurrencyProvider } from "@/context/CurrencyContext";
+import NavbarWrapper from "@/components/shared/NavigationBar/NavbarWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

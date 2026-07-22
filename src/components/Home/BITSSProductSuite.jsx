@@ -84,11 +84,11 @@ export default function BITSSProductSuite() {
               ))}
             </Accordion>
           </div>
-          <div className="pr-6 rounded-lg">
+          <div className="lg:pr-6 pb-5 lg:pb-0 rounded-lg">
             <Lottie
               animationData={animation}
               loop
-              style={{ width: 500, height: 500, background: "none" }}
+              className="size-80 lg:size-125"
             />
           </div>
         </div>

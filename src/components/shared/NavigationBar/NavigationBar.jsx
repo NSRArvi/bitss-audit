@@ -16,8 +16,8 @@ import MobileMenu from "./MobileMenu";
 import { navItems } from "@/data/navItems";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "@/lib/base_url";
-import TopNav from "../navbar/TopNav";
 import SolutionsMenu from "./SolutionsMenu";
+import TopNav from "./TopNav";
 
 export default function NavigationBar({ onOpenDialog }) {
   const [products, setProducts] = useState([]);
@@ -50,7 +50,7 @@ export default function NavigationBar({ onOpenDialog }) {
               height={37}
               className="mx-auto -mt-3"
             />
-            <span className="flex flex-col justify-center bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent leading-tight">
+            <span className="flex flex-col justify-center bg-linear-to-r from-[#0818A8] to-[#1E88E5] bg-clip-text text-transparent leading-tight">
               <h2 className="font-bold text-[27px] mt-1">BITSS</h2>
               <p className="mb-2.5 -mt-0.5 text-[9px]">CRYPTO SECURITY</p>
             </span>

@@ -76,7 +76,7 @@ export default function CoreSolutions() {
                       size={24}
                       className="text-primary rounded-full ml-4 mt-4"
                     />
-                    <h5 className="text-lg font-medium mt-6 mb-4 tracking-widest">
+                    <h5 className="text-lg font-medium mt-6 mb-4 tracking-wide lg:tracking-widest">
                       {item.label}
                     </h5>
                     <p className="text-sm text-muted-foreground mb-4">

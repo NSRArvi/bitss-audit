@@ -43,7 +43,6 @@ export default function OrderConfirmation({ slug, clientSecret }) {
 
     fetchPaymentIntent();
   }, [clientSecret]);
-  console.log({ paymentDetails });
 
   return (
     <div className="py-20">

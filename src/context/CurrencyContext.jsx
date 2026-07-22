@@ -12,7 +12,6 @@ export function CurrencyProvider({ children }) {
   const [currenciesLoading, setCurrenciesLoading] = useState(true);
   const [selectedCurrency, setSelectedCurrency] = useState(null);
   const [mounted, setMounted] = useState(false);
-  // console.log(currencies);
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);

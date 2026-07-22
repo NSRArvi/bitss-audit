@@ -73,7 +73,7 @@ const HeroBanner = () => {
               Largest Blockchain{" "}
               <span className="text-primary">Security Auditor</span>
             </h2>
-            <p className="text-lg text-muted-foreground w-full lg:w-2/3 text-center">
+            <p className="text-lg text-muted-foreground w-full lg:w-2/3 mx-auto text-center">
               Bitss is the largest Web3 security platform combining formal
               verification with audits and comprehensive security solutions.
             </p>

@@ -2,7 +2,6 @@
 import Container from "@/components/Container/Container";
 import { OrderCardSkeleton } from "@/components/skeleton/OrderCardSkeleton";
 import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
 import { useAuth } from "@/hooks/useAuth";
 import { BASE_URL } from "@/lib/base_url";
 import PrivateRoute from "@/PrivateRoute/PrivateRoute";
