@@ -13,15 +13,15 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 
 const quickLinks = [
   { href: "/", label: "Home" },
-  { href: "/expert-crypto-security-audit", label: "Service" },
+  { href: "/solutions", label: "Solutions" },
   { href: "/orders", label: "Account" },
 ];
 const companyLinks = [
   { href: "/blogs", label: "Blogs" },
-  { href: "/our-mission", label: "Our Mission" },
+  // { href: "/our-mission", label: "Our Mission" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
-  { href: "/terms", label: "Terms & Conditions" },
+  { href: "/terms-and-conditions", label: "Terms & Conditions" },
 ];
 const mediaLinks = [
   { icon: FaSquareXTwitter, href: "/", label: "" },
@@ -50,7 +50,7 @@ const Footer = () => {
                 <p className="mb-2.5 -mt-0.5 text-[9px]">CRYPTO SECURITY</p>
               </span>
             </Link>
-            <p className="text-[#6E758C] w-2/3 mt-6">
+            <p className="text-[#6E758C] w-full mt-6">
               Providing industry-leading, high-fidelity security audits and
               smart contract verification worldwide.
             </p>

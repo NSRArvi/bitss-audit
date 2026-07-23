@@ -1,5 +1,6 @@
 "use client";
 import Container from "@/components/Container/Container";
+import Pagination from "@/components/shared/Pagination";
 import { OrderCardSkeleton } from "@/components/skeleton/OrderCardSkeleton";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
@@ -7,29 +8,38 @@ import { BASE_URL } from "@/lib/base_url";
 import PrivateRoute from "@/PrivateRoute/PrivateRoute";
 import { Building2Icon, CreditCardIcon } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function OrderPage() {
-  const [orderData, setOrderData] = useState([]);
+  const searchParams = useSearchParams();
+  const page = Number(searchParams.get("page")) || 1;
+
+  const [ordersData, setOrdersData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { user, logout } = useAuth();
 
-  const fetchOrder = async (user) => {
+  const limit = 15;
+  const fetchOrder = async (user, limit, page) => {
     try {
       setLoading(true);
-      const res = await fetch(`${BASE_URL}/order/list`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${user?.token}`,
+      const res = await fetch(
+        `${BASE_URL}/order/list?per_page=${limit}&page=${page}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
         },
-      });
+      );
       const data = await res.json();
       if (!res.ok) {
         throw data;
       }
       if (data.success) {
-        setOrderData(data?.data?.data);
+        console.log(data?.data);
+        setOrdersData(data?.data);
 
         setLoading(false);
       }
@@ -41,8 +51,15 @@ export default function OrderPage() {
   };
 
   useEffect(() => {
-    if (user) fetchOrder(user);
-  }, [user]);
+    if (user) fetchOrder(user, limit, page);
+  }, [user, page]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", "1");
+  }, []);
+
+  const orderData = ordersData?.data ?? [];
 
   return (
     <PrivateRoute>
@@ -124,7 +141,9 @@ export default function OrderPage() {
                               )}
                           </p>
                           {order?.currency && (
-                            <span className="text-sm text-muted-foreground line-through">
+                            <span
+                              className={`${order?.order_discount?.email ? "line-through text-sm text-muted-foreground" : "text-2xl font-extrabold text-slate-900"}`}
+                            >
                               <span
                                 dangerouslySetInnerHTML={{
                                   __html: order?.currency,
@@ -176,14 +195,16 @@ export default function OrderPage() {
                           Transfer
                         </span>
                       </div>
-                      <div className="flex justify-between items-center text-muted-foreground">
-                        <span className="text-muted-foreground">
-                          Transaction ID
-                        </span>
-                        <span className="font-mono font-semibold text-muted-foreground">
-                          {order.manual_payment?.transaction_id}
-                        </span>
-                      </div>
+                      {order.manual_payment?.transaction_id && (
+                        <div className="flex justify-between items-center text-muted-foreground">
+                          <span className="text-muted-foreground">
+                            Transaction ID
+                          </span>
+                          <span className="font-mono font-semibold text-muted-foreground">
+                            {order.manual_payment?.transaction_id}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -208,6 +229,7 @@ export default function OrderPage() {
               </div>
             ))
           )}
+          <Pagination isLoading={loading} totalPages={ordersData?.last_page} />
         </div>
       </Container>
     </PrivateRoute>

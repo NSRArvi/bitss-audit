@@ -7,7 +7,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 export default function NavbarWrapper() {
   const [open, setOpen] = useState(false);
   return (
-    <div>
+    <div className="sticky top-0 z-50">
       <NavigationBar onOpenDialog={() => setOpen(true)} />
       <OrderModal
         open={open}

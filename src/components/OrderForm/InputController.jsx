@@ -33,11 +33,14 @@ export default function InputController({
   loading,
   payment_type,
   stripeClientSecret,
+  setStripeClientSecret,
+  setPendingOrderData,
   pendingOrderData,
   errors,
   isPriceAvailable,
   available,
   originalPrice,
+  bitssCustomerEmail,
   title = { title },
 }) {
   const [checkOpen, setCheckOpen] = useState(false);
@@ -55,10 +58,10 @@ export default function InputController({
           pendingOrderData={pendingOrderData}
           clientSecret={stripeClientSecret}
           title={title}
-          // onBack={() => {
-          //   setStripeClientSecret(null);
-          //   setPendingOrderData(null);
-          // }}
+          onBack={() => {
+            setStripeClientSecret(null);
+            setPendingOrderData(null);
+          }}
         />
       </Elements>
     );
@@ -187,10 +190,11 @@ export default function InputController({
                     <FieldLabel>Email *</FieldLabel>
                     <Input
                       {...field}
-                      value={field.value ?? ""}
+                      value={bitssCustomerEmail ?? ""}
                       type="email"
                       placeholder="Your bitss email address"
                       className="h-12"
+                      readOnly
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />

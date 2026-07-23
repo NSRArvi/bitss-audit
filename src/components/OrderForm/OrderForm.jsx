@@ -20,12 +20,13 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
   const [openDiscountModal, setOpenDiscountModal] = useState(true);
   const [stripeClientSecret, setStripeClientSecret] = useState(null);
   const [pendingOrderData, setPendingOrderData] = useState(null);
+  const [bitssCustomerEmail, setBitssCustomerEmail] = useState("");
 
   const { user } = useAuth();
   const { selectedCurrency } = useCurrency();
   const router = useRouter();
 
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     defaultValues: {
       payment_type: "manual",
       account_no: "",
@@ -33,10 +34,16 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
       payment_document: "",
       amount: "0",
       bitss_customer_discount: false,
-      email: "",
+      email: bitssCustomerEmail ?? "",
     },
   });
   const payment_type = useWatch({ control, name: "payment_type" });
+
+  useEffect(() => {
+    if (bitssCustomerEmail) {
+      setValue("email", bitssCustomerEmail, { shouldValidate: true });
+    }
+  }, [bitssCustomerEmail, setValue]);
 
   useEffect(() => {
     const fetchProductData = async (title) => {
@@ -83,7 +90,7 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
     formData.append("payment_type", payment_type);
     formData.append("amount", finalPrice);
     formData.append("bitss_customer_discount", Boolean(discountInfo));
-    formData.append("email", "jubayer.hossain1616@gmail.com"); //TODO: Chang the email to dynamic
+    discountInfo && formData.append("email", bitssCustomerEmail);
 
     try {
       const orderRes = await fetch(`${BASE_URL}/order`, {
@@ -107,7 +114,7 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
           },
           body: JSON.stringify({
             order_id: orderData?.data?.id,
-            amount: 50,
+            amount: finalPrice,
             currency: "EUR",
             payment_type: "regular",
           }),
@@ -149,7 +156,7 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
       formData.append("transaction_id", data.transaction_id);
       formData.append("amount", data.amount);
       formData.append("bitss_customer_discount", Boolean(discountInfo));
-      formData.append("email", data.email);
+      discountInfo && formData.append("email", data.email);
 
       try {
         const res = await fetch(`${BASE_URL}/order`, {
@@ -264,6 +271,7 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
         onDiscountVerified={(data) => setDiscountInfo(data)}
         open={openDiscountModal}
         setOpen={setOpenDiscountModal}
+        setBitssCustomerEmail={setBitssCustomerEmail}
       />
 
       <form className="space-y-6" onSubmit={handleSubmit(handleOrderSubmit)}>
@@ -276,12 +284,15 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
           loading={loading}
           payment_type={payment_type}
           stripeClientSecret={stripeClientSecret}
+          setStripeClientSecret={setStripeClientSecret}
+          setPendingOrderData={setPendingOrderData}
           pendingOrderData={pendingOrderData}
           errors={errors}
           isPriceAvailable={isPriceAvailable}
           available={available}
           originalPrice={originalPrice}
           title={title}
+          bitssCustomerEmail={bitssCustomerEmail}
         />
       </form>
     </div>

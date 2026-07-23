@@ -15,6 +15,7 @@ export default function CheckBiitssCustomer({
   onDiscountVerified,
   open,
   setOpen,
+  setBitssCustomerEmail,
 }) {
   const [loading, setLoading] = useState(false);
 
@@ -55,6 +56,7 @@ export default function CheckBiitssCustomer({
 
       if (data.success) {
         toast.success(data?.message);
+        setBitssCustomerEmail(value?.bitss_email);
         setOpen(false);
       }
       // if (!data.success) {

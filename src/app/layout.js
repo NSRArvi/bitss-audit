@@ -40,10 +40,10 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${barlow_Condensed.variable} ${geistSans.variable}  ${geistMono.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="h-full">
+      <body>
         <AuthProvider>
           <CurrencyProvider>
-            <div className="nebula-bg" aria-hidden="true" />
+            <div aria-hidden="true" />
             <NavbarWrapper />
             <div className="relative z-10">{children}</div>
             <Footer />

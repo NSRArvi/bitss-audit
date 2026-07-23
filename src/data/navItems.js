@@ -45,17 +45,17 @@ export const navItems = [
     items: [
       {
         title: "Standard Audit",
-        href: "/standard-audit",
+        href: "/order/standard-audit",
         description: "All Features",
       },
       {
         title: "Advanced Audit",
-        href: "/advanced-audit",
+        href: "/order/advanced-audit",
         description: "All Features",
       },
       {
         title: "Enterprise Audit",
-        href: "/enterprise-audit",
+        href: "/order/enterprise-audit",
         description: "All Features",
       },
     ],
@@ -66,21 +66,85 @@ export const navItems = [
     items: [
       {
         title: "EVM Chains",
-        href: "/blockchains/evm-chains",
-        description:
-          "Ethereum, BNB Chain, Polygon, Base, Arbitrum, Optimism, Avalanche",
+        chains: [
+          {
+            name: "Ethereum",
+            href: "/blockchains/ethereum",
+            icon: "/assets/blockchain/ethereum.svg",
+          },
+          {
+            name: "BNB Chain",
+            href: "/blockchains/bnb-chain",
+            icon: "/assets/blockchain/bnb-chain.png",
+          },
+          {
+            name: "Polygon",
+            href: "/blockchains/polygon",
+            icon: "/assets/blockchain/polygon.png",
+          },
+          {
+            name: "Base",
+            href: "/blockchains/base",
+            icon: "/assets/blockchain/base.png",
+          },
+          {
+            name: "Arbitrum",
+            href: "/blockchains/arbitrum",
+            icon: "/assets/blockchain/arbitrum.png",
+          },
+          {
+            name: "Optimism",
+            href: "/blockchains/optimism",
+            icon: "/assets/blockchain/optimism.png",
+          },
+          {
+            name: "Avalanche",
+            href: "/blockchains/avalanche",
+            icon: "/assets/blockchain/avalanche.png",
+          },
+        ],
       },
       {
         title: "Non-EVM & Web3 Alternative Networks",
-        href: "/blockchains/non-evm-networks",
-        description: "Solana, Aptos, Sui, TON, Cosmos, TRON",
+        chains: [
+          {
+            name: "Solana",
+            href: "/blockchains/solana",
+            icon: "/assets/blockchain/solona.png",
+          },
+          {
+            name: "Aptos",
+            href: "/blockchains/aptos",
+            icon: "/assets/blockchain/aptos.png",
+          },
+          {
+            name: "Sui",
+            href: "/blockchains/sui",
+            icon: "/assets/blockchain/sui.png",
+          },
+          {
+            name: "TON",
+            href: "/blockchains/ton",
+            icon: "/assets/blockchain/ton.png",
+          },
+          {
+            name: "Cosmos",
+            href: "/blockchains/cosmos",
+            icon: "/assets/blockchain/cosmos.png",
+          },
+          {
+            name: "TRON",
+            href: "/blockchains/tron",
+            icon: "/assets/blockchain/tron.png",
+          },
+        ],
       },
     ],
   },
   {
     label: "BITSS Audit Report",
     href: "/audit-report",
-    items: null, // no dropdown — direct link
+    items: null,
   },
   {
     label: "Insights",

@@ -8,7 +8,7 @@ export default function HeroBanner() {
       <div className=" md:w-1/2">
         <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[80px] font-black leading-none text-center md:text-left">
           EXPERT CRYPTO SECURITY AUDITS FOR{" "}
-          <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-[#0818A8] to-[#1E88E5] bg-clip-text text-transparent">
             COMPLETE SYSTEM PROTECTION
           </span>
         </h1>

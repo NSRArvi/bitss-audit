@@ -5,6 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { BASE_URL } from "@/lib/base_url";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -96,14 +97,15 @@ export default function CheckoutForm({
 
   return (
     <div>
-      <button
+      <Button
         type="button"
         onClick={onBack}
-        className="flex items-center gap-1.5 text-xs font-semibold text-[#186BB5] hover:underline"
+        disabled={loading}
+        className="flex items-center gap-1.5 text-xs font-semibold text-[#186BB5] hover:underline bg-transparent hover:bg-transparent mb-3"
       >
         <ArrowLeft size={13} /> Back to order
-      </button>
-      <div className="space-y-4">
+      </Button>
+      <div className="space-y-4 w-full lg:w-1/2">
         {/* <PaymentElement /> */}
         <div
           className={`rounded-xl border px-4 py-3.5 transition-all ${
@@ -121,13 +123,13 @@ export default function CheckoutForm({
 
         {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
 
-        <button
+        <Button
           onClick={handleSubmit}
           disabled={!stripe || loading}
           className="w-full bg-blue-600 text-white py-2 px-4 rounded disabled:opacity-50"
         >
           {loading ? "Confirming Payment..." : "Pay Now"}
-        </button>
+        </Button>
       </div>
     </div>
   );

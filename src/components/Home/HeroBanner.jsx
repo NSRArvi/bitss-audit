@@ -1,5 +1,5 @@
 "use client";
-import SlotCounter from "react-slot-counter";
+// import SlotCounter from "react-slot-counter";
 import { Button } from "../ui/button";
 import { FlowingLogos } from "../ui/flowing-logos";
 

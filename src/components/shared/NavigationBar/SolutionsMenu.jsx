@@ -72,7 +72,7 @@ export default function SolutionsMenu({ products = [] }) {
             href={`/order/${active?.slug}`}
             className="text-sm font-medium flex items-center gap-1 hover:underline"
           >
-            View full audit scope
+            Request Audit
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </NavigationMenuLink>
