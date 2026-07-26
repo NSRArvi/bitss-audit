@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
           <CurrencyProvider>
             <div aria-hidden="true" />
             <NavbarWrapper />
-            <div className="relative z-10">{children}</div>
+            <div className="relative">{children}</div>
             <Footer />
           </CurrencyProvider>
         </AuthProvider>

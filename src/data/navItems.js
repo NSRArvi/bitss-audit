@@ -150,10 +150,10 @@ export const navItems = [
     label: "Insights",
     href: "/insights",
     items: [
-      { title: "About Us", href: "/about-us" },
-      { title: "Research", href: "/research" },
+      { title: "About Us", href: "/insights/about-us" },
+      { title: "Research", href: "/insights/research" },
       { title: "Terms & Conditions", href: "/terms-and-conditions" },
-      { title: "Disclaimer", href: "/disclaimer" },
+      { title: "Disclaimer", href: "/insights/disclaimer" },
     ],
   },
 ];

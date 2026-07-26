@@ -18,8 +18,7 @@ const quickLinks = [
 ];
 const companyLinks = [
   { href: "/blogs", label: "Blogs" },
-  // { href: "/our-mission", label: "Our Mission" },
-  { href: "/about", label: "About" },
+  { href: "/insights/about-us", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/terms-and-conditions", label: "Terms & Conditions" },
 ];

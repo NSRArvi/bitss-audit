@@ -111,10 +111,23 @@ export default function CryptoAuditPage() {
             );
           })}
         </div>
-        <div>
+        <div className="pb-20">
           <h2 className="text-2xl font-bold font-inter tracking-widest mt-20 mb-10">
             The BITSS audit process
           </h2>
+          <div className="flex flex-col gap-6">
+            {auditProcess.map((step, i) => (
+              <div key={i} className="flex gap-6 items-start bg-slate-50 p-6 rounded-lg shadow-sm border border-slate-100">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white text-primary flex items-center justify-center font-black text-xl shadow-sm border border-slate-200">
+                  {i + 1}
+                </div>
+                <div>
+                  <h5 className="text-xl font-medium mb-2">{step.title}</h5>
+                  <p className="text-muted-foreground">{step.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
