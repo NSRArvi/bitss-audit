@@ -9,9 +9,9 @@ import PrivateRoute from "@/PrivateRoute/PrivateRoute";
 import { Building2Icon, CreditCardIcon } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
-export default function OrderPage() {
+function OrderPageContent() {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
 
@@ -233,5 +233,13 @@ export default function OrderPage() {
         </div>
       </Container>
     </PrivateRoute>
+  );
+}
+
+export default function OrderPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen w-full flex items-center justify-center">Loading...</div>}>
+      <OrderPageContent />
+    </Suspense>
   );
 }
