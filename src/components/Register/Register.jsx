@@ -97,7 +97,7 @@ export default function Register() {
       <div className="min-h-screen flex items-center justify-center bg-[#F9FAFB]">
         <form
           onSubmit={handleSubmit(handleRegister)}
-          className="flex flex-col items-center justify-center space-y-2 p-10 bg-white rounded-md shadow lg:w-1/3"
+          className="flex flex-col items-center justify-center space-y-2 p-4 lg:p-10 bg-white rounded-md shadow w-[calc(100%-1rem)] lg:w-1/3"
         >
           {state === "register" ? (
             <h2 className="font-bold text-[21px] lg:text-4xl text-primary pb-5">

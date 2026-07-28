@@ -20,6 +20,14 @@ import SolutionsMenu from "./SolutionsMenu";
 import TopNav from "./TopNav";
 import { useAuth } from "@/hooks/useAuth";
 import { ArrowRight, CircleUserIcon } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export default function NavigationBar({ onOpenDialog }) {
   const { user } = useAuth();
@@ -165,6 +173,24 @@ export default function NavigationBar({ onOpenDialog }) {
 
           {/* Demo Button */}
           <div className="hidden lg:flex items-center gap-2">
+            <Popover>
+              <PopoverTrigger
+                render={
+                  <Button variant="outline" className="w-fit">
+                    Open Popover
+                  </Button>
+                }
+              />
+              <PopoverContent align="start">
+                <PopoverHeader>
+                  <PopoverTitle>Dimensions</PopoverTitle>
+                  <PopoverDescription>
+                    Set the dimensions for the layer.
+                  </PopoverDescription>
+                </PopoverHeader>
+              </PopoverContent>
+            </Popover>
+
             <Link href={user?.token ? "/orders" : "/register"}>
               <CircleUserIcon stroke="#6E758C" opacity={50} size={28} />
             </Link>

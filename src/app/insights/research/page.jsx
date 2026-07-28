@@ -1,4 +1,11 @@
-import { Activity, Bot, FileCheck, RefreshCw, Search, Server } from "lucide-react";
+import {
+  Activity,
+  Bot,
+  FileCheck,
+  RefreshCw,
+  Search,
+  Server,
+} from "lucide-react";
 
 const aiConsoleFeatures = [
   {
@@ -54,7 +61,7 @@ export default function ResearchPage() {
             <p className="text-primary px-4 text-lg tracking-widest">
               BITSS Research
             </p>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-28 font-inter font-black tracking-wide mt-2">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl lg:4 font-heading font-black tracking-wide mt-2">
               Practical Security R&D & <br />
               <span className="text-primary"> AI-Driven Audit Systems </span>
             </h2>
@@ -66,25 +73,25 @@ export default function ResearchPage() {
       </div>
 
       <div className="w-2/3 mx-auto pb-20">
-        <p className="text-base text-slate-700 mx-auto font-inter">
+        <p className="text-base text-slate-700 mx-auto">
           While traditional auditing relies heavily on slow manual labor or
           third-party open-source tools, BITSS Research is focused on practical,
           software-driven innovation. Built entirely on self-funded organic
-          research and development, our engineering team focuses on active threat
-          vectors, smart contract vulnerabilities, and server infrastructure
-          defense.
+          research and development, our engineering team focuses on active
+          threat vectors, smart contract vulnerabilities, and server
+          infrastructure defense.
         </p>
-        <p className="text-base text-slate-700 mx-auto font-inter mt-4">
+        <p className="text-base text-slate-700 mx-auto mt-4">
           We bridge the gap between complex code analysis and real-world
           execution by building proprietary automation engines that give Web3
           projects actionable clarity.
         </p>
 
         {/* AI-Based Audit Console */}
-        <h2 className="text-2xl font-bold font-inter tracking-widest mt-20 mb-6">
+        <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-6">
           The BITSS AI-Based Audit Console
         </h2>
-        <p className="text-base text-slate-700 font-inter mb-10">
+        <p className="text-base text-slate-700 mb-10">
           At the heart of our research division is the BITSS AI-Based Audit
           Console—a proprietary scanning engine designed to accelerate
           vulnerability detection without sacrificing precision.
@@ -108,10 +115,10 @@ export default function ResearchPage() {
         </div>
 
         {/* Real-Time Client Security Dashboard */}
-        <h2 className="text-2xl font-bold font-inter tracking-widest mt-20 mb-6">
+        <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-6">
           Real-Time Client Security Dashboard
         </h2>
-        <p className="text-base text-slate-700 font-inter mb-10">
+        <p className="text-base text-slate-700 mb-10">
           Research is meaningless if project owners cannot track their posture.
           The BITSS Client Security Dashboard translates technical findings into
           intuitive threat intelligence:
@@ -136,14 +143,15 @@ export default function ResearchPage() {
 
         {/* Battle-Tested Section */}
         <div className="mt-20 bg-slate-50 border border-slate-100 rounded-2xl p-8 shadow-sm">
-          <h2 className="text-2xl font-bold font-inter tracking-widest mb-6">
+          <h2 className="text-2xl font-bold font-heading tracking-widest mb-6">
             Battle-Tested Under Real Market Conditions
           </h2>
-          <p className="text-base text-slate-700 font-inter">
-            Our research isn't limited to lab environments. When Web3 projects
-            face live security breaches, our R&D insights drive immediate incident
-            response, system isolation, and asset recovery—proving our
-            methodologies against live hacker exploits and market recoveries.
+          <p className="text-base text-slate-700">
+            Our research isn&apos;t limited to lab environments. When Web3
+            projects face live security breaches, our R&D insights drive
+            immediate incident response, system isolation, and asset
+            recovery—proving our methodologies against live hacker exploits and
+            market recoveries.
           </p>
         </div>
       </div>

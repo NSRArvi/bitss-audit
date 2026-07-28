@@ -24,7 +24,7 @@ export default function ServiceHero() {
             >
               Elevate Your Web3 Journey
             </Badge>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-28 font-inter font-black">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-24 font-heading font-black">
               Largest Blockchain{" "}
               <span className="text-primary">Security Auditor</span>
             </h2>

@@ -45,156 +45,78 @@ export default function InputController({
 }) {
   const [checkOpen, setCheckOpen] = useState(false);
 
-  if (stripeClientSecret && pendingOrderData) {
-    return (
-      <Elements
-        stripe={stripePromise}
-        options={{
-          clientSecret: stripeClientSecret,
-          appearance: { theme: "none" },
-        }}
-      >
-        <CheckoutForm
-          pendingOrderData={pendingOrderData}
-          clientSecret={stripeClientSecret}
-          title={title}
-          onBack={() => {
-            setStripeClientSecret(null);
-            setPendingOrderData(null);
-          }}
-        />
-      </Elements>
-    );
-  }
+  const isCheckoutStep = Boolean(stripeClientSecret && pendingOrderData);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 ">
-      <div className="space-y-8 bg-white px-4 py-10 shadow rounded h-fit">
-        <Controller
-          name="payment_type"
-          control={control}
-          rules={{ required: "Please select a payment method" }}
-          render={({ field, fieldState }) => (
-            <Field>
-              <FieldLabel>Payment Method *</FieldLabel>
-              <Select value={field.value} onValueChange={field.onChange}>
-                <SelectTrigger className="w-full h-12">
-                  <SelectValue placeholder="Select a payment Method" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Payment Method</SelectLabel>
-                    <SelectItem value="manual">Bank Transfer</SelectItem>
-                    <SelectItem value="stripe">Stripe</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
-          )}
-        />
-
-        {payment_type === "manual" && (
-          <>
-            <Controller
-              name="account_no"
-              control={control}
-              rules={{ required: "Account number is required" }}
-              render={({ field, fieldState }) => (
-                <Field>
-                  <FieldLabel>Account Number *</FieldLabel>
-                  <Input
-                    {...field}
-                    type="text"
-                    placeholder="your account number"
-                    className="h-12"
-                  />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
+    <div
+      className={
+        isCheckoutStep
+          ? "flex justify-between gap-10"
+          : "grid grid-cols-2 gap-10"
+      }
+    >
+      {isCheckoutStep ? (
+        <div className="flex-1">
+          <Elements
+            stripe={stripePromise}
+            options={{
+              clientSecret: stripeClientSecret,
+              appearance: { theme: "none" },
+            }}
+          >
+            <CheckoutForm
+              pendingOrderData={pendingOrderData}
+              clientSecret={stripeClientSecret}
+              title={title}
+              onBack={() => {
+                setStripeClientSecret(null);
+                setPendingOrderData(null);
+              }}
             />
+          </Elements>
+        </div>
+      ) : (
+        <div className="space-y-8 bg-white px-4 py-10 shadow rounded h-fit">
+          <Controller
+            name="payment_type"
+            control={control}
+            rules={{ required: "Please select a payment method" }}
+            render={({ field, fieldState }) => (
+              <Field>
+                <FieldLabel>Payment Method *</FieldLabel>
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <SelectTrigger className="w-full h-12">
+                    <SelectValue placeholder="Select a payment Method" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Payment Method</SelectLabel>
+                      <SelectItem value="manual">Bank Transfer</SelectItem>
+                      {/* <SelectItem value="stripe">Stripe</SelectItem> */}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
 
-            <Controller
-              name="transaction_id"
-              control={control}
-              rules={{ required: "Transaction ID is required" }}
-              render={({ field, fieldState }) => (
-                <Field>
-                  <FieldLabel>Transaction ID *</FieldLabel>
-                  <Input
-                    {...field}
-                    type="text"
-                    placeholder="your transaction id"
-                    className="h-12"
-                  />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
-
-            <Controller
-              name="payment_document"
-              control={control}
-              rules={{ required: "Document image is required" }}
-              render={({ field: { onChange, ref }, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Document *</FieldLabel>
-                  <Input
-                    type="file"
-                    ref={ref}
-                    accept="image/jpeg,image/png,image/webp"
-                    onChange={(e) => onChange(e.target.files)}
-                    className="h-12"
-                  />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
-
-            <Controller
-              name="amount"
-              control={control}
-              rules={{ required: "Amount is required" }}
-              render={({ field, fieldState }) => (
-                <Field>
-                  <FieldLabel>Amount</FieldLabel>
-                  <Input
-                    {...field}
-                    type="number"
-                    value={finalPrice ?? originalPrice ?? ""}
-                    onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                    placeholder="Enter your payment amount"
-                    className="h-12 cursor-not-allowed"
-                    disabled
-                  />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
-
-            {discountInfo && (
+          {payment_type === "manual" && (
+            <>
               <Controller
-                name="email"
+                name="account_no"
                 control={control}
-                rules={{ required: "Email is required" }}
+                rules={{ required: "Account number is required" }}
                 render={({ field, fieldState }) => (
                   <Field>
-                    <FieldLabel>Email *</FieldLabel>
+                    <FieldLabel>Account Number *</FieldLabel>
                     <Input
                       {...field}
-                      value={bitssCustomerEmail ?? ""}
-                      type="email"
-                      placeholder="Your bitss email address"
+                      type="text"
+                      placeholder="your account number"
                       className="h-12"
-                      readOnly
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -202,36 +124,128 @@ export default function InputController({
                   </Field>
                 )}
               />
-            )}
-          </>
-        )}
 
-        <div className="flex justify-end">
-          <Button
-            type="submit"
-            disabled={loading || !available || !isPriceAvailable}
-            className={`bg-primary/90 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300 ${
-              loading || !available || !isPriceAvailable
-                ? "cursor-not-allowed"
-                : ""
-            }`}
-          >
-            {loading ? (
-              <>
-                Processing <Spinner />
-              </>
-            ) : payment_type === "stripe" ? (
-              "Proceed To Payment"
-            ) : (
-              <>
-                Request Audit <ArrowRight />
-              </>
-            )}
-          </Button>
+              <Controller
+                name="transaction_id"
+                control={control}
+                rules={{ required: "Transaction ID is required" }}
+                render={({ field, fieldState }) => (
+                  <Field>
+                    <FieldLabel>Transaction ID *</FieldLabel>
+                    <Input
+                      {...field}
+                      type="text"
+                      placeholder="your transaction id"
+                      className="h-12"
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="payment_document"
+                control={control}
+                rules={{ required: "Document image is required" }}
+                render={({ field: { onChange, ref }, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Document *</FieldLabel>
+                    <Input
+                      type="file"
+                      ref={ref}
+                      accept="image/jpeg,image/png,image/webp"
+                      onChange={(e) => onChange(e.target.files)}
+                      className="h-12"
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+
+              <Controller
+                name="amount"
+                control={control}
+                rules={{ required: "Amount is required" }}
+                render={({ field, fieldState }) => (
+                  <Field>
+                    <FieldLabel>Amount</FieldLabel>
+                    <Input
+                      {...field}
+                      type="number"
+                      value={finalPrice ?? originalPrice ?? ""}
+                      onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                      placeholder="Enter your payment amount"
+                      className="h-12 cursor-not-allowed"
+                      disabled
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+
+              {discountInfo && (
+                <Controller
+                  name="email"
+                  control={control}
+                  rules={{ required: "Email is required" }}
+                  render={({ field, fieldState }) => (
+                    <Field>
+                      <FieldLabel>Email *</FieldLabel>
+                      <Input
+                        {...field}
+                        value={bitssCustomerEmail ?? ""}
+                        type="email"
+                        placeholder="Your bitss email address"
+                        className="h-12"
+                        readOnly
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+              )}
+            </>
+          )}
+
+          <div className="flex justify-end">
+            <Button
+              type="submit"
+              disabled={loading || !available || !isPriceAvailable}
+              className={`bg-primary/90 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300 ${
+                loading || !available || !isPriceAvailable
+                  ? "cursor-not-allowed"
+                  : ""
+              }`}
+            >
+              {loading ? (
+                <>
+                  Processing <Spinner />
+                </>
+              ) : payment_type === "stripe" ? (
+                "Proceed To Payment"
+              ) : (
+                <>
+                  Request Audit <ArrowRight />
+                </>
+              )}
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="bg-white p-4 shadow rounded">
+      <div
+        className={`bg-white p-4 shadow rounded ${
+          isCheckoutStep ? "flex-1" : ""
+        }`}
+      >
         <label className="block text-xs uppercase tracking-widest font-semibold text-muted-foreground mb-1.5">
           Service Interest <span className="text-primary">*</span>
         </label>

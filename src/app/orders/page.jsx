@@ -65,17 +65,14 @@ function OrderPageContent() {
     <PrivateRoute>
       <Container>
         <div className="pt-20 w-full flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold">All Your Orders Here </h2>
-            <p className="text-xs text-muted-foreground">
-              Total Order: {orderData?.length}
-            </p>
-          </div>
-          <div>
-            <Button onClick={() => logout()} className="cursor-pointer">
-              Logout
-            </Button>
-          </div>
+          {!orderData?.length === 0 && (
+            <div>
+              <h2 className="text-2xl font-semibold">All Your Orders Here </h2>
+              <p className="text-xs text-muted-foreground">
+                Total Order: {orderData?.length}
+              </p>
+            </div>
+          )}
         </div>
         <div className="py-10 lg:pb-20 space-y-6">
           {loading ? (
@@ -83,6 +80,15 @@ function OrderPageContent() {
               <OrderCardSkeleton />
               <OrderCardSkeleton />
             </>
+          ) : orderData?.length === 0 ? (
+            <div className="flex flex-col items-center justify-center">
+              <h2 className="text-2xl font-semibold mb-4">
+                You didn&apos;t order yet!
+              </h2>
+              <Button asChild>
+                <Link href="/solutions">Make Your First Order</Link>
+              </Button>
+            </div>
           ) : (
             orderData?.map((order) => (
               <div key={order.id}>
@@ -238,7 +244,13 @@ function OrderPageContent() {
 
 export default function OrderPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen w-full flex items-center justify-center">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen w-full flex items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
       <OrderPageContent />
     </Suspense>
   );

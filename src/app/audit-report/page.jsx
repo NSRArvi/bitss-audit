@@ -75,7 +75,7 @@ export default function AuditReportPage() {
               <p className="text-primary px-4 text-lg tracking-widest">
                 Audit Report
               </p>
-              <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-28 font-inter font-black tracking-wide mt-2">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-24 font-heading font-black tracking-wide mt-2">
                 Advanced Security Audit <br />
                 <span className="text-primary"> Scotty Pumpkin (SPUMP) </span>
               </h2>
@@ -84,23 +84,23 @@ export default function AuditReportPage() {
         </div>
 
         <div className="w-2/3 mx-auto pb-20">
-          <p className="text-base text-slate-700 mx-auto font-inter">
+          <p className="text-base text-slate-700 mx-auto">
             The BITSS Advanced Security Audit Report for Scotty Pumpkin (SPUMP)
             presents the results of an independent security assessment performed
-            using the BITSS Audit Framework. The audit evaluated the project's
-            blockchain implementation, repository, governance, treasury
-            controls, tokenomics, operational security, and other relevant
-            components within the agreed audit scope. The objective of this
-            assessment was to identify potential security risks, verify critical
-            project components, and provide practical recommendations to
-            strengthen the project's overall security posture.
+            using the BITSS Audit Framework. The audit evaluated the
+            project&apos;s blockchain implementation, repository, governance,
+            treasury controls, tokenomics, operational security, and other
+            relevant components within the agreed audit scope. The objective of
+            this assessment was to identify potential security risks, verify
+            critical project components, and provide practical recommendations
+            to strengthen the project&apos;s overall security posture.
           </p>
 
           {/* About This Audit */}
-          <h2 className="text-2xl font-bold font-inter tracking-widest mt-20 mb-6">
+          <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-6">
             About This Audit
           </h2>
-          <p className="text-base text-slate-700 font-inter mb-6">
+          <p className="text-base text-slate-700 mb-6">
             This report documents the security review conducted by BITSS for the
             Scotty Pumpkin (SPUMP) project. The assessment follows the
             standardized BITSS Audit Methodology and includes:
@@ -113,13 +113,13 @@ export default function AuditReportPage() {
               </div>
             ))}
           </div>
-          <p className="text-base text-slate-700 font-inter">
+          <p className="text-base text-slate-700">
             Every conclusion presented in this report is supported by the
             evidence collected during the audit process.
           </p>
 
           {/* Audit Highlights */}
-          <h2 className="text-2xl font-bold font-inter tracking-widest mt-20 mb-8">
+          <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-8">
             Audit Highlights
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -137,7 +137,7 @@ export default function AuditReportPage() {
           </div>
 
           {/* Key Findings */}
-          <h2 className="text-2xl font-bold font-inter tracking-widest mt-20 mb-8">
+          <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-8">
             Key Findings
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 mb-8">
@@ -153,7 +153,7 @@ export default function AuditReportPage() {
               </div>
             ))}
           </div>
-          <p className="text-base text-slate-700 font-inter">
+          <p className="text-base text-slate-700">
             The assessment identified several areas where the project can
             further improve its security posture. While no critical
             vulnerabilities were identified within the audit scope, several
@@ -163,16 +163,16 @@ export default function AuditReportPage() {
 
           {/* Audit Methodology */}
           <div className="mt-20">
-            <h2 className="text-2xl font-bold font-inter tracking-widest mb-6">
+            <h2 className="text-2xl font-bold font-heading tracking-widest mb-6">
               Audit Methodology
             </h2>
-            <p className="text-base text-slate-700 font-inter mb-4">
+            <p className="text-base text-slate-700 mb-4">
               BITSS conducted this assessment using its standardized audit
               framework, which combines structured verification procedures,
               manual analysis, evidence collection, and professional security
               review.
             </p>
-            <p className="text-base text-slate-700 font-inter">
+            <p className="text-base text-slate-700">
               The audit covered repository analysis, blockchain verification,
               governance, treasury management, tokenomics, operational security,
               and risk assessment.
@@ -192,7 +192,7 @@ export default function AuditReportPage() {
 
       {/* Side Modal (Drawer) */}
       {isPdfOpen && (
-        <div className="fixed inset-0 z-[100] flex justify-end">
+        <div className="fixed inset-0 z-100 flex justify-end">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
@@ -202,7 +202,7 @@ export default function AuditReportPage() {
           {/* Drawer Content */}
           <div className="relative w-full max-w-4xl bg-white h-full shadow-2xl flex flex-col transform transition-transform">
             <div className="flex items-center justify-between p-4 border-b border-slate-100">
-              <h3 className="text-xl font-bold font-inter">
+              <h3 className="text-xl font-bold font-heading">
                 SPUMP Audit Report
               </h3>
               <button

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { ArrowLeft } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { BASE_URL } from "@/lib/base_url";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 
@@ -27,7 +26,6 @@ const CARD_ELEMENT_OPTIONS = {
 export default function CheckoutForm({
   pendingOrderData,
   clientSecret,
-  title,
   onBack,
 }) {
   const { user } = useAuth();
@@ -35,7 +33,6 @@ export default function CheckoutForm({
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [success, setSuccess] = useState(false);
   const [cardFocused, setCardFocused] = useState(false);
 
   const router = useRouter();
@@ -75,9 +72,14 @@ export default function CheckoutForm({
           }),
         });
         const confirmData = await confirmRes.json();
+        console.log(confirmData?.data);
 
-        if (confirmRes.ok && confirmData?.status === "succeeded") {
-          setSuccess(true);
+        if (confirmRes.ok && confirmData?.success) {
+          sessionStorage.setItem(
+            "orderConfirmationData",
+            JSON.stringify(confirmData?.data),
+          );
+          router.push(`/order-confirmation/${confirmData?.data?.id}`);
         } else {
           setErrorMsg("Contact to support");
         }
@@ -89,11 +91,6 @@ export default function CheckoutForm({
 
     setLoading(false);
   };
-  useEffect(() => {
-    if (success) {
-      return (window.location.href = `/order-confirmation/${title}?client_secret=${clientSecret}`);
-    }
-  }, [success, title, clientSecret]);
 
   return (
     <div>
@@ -105,7 +102,7 @@ export default function CheckoutForm({
       >
         <ArrowLeft size={13} /> Back to order
       </Button>
-      <div className="space-y-4 w-full lg:w-1/2">
+      <div className="space-y-4 w-full lg:w-full">
         {/* <PaymentElement /> */}
         <div
           className={`rounded-xl border px-4 py-3.5 transition-all ${

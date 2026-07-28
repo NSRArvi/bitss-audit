@@ -1,160 +1,173 @@
 "use client";
-// import SlotCounter from "react-slot-counter";
-import { Button } from "../ui/button";
-import { FlowingLogos } from "../ui/flowing-logos";
 
+import { useEffect, useRef, useState } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import Container from "../Container/Container";
-import { useEffect, useState } from "react";
 import { OrderModal } from "../OrderModal";
-import { Badge } from "../ui/badge";
 
-const logos = [
-  {
-    image: "/assets/logo1.svg",
-    name: "Logo 1",
-  },
-  {
-    image: "/assets/logo2.svg",
-    name: "Logo 2",
-  },
-  {
-    image: "/assets/logo3.svg",
-    name: "Logo 3",
-  },
-  {
-    image: "/assets/logo4.png",
-    name: "Logo 4",
-  },
-  {
-    image: "/assets/logo5.png",
-    name: "Logo 5",
-  },
-  {
-    image: "/assets/logo6.svg",
-    name: "Logo 6",
-  },
-  {
-    image: "/assets/logo7.svg",
-    name: "Logo 7",
-  },
-];
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay },
+  }),
+};
 
-const HeroBanner = () => {
+const headlineWords = ["Largest", "Blockchain"];
+const headlineAccent = ["Security", "Auditor"];
+
+export default function HeroBanner() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false, margin: "-80px" });
+  const controls = useAnimation();
+
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (inView) controls.start("visible");
+  }, [inView, controls]);
+
   return (
-    <div className="relative overflow-hidden bg-white">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40"
+    <div className="relative overflow-hidden bg-white" ref={ref}>
+      {/* Animated grid background */}
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.45 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
         style={{
           backgroundImage:
             "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
           backgroundSize: "100px 100px",
         }}
       />
+
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.6, ease: "easeOut" }}
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 60%, hsl(var(--primary) / 0.08) 0%, transparent 70%)",
+        }}
+      />
+
       <OrderModal
         open={open}
         setOpen={setOpen}
         onClose={() => setOpen(false)}
       />
+
       <Container>
         <div className="flex flex-col md:flex-row justify-center items-center gap-6 py-10 lg:py-20 relative z-10">
           <div className="space-y-5 w-full lg:w-1/2 text-center">
-            {/* <p className="text-lg">
-              Elevate Your <span className="text-primary">Web3 Journey</span>
-            </p> */}
-            <Badge
-              className="text-primary px-4 py-2.5 text-lg h-10"
-              variant="secondary"
+            <motion.div
+              initial={{ opacity: 0, y: -16 }}
+              animate={controls}
+              variants={{
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.5, ease: "easeOut", delay: 0.1 },
+                },
+              }}
             >
-              Elevate Your Web3 Journey
-            </Badge>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-28 font-inter font-black">
-              Largest Blockchain{" "}
-              <span className="text-primary">Security Auditor</span>
-            </h2>
-            <p className="text-lg text-muted-foreground w-full lg:w-2/3 mx-auto text-center">
+              <Badge
+                className="text-primary px-4 py-2.5 text-lg h-10"
+                variant="secondary"
+              >
+                Elevate Your Web3 Journey
+              </Badge>
+            </motion.div>
+
+            <motion.h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-[1.1] font-inter font-black">
+              <span className="block">
+                {headlineWords.map((word, i) => (
+                  <motion.span
+                    key={word}
+                    className="inline-block mr-3"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={controls}
+                    variants={{
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          duration: 0.55,
+                          ease: [0.22, 1, 0.36, 1],
+                          delay: 0.25 + i * 0.1,
+                        },
+                      },
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
+
+              <span className="block text-primary">
+                {headlineAccent.map((word, i) => (
+                  <motion.span
+                    key={word}
+                    className="inline-block mr-3"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={controls}
+                    variants={{
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          duration: 0.55,
+                          ease: [0.22, 1, 0.36, 1],
+                          delay: 0.45 + i * 0.1,
+                        },
+                      },
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
+            </motion.h2>
+
+            <motion.p
+              className="text-lg text-muted-foreground w-full lg:w-2/3 mx-auto text-center"
+              custom={0.7}
+              initial="hidden"
+              animate={controls}
+              variants={fadeUp}
+            >
               Bitss is the largest Web3 security platform combining formal
               verification with audits and comprehensive security solutions.
-            </p>
-            <div className="flex items-center justify-center gap-4 mt-10">
-              <Button
-                onClick={() => setOpen(true)}
-                className="bg-primary hover:bg-primary flex items-center gap-1 px-6 lg:px-10 h-12 cursor-pointer text-white"
+            </motion.p>
+
+            <motion.div
+              className="flex items-center justify-center gap-4 mt-10"
+              custom={0.85}
+              initial="hidden"
+              animate={controls}
+              variants={fadeUp}
+            >
+              <motion.div
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 350, damping: 20 }}
               >
-                Talk to an expert
-              </Button>
-            </div>
+                <Button
+                  onClick={() => setOpen(true)}
+                  className="bg-primary hover:bg-primary flex items-center gap-1 px-6 lg:px-10 h-12 cursor-pointer text-white"
+                >
+                  Talk to an expert
+                </Button>
+              </motion.div>
+            </motion.div>
           </div>
-          {/* <div className="md:text-right hidden lg:flex lg:flex-col gap-6 font-inter">
-            <div>
-              <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
-                $<SlotCounter value={470} />B
-              </p>
-              <span className="text-xs md:text-sm lg:text-base leading-1">
-                Market Cap Assessed
-              </span>
-            </div>
-            <div>
-              <p className="text-lg md:text-5xl lg:text-6xl flex justify-end">
-                <SlotCounter value={5197} />
-              </p>
-              <span className="text-xs md:text-sm lg:text-base">
-                Client Served
-              </span>
-            </div>
-            <div>
-              <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
-                $<SlotCounter value={2} />B
-              </p>
-              <span className="text-xs md:text-sm lg:text-base">Valuation</span>
-            </div>
-            <div>
-              <p className="text-lg md:text-5xl lg:text-6xl flex items-center justify-end">
-                <SlotCounter value={1.8} />M
-              </p>
-              <span className="text-xs md:text-sm lg:text-base">
-                Monthly Skynet User
-              </span>
-            </div>
-          </div> */}
         </div>
-        {/* <FlowingLogos data={logos} /> */}
-        {/* <div className="flex flex-col md:flex-row md:justify-around items-center text-center lg:hidden gap-10 mt-20 font-inter">
-          <div>
-            <p className="text-5xl flex items-center justify-center">
-              $<SlotCounter value={470} />B
-            </p>
-            <span className="text-base md:text-sm lg:text-base">
-              Market Cap Assessed
-            </span>
-          </div>
-          <div>
-            <p className="text-5xl">
-              <SlotCounter value={5197} />
-            </p>
-            <span className="text-base md:text-sm lg:text-base">
-              Client Served
-            </span>
-          </div>
-          <div>
-            <p className="text-5xl items-center justify-center">
-              $<SlotCounter value={2} />B
-            </p>
-            <span className="text-base md:text-sm lg:text-base">Valuation</span>
-          </div>
-          <div>
-            <p className="text-5xl items-center justify-center">
-              <SlotCounter value={1.8} />M
-            </p>
-            <span className="text-base md:text-sm lg:text-base">
-              Monthly Skynet User
-            </span>
-          </div>
-        </div> */}
       </Container>
     </div>
   );
-};
-
-export default HeroBanner;
+}

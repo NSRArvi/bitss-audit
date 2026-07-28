@@ -115,7 +115,9 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
           body: JSON.stringify({
             order_id: orderData?.data?.id,
             amount: finalPrice,
-            currency: "EUR",
+            currency:
+              selectedCurrency?.currency_name &&
+              selectedCurrency?.currency_name,
             payment_type: "regular",
           }),
         });
@@ -266,14 +268,12 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
           </p>
         </div>
       )}
-
       <CheckBiitssCustomer
         onDiscountVerified={(data) => setDiscountInfo(data)}
         open={openDiscountModal}
         setOpen={setOpenDiscountModal}
         setBitssCustomerEmail={setBitssCustomerEmail}
       />
-
       <form className="space-y-6" onSubmit={handleSubmit(handleOrderSubmit)}>
         <InputController
           control={control}

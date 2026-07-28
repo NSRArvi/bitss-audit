@@ -1,15 +1,32 @@
 "use client";
 
 import { BASE_URL, STRIPE_PUBLISHABLE_KEY } from "@/lib/base_url";
-import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import Container from "../Container/Container";
+import { useParams } from "next/navigation";
+import { formatDate } from "@/lib/formatDate";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
-const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
-export default function OrderConfirmation({ slug, clientSecret }) {
+export default function OrderConfirmation() {
+  const { orderId } = useParams();
+  const [orderData, setOrderData] = useState(null);
   const [packageData, setPackageData] = useState({});
-  const [paymentDetails, setPaymentDetails] = useState({});
-  const [status, setStatus] = useState("");
+
+  const slug = orderData?.package?.slug;
+
+  useEffect(() => {
+    const cached = sessionStorage.getItem("orderConfirmationData");
+
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      setOrderData(parsed);
+      // sessionStorage.removeItem("orderConfirmationData");
+    } else {
+      // setNotFound(true);
+    }
+  }, [orderId]);
+  console.log(orderData);
 
   useEffect(() => {
     const fetchData = async (slug) => {
@@ -22,38 +39,89 @@ export default function OrderConfirmation({ slug, clientSecret }) {
     }
   }, [slug]);
 
-  useEffect(() => {
-    if (!clientSecret) return;
-
-    const fetchPaymentIntent = async () => {
-      const stripe = await stripePromise;
-      const { paymentIntent, error } =
-        await stripe.retrievePaymentIntent(clientSecret);
-
-      if (error) {
-        setStatus("error");
-        return;
-      }
-
-      if (paymentIntent.status === "succeeded") {
-        setStatus("succeeded");
-        setPaymentDetails(paymentIntent);
-      }
-    };
-
-    fetchPaymentIntent();
-  }, [clientSecret]);
-
   return (
     <div className="py-20">
       <Container>
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col justify-between lg:flex-row gap-20">
           <div className="w-full">
-            <h4>
-              Total Paid Amount: {paymentDetails?.currency}{" "}
-              {paymentDetails?.amount}
-            </h4>
-            <p>Transaction ID: {paymentDetails?.id}</p>
+            <Link
+              href="/orders"
+              className="text-sm text-muted-foreground flex items-center gap-1 mb-6"
+            >
+              <ArrowLeft /> Back to order page
+            </Link>
+            <div className="flex flex-wrap items-center justify-between gap-3 mt-1">
+              <span className="text-muted-foreground text-sm">
+                #{orderData?.order_number}
+              </span>
+              <div className="text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 capitalize">
+                {orderData?.status}
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-baseline gap-2">
+                <h4 className="text-xl font-medium text-foreground">
+                  Paid amount
+                </h4>
+
+                <p className="flex items-baseline gap-2">
+                  <span className="text-2xl font-extrabold text-foreground">
+                    {orderData?.discount && (
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: orderData?.currency,
+                        }}
+                      />
+                    )}
+                    {(orderData?.discount
+                      ? parseFloat(orderData?.amount || 0) -
+                        parseFloat(orderData?.amount || 0) *
+                          (parseFloat(
+                            orderData?.discount?.discount_amount || 0,
+                          ) /
+                            100)
+                      : parseFloat(orderData?.amount || 0)
+                    ).toFixed(2)}
+                  </span>
+
+                  {orderData?.currency && (
+                    <span
+                      className={
+                        orderData?.discount
+                          ? "text-sm text-muted-foreground line-through"
+                          : "hidden"
+                      }
+                    >
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: orderData?.currency,
+                        }}
+                      />
+                      {parseFloat(orderData?.amount || 0).toFixed(2)}
+                    </span>
+                  )}
+                </p>
+              </div>
+            </div>
+
+            <div className="h-px bg-border my-4" />
+
+            <div className="space-y-2.5">
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-foreground">Transaction ID</span>
+                <span className="ml-auto text-muted-foreground font-mono text-xs">
+                  {orderData?.stripe_payment?.transaction_id || "—"}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-foreground">Order created at</span>
+                <span className="ml-auto text-muted-foreground">
+                  {formatDate(orderData?.created_at)}
+                </span>
+              </div>
+            </div>
           </div>
           <div className="w-full">
             <div className="flex items-baseline justify-between mb-3">

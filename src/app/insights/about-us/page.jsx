@@ -134,8 +134,8 @@ export default function AboutUsPage() {
             <p className="text-primary px-4 text-lg tracking-widest uppercase font-semibold">
               About Us
             </p>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-28 font-inter font-black tracking-wide mt-2">
-              We Don't Follow. <br />
+            <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-24 font-heading font-black tracking-wide mt-2">
+              We Don&apos;t Follow. <br />
               <span className="text-primary"> Others Follow Us. </span>
             </h2>
             <p className="text-lg text-muted-foreground w-full mx-auto text-center mt-4 font-medium">
@@ -146,21 +146,21 @@ export default function AboutUsPage() {
       </div>
 
       <div className="w-2/3 mx-auto pb-20">
-        <p className="text-base text-slate-700 mx-auto font-inter">
+        <p className="text-base text-slate-700 mx-auto">
           While others copy — we build. While conventional auditors rely on
           off-the-shelf, third-party software — we built our own proprietary
           security ecosystem. BITSS is not just a standard auditing company; it
           is a complete, custom-engineered cyber security defense system built
           to eliminate weak points across smart contracts, servers, and devices.
         </p>
-        <p className="text-base text-slate-700 mx-auto font-inter mt-4">
+        <p className="text-base text-slate-700 mx-auto mt-4">
           Completely self-funded and driven by organic research, we operate
           without external investor pressure. Our sole focus is delivering real,
           battle-tested security to protect project code and user funds.
         </p>
 
         {/* The BITSS Architecture Difference */}
-        <h2 className="text-2xl font-bold font-inter tracking-widest mt-20 mb-6">
+        <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-6">
           The BITSS Architecture Difference
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -169,7 +169,7 @@ export default function AboutUsPage() {
               key={idx}
               className="bg-slate-50 border border-slate-100 p-6 rounded-lg shadow-sm"
             >
-              <h5 className="text-lg font-bold font-inter mb-2 text-slate-900">
+              <h5 className="text-lg font-bold font-heading mb-2 text-slate-900">
                 {item.title}
               </h5>
               <p className="text-slate-700 text-sm">{item.text}</p>
@@ -178,7 +178,7 @@ export default function AboutUsPage() {
         </div>
 
         {/* Industry Standard vs. The BITSS Solution */}
-        <h2 className="text-2xl font-bold font-inter tracking-widest mt-20 mb-6">
+        <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-6">
           Industry Standard vs. The BITSS Solution
         </h2>
         <div className="overflow-x-auto">
@@ -218,7 +218,7 @@ export default function AboutUsPage() {
         </div>
 
         {/* Layers of Integrated Crypto Security */}
-        <h2 className="text-2xl font-bold font-inter tracking-widest mt-20 mb-6">
+        <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-6">
           Layers of Integrated Crypto Security
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -233,7 +233,7 @@ export default function AboutUsPage() {
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h5 className="mb-2 text-lg font-bold font-inter leading-tight">
+                  <h5 className="mb-2 text-lg font-bold font-heading leading-tight">
                     {i + 1}. {item.title}
                   </h5>
                   <p className="text-slate-600 text-sm leading-relaxed">
@@ -255,10 +255,10 @@ export default function AboutUsPage() {
               backgroundSize: "40px 40px",
             }}
           />
-          <h2 className="text-3xl font-black font-inter tracking-wide mb-4 relative z-10">
+          <h2 className="text-3xl font-black font-heading tracking-wide mb-4 relative z-10">
             The BITSS Promise
           </h2>
-          <p className="text-lg text-slate-300 font-inter max-w-2xl mx-auto relative z-10 leading-relaxed">
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto relative z-10 leading-relaxed">
             Your project and user data are safe — not because we say so, but
             because we built the system that makes it so.
           </p>
