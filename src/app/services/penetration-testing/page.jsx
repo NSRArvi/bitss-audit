@@ -59,7 +59,6 @@ export default function PenetrationTestingPage() {
     <div>
       {/* ── Hero ── */}
       <div className="relative overflow-hidden bg-white">
-        {/* Grid background */}
         <motion.div
           className="pointer-events-none absolute inset-0"
           initial={{ opacity: 0, scale: 1.06 }}
@@ -74,7 +73,6 @@ export default function PenetrationTestingPage() {
 
         <div className="w-2/3 mx-auto flex flex-col md:flex-row justify-center items-center gap-6 py-10 lg:py-20 relative z-10">
           <div className="w-full text-center">
-            {/* Label */}
             <motion.p
               className="text-primary px-4 text-lg tracking-widest"
               initial={{ opacity: 0, y: -20 }}
@@ -88,7 +86,6 @@ export default function PenetrationTestingPage() {
               Penetration Testing
             </motion.p>
 
-            {/* Headline — word by word drop */}
             <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-24 font-heading font-black tracking-wide mt-2">
               {["Simulated", "Cyberattacks", "for"].map((word, i) => (
                 <motion.span
@@ -125,7 +122,6 @@ export default function PenetrationTestingPage() {
               </span>
             </h2>
 
-            {/* Subheading */}
             <motion.p
               className="text-lg text-muted-foreground w-full mx-auto text-center mt-4"
               initial={{ opacity: 0, y: 30 }}
@@ -164,14 +160,12 @@ export default function PenetrationTestingPage() {
           </p>
         </AnimatedSection>
 
-        {/* Section heading */}
         <AnimatedSection variants={fadeLeft(0)} className="mt-20 mb-10">
           <h2 className="text-2xl font-bold tracking-widest">
             Scope of Infrastructure Testing
           </h2>
         </AnimatedSection>
 
-        {/* Metric cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {metrics.map((item, i) => {
             const Icon = item.icon;
@@ -198,7 +192,6 @@ export default function PenetrationTestingPage() {
           })}
         </div>
 
-        {/* Remediation section */}
         <div className="mt-20">
           <AnimatedSection variants={fadeLeft(0)} className="mb-6">
             <h2 className="text-2xl font-bold font-heading tracking-widest">

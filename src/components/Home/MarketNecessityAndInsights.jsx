@@ -75,7 +75,7 @@ export default function MarketNecessityAndInsights() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-60px" }}
+          viewport={{ once: true, margin: "-60px" }}
           variants={headingVariants}
         >
           <Heading
@@ -90,7 +90,7 @@ export default function MarketNecessityAndInsights() {
           className="grid grid-cols-1 md:grid-cols-2 gap-5"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-60px" }}
+          viewport={{ once: true, margin: "-60px" }}
           variants={sectionVariants}
         >
           {items.map((item, i) => (

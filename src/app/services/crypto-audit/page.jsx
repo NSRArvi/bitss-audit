@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { BookUser, Fuel, Lock, Search } from "lucide-react";
 import { AnimatedSection } from "../AnimatedSection";
 
@@ -112,7 +111,6 @@ export default function CryptoAuditPage() {
               Crypto Audit
             </motion.p>
 
-            {/* Headline — word by word drop */}
             <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-24 font-heading font-black tracking-wide">
               {["Full-Stack", "Smart"].map((word, i) => (
                 <motion.span
@@ -160,7 +158,6 @@ export default function CryptoAuditPage() {
               </motion.span>
             </h2>
 
-            {/* Subheading */}
             <motion.p
               className="text-lg text-muted-foreground w-full mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
@@ -201,14 +198,12 @@ export default function CryptoAuditPage() {
           </p>
         </AnimatedSection>
 
-        {/* Why BITSS heading */}
         <AnimatedSection variants={fadeLeft(0)} className="mt-20 mb-10">
           <h2 className="text-2xl font-bold font-heading tracking-widest">
             Why Web3 projects choose BITSS crypto audit
           </h2>
         </AnimatedSection>
 
-        {/* Feature cards */}
         <div className="grid grid-cols-2 gap-5">
           {items.map((item, i) => {
             const Icon = item.icon;
@@ -235,7 +230,6 @@ export default function CryptoAuditPage() {
           })}
         </div>
 
-        {/* Audit process */}
         <div className="pb-20">
           <AnimatedSection variants={fadeLeft(0)} className="mt-20 mb-10">
             <h2 className="text-2xl font-bold font-heading tracking-widest">
@@ -251,7 +245,6 @@ export default function CryptoAuditPage() {
                   whileHover={{ x: 6 }}
                   transition={{ type: "spring", stiffness: 300, damping: 22 }}
                 >
-                  {/* Step number — pops in with a spring */}
                   <motion.div
                     className="shrink-0 w-12 h-12 rounded-full bg-white text-primary flex items-center justify-center font-black text-xl shadow-sm border border-slate-200"
                     initial={{ scale: 0.5, opacity: 0 }}

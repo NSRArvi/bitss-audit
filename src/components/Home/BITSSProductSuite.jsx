@@ -92,7 +92,7 @@ export default function BITSSProductSuite() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-60px" }}
+          viewport={{ once: true, margin: "-60px" }}
           variants={headingVariants}
         >
           <Heading
@@ -108,7 +108,7 @@ export default function BITSSProductSuite() {
             className="w-full"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, margin: "-60px" }}
+            viewport={{ once: true, margin: "-60px" }}
             variants={accordionWrapVariants}
           >
             <Accordion defaultValue={[1]} className="w-full p-6 rounded-lg">
@@ -141,7 +141,7 @@ export default function BITSSProductSuite() {
             className="lg:pr-6 pb-5 lg:pb-0 rounded-lg"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, margin: "-60px" }}
+            viewport={{ once: true, margin: "-60px" }}
             variants={lottieVariants}
           >
             <Lottie

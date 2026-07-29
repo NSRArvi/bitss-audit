@@ -63,7 +63,7 @@ export default function GlobalRegulatory() {
             className="w-full"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, margin: "-60px" }}
+            viewport={{ once: true, margin: "-60px" }}
             variants={lottieVariants}
           >
             <div className="rounded-lg">
@@ -79,7 +79,7 @@ export default function GlobalRegulatory() {
             className="w-full"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, margin: "-60px" }}
+            viewport={{ once: true, margin: "-60px" }}
           >
             <motion.div variants={headingVariants}>
               <Heading

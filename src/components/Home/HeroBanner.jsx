@@ -16,12 +16,12 @@ const fadeUp = {
   }),
 };
 
-const headlineWords = ["Largest", "Blockchain"];
+const headlineWords = ["Most", "Secured", "Blockchain"];
 const headlineAccent = ["Security", "Auditor"];
 
 export default function HeroBanner() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: false, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   const controls = useAnimation();
 
   const [open, setOpen] = useState(false);
@@ -32,7 +32,6 @@ export default function HeroBanner() {
 
   return (
     <div className="relative overflow-hidden bg-white" ref={ref}>
-      {/* Animated grid background */}
       <motion.div
         className="pointer-events-none absolute inset-0"
         initial={{ opacity: 0 }}
@@ -84,7 +83,7 @@ export default function HeroBanner() {
               </Badge>
             </motion.div>
 
-            <motion.h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-[1.1] font-inter font-black">
+            <motion.h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-[1.1] font-heading font-black">
               <span className="block">
                 {headlineWords.map((word, i) => (
                   <motion.span
@@ -135,14 +134,15 @@ export default function HeroBanner() {
             </motion.h2>
 
             <motion.p
-              className="text-lg text-muted-foreground w-full lg:w-2/3 mx-auto text-center"
+              className="text-lg text-muted-foreground mx-auto text-center"
               custom={0.7}
               initial="hidden"
               animate={controls}
               variants={fadeUp}
             >
-              Bitss is the largest Web3 security platform combining formal
-              verification with audits and comprehensive security solutions.
+              BITSS is a dedicated Web3 security platform combining in-depth
+              crypto auditing, server protection, and device security — built to
+              keep your project safe from day one.
             </motion.p>
 
             <motion.div

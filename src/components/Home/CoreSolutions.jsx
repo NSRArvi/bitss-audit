@@ -95,7 +95,7 @@ export default function CoreSolutions() {
             className="w-full"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, margin: "-60px" }}
+            viewport={{ once: true, margin: "-60px" }}
             variants={sectionVariants}
           >
             <motion.div variants={headingVariants}>

@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import {
   Code2,
   Database,
@@ -10,6 +13,43 @@ import {
   ShieldCheck,
   TerminalSquare,
 } from "lucide-react";
+import { AnimatedSection } from "@/app/services/AnimatedSection";
+
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1], delay },
+  },
+});
+
+const fadeLeft = (delay = 0) => ({
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay },
+  },
+});
+
+const scaleIn = (delay = 0) => ({
+  hidden: { opacity: 0, scale: 0.88 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1], delay },
+  },
+});
+
+const fadeRight = (delay = 0) => ({
+  hidden: { opacity: 0, x: 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay },
+  },
+});
 
 const architectureDifference = [
   {
@@ -118,10 +158,14 @@ const layersOfSecurity = [
 
 export default function AboutUsPage() {
   return (
-    <div className="">
+    <div>
+      {/* ── Hero ── */}
       <div className="relative overflow-hidden bg-white">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
+        <motion.div
+          className="pointer-events-none absolute inset-0"
+          initial={{ opacity: 0, scale: 1.06 }}
+          animate={{ opacity: 0.4, scale: 1 }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
           style={{
             backgroundImage:
               "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
@@ -130,139 +174,263 @@ export default function AboutUsPage() {
         />
 
         <div className="w-2/3 mx-auto flex flex-col md:flex-row justify-center items-center gap-6 py-10 lg:py-20 relative z-10">
-          <div className=" w-full text-center">
-            <p className="text-primary px-4 text-lg tracking-widest uppercase font-semibold">
+          <div className="w-full text-center">
+            <motion.p
+              className="text-primary px-4 text-lg tracking-widest uppercase font-semibold"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.1,
+              }}
+            >
               About Us
-            </p>
+            </motion.p>
+
             <h2 className="text-4xl md:text-5xl lg:text-7xl lg:leading-24 font-heading font-black tracking-wide mt-2">
-              We Don&apos;t Follow. <br />
-              <span className="text-primary"> Others Follow Us. </span>
+              {["We", "Don't", "Follow."].map((word, i) => (
+                <motion.span
+                  key={word + i}
+                  className="inline-block mr-3"
+                  initial={{ opacity: 0, y: -50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.7,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.2 + i * 0.1,
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+              <br />
+              <span className="text-primary">
+                {["Others", "Follow", "Us."].map((word, i) => (
+                  <motion.span
+                    key={word}
+                    className="inline-block mr-3"
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.7,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: 0.5 + i * 0.1,
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
             </h2>
-            <p className="text-lg text-muted-foreground w-full mx-auto text-center mt-4 font-medium">
+
+            <motion.p
+              className="text-lg text-muted-foreground w-full mx-auto text-center mt-4 font-medium"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.75,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.85,
+              }}
+            >
               Superior Web3 Security Built From the Ground Up
-            </p>
+            </motion.p>
           </div>
         </div>
       </div>
 
+      {/* ── Body ── */}
       <div className="w-2/3 mx-auto pb-20">
-        <p className="text-base text-slate-700 mx-auto">
-          While others copy — we build. While conventional auditors rely on
-          off-the-shelf, third-party software — we built our own proprietary
-          security ecosystem. BITSS is not just a standard auditing company; it
-          is a complete, custom-engineered cyber security defense system built
-          to eliminate weak points across smart contracts, servers, and devices.
-        </p>
-        <p className="text-base text-slate-700 mx-auto mt-4">
-          Completely self-funded and driven by organic research, we operate
-          without external investor pressure. Our sole focus is delivering real,
-          battle-tested security to protect project code and user funds.
-        </p>
+        {/* Intro paragraphs */}
+        <AnimatedSection variants={fadeUp(0)}>
+          <p className="text-base text-slate-700 mx-auto">
+            While others copy — we build. While conventional auditors rely on
+            off-the-shelf, third-party software — we built our own proprietary
+            security ecosystem. BITSS is not just a standard auditing company;
+            it is a complete, custom-engineered cyber security defense system
+            built to eliminate weak points across smart contracts, servers, and
+            devices.
+          </p>
+        </AnimatedSection>
 
-        {/* The BITSS Architecture Difference */}
-        <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-6">
-          The BITSS Architecture Difference
-        </h2>
+        <AnimatedSection variants={fadeUp(0.1)} className="mt-4">
+          <p className="text-base text-slate-700 mx-auto">
+            Completely self-funded and driven by organic research, we operate
+            without external investor pressure. Our sole focus is delivering
+            real, battle-tested security to protect project code and user funds.
+          </p>
+        </AnimatedSection>
+
+        <AnimatedSection variants={fadeLeft(0)} className="mt-20 mb-6">
+          <h2 className="text-2xl font-bold font-heading tracking-widest">
+            The BITSS Architecture Difference
+          </h2>
+        </AnimatedSection>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {architectureDifference.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-slate-50 border border-slate-100 p-6 rounded-lg shadow-sm"
-            >
-              <h5 className="text-lg font-bold font-heading mb-2 text-slate-900">
-                {item.title}
-              </h5>
-              <p className="text-slate-700 text-sm">{item.text}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Industry Standard vs. The BITSS Solution */}
-        <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-6">
-          Industry Standard vs. The BITSS Solution
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse border border-slate-200 shadow-sm rounded-lg overflow-hidden">
-            <thead className="bg-slate-50">
-              <tr>
-                <th className="border-b border-slate-200 p-4 font-bold text-slate-900">
-                  Security Aspect
-                </th>
-                <th className="border-b border-slate-200 p-4 font-bold text-slate-500">
-                  Conventional Industry Practices
-                </th>
-                <th className="border-b border-slate-200 p-4 font-bold text-primary">
-                  What BITSS Delivers
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {comparisonData.map((row, idx) => (
-                <tr
-                  key={idx}
-                  className="bg-white hover:bg-slate-50 transition-colors"
+          {architectureDifference.map((item, i) => {
+            const col = i % 2;
+            const row = Math.floor(i / 2);
+            return (
+              <AnimatedSection
+                key={i}
+                variants={scaleIn(col * 0.1 + row * 0.12)}
+              >
+                <motion.div
+                  className="bg-slate-50 border border-slate-100 p-6 rounded-lg shadow-sm h-full"
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 20 }}
                 >
-                  <td className="border-b border-slate-200 p-4 font-medium text-slate-800">
-                    {row.aspect}
-                  </td>
-                  <td className="border-b border-slate-200 p-4 text-slate-600 text-sm">
-                    {row.conventional}
-                  </td>
-                  <td className="border-b border-slate-200 p-4 text-slate-800 text-sm font-semibold">
-                    {row.bitss}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  <h5 className="text-lg font-bold font-heading mb-2 text-slate-900">
+                    {item.title}
+                  </h5>
+                  <p className="text-slate-700 text-sm">{item.text}</p>
+                </motion.div>
+              </AnimatedSection>
+            );
+          })}
         </div>
 
-        {/* Layers of Integrated Crypto Security */}
-        <h2 className="text-2xl font-bold font-heading tracking-widest mt-20 mb-6">
-          Layers of Integrated Crypto Security
-        </h2>
+        <AnimatedSection variants={fadeLeft(0)} className="mt-20 mb-6">
+          <h2 className="text-2xl font-bold font-heading tracking-widest">
+            Industry Standard vs. The BITSS Solution
+          </h2>
+        </AnimatedSection>
+
+        <AnimatedSection variants={fadeUp(0.05)}>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse border border-slate-200 shadow-sm rounded-lg overflow-hidden">
+              <thead className="bg-slate-50">
+                <tr>
+                  <th className="border-b border-slate-200 p-4 font-bold text-slate-900">
+                    Security Aspect
+                  </th>
+                  <th className="border-b border-slate-200 p-4 font-bold text-slate-500">
+                    Conventional Industry Practices
+                  </th>
+                  <th className="border-b border-slate-200 p-4 font-bold text-primary">
+                    What BITSS Delivers
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonData.map((row, i) => (
+                  <motion.tr
+                    key={i}
+                    className="bg-white hover:bg-slate-50 transition-colors"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: i * 0.06,
+                    }}
+                  >
+                    <td className="border-b border-slate-200 p-4 font-medium text-slate-800">
+                      {row.aspect}
+                    </td>
+                    <td className="border-b border-slate-200 p-4 text-slate-600 text-sm">
+                      {row.conventional}
+                    </td>
+                    <td className="border-b border-slate-200 p-4 text-slate-800 text-sm font-semibold">
+                      {row.bitss}
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection variants={fadeLeft(0)} className="mt-20 mb-6">
+          <h2 className="text-2xl font-bold font-heading tracking-widest">
+            Layers of Integrated Crypto Security
+          </h2>
+        </AnimatedSection>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {layersOfSecurity.map((item, i) => {
             const Icon = item.icon;
+            const col = i % 3;
+            const row = Math.floor(i / 3);
             return (
-              <div
+              <AnimatedSection
                 key={i}
-                className="bg-white border border-slate-100 rounded-xl shadow-sm p-6 hover:shadow-md transition duration-300 flex flex-col items-start gap-4"
+                variants={scaleIn(col * 0.08 + row * 0.1)}
               >
-                <div className="p-3 bg-slate-50 rounded-lg text-primary">
-                  <Icon className="w-6 h-6" />
-                </div>
-                <div>
-                  <h5 className="mb-2 text-lg font-bold font-heading leading-tight">
-                    {i + 1}. {item.title}
-                  </h5>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {item.text}
-                  </p>
-                </div>
-              </div>
+                <motion.div
+                  className="bg-white border border-slate-100 rounded-xl shadow-sm p-6 flex flex-col items-start gap-4 h-full"
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 20 }}
+                >
+                  <motion.div
+                    className="p-3 bg-slate-50 rounded-lg text-primary"
+                    whileHover={{ rotate: 8, scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  >
+                    <Icon className="w-6 h-6" />
+                  </motion.div>
+                  <div>
+                    <h5 className="mb-2 text-lg font-bold font-heading leading-tight">
+                      {i + 1}. {item.title}
+                    </h5>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      {item.text}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatedSection>
             );
           })}
         </div>
 
         {/* BITSS Promise */}
-        <div className="mt-20 bg-slate-900 text-white rounded-2xl p-10 text-center shadow-lg relative overflow-hidden">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-10"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
-            }}
-          />
-          <h2 className="text-3xl font-black font-heading tracking-wide mb-4 relative z-10">
-            The BITSS Promise
-          </h2>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto relative z-10 leading-relaxed">
-            Your project and user data are safe — not because we say so, but
-            because we built the system that makes it so.
-          </p>
-        </div>
+        <AnimatedSection variants={scaleIn(0)} className="mt-20">
+          <div className="bg-slate-900 text-white rounded-2xl p-10 text-center shadow-lg relative overflow-hidden">
+            {/* Inner grid */}
+            <motion.div
+              className="pointer-events-none absolute inset-0"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 0.1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, ease: "easeOut" }}
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)",
+                backgroundSize: "40px 40px",
+              }}
+            />
+            <motion.h2
+              className="text-3xl font-black font-heading tracking-wide mb-4 relative z-10"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: 0.75,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.1,
+              }}
+            >
+              The BITSS Promise
+            </motion.h2>
+            <motion.p
+              className="text-lg text-slate-300 max-w-2xl mx-auto relative z-10 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: 0.75,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.25,
+              }}
+            >
+              Your project and user data are safe — not because we say so, but
+              because we built the system that makes it so.
+            </motion.p>
+          </div>
+        </AnimatedSection>
       </div>
     </div>
   );

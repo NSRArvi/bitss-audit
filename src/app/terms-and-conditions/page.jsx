@@ -1,3 +1,7 @@
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import {
   ShieldCheck,
   FileText,
@@ -11,6 +15,34 @@ import {
 } from "lucide-react";
 import Container from "@/components/Container/Container";
 import { Badge } from "@/components/ui/badge";
+import { AnimatedSection } from "../services/AnimatedSection";
+
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1], delay },
+  },
+});
+
+const fadeLeft = (delay = 0) => ({
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay },
+  },
+});
+
+const staggerItem = (delay = 0) => ({
+  hidden: { opacity: 0, x: -16 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1], delay },
+  },
+});
 
 const termsData = [
   {
@@ -117,83 +149,157 @@ const TermsAndConditions = () => {
     <div className="min-h-screen w-full">
       <Container>
         <div className="px-5 md:px-10 py-14 md:py-20">
-          {/* Header */}
+          {/* ── Header ── */}
           <div className="mb-12">
-            <p className="text-primary font-bold text-xs tracking-widest mb-3">
+            <motion.p
+              className="text-primary font-bold text-xs tracking-widest mb-3"
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.1,
+              }}
+            >
               BITSS CRYPTO SECURITY
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-heading  leading-tight w-full md:w-2/3">
-              Terms &{" "}
-              <span className="bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent">
+            </motion.p>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-heading leading-tight w-full md:w-2/3">
+              {["Terms", "&"].map((word, i) => (
+                <motion.span
+                  key={word + i}
+                  className="inline-block mr-3"
+                  initial={{ opacity: 0, y: -40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.7,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.2 + i * 0.1,
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+              <motion.span
+                className="inline-block bg-linear-to-r from-[#1E88E5] to-[#4FC3F7] bg-clip-text text-transparent"
+                initial={{ opacity: 0, y: -40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.7,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: 0.4,
+                }}
+              >
                 Conditions
-              </span>
+              </motion.span>
             </h2>
-            <p className="text-sm  mt-4 w-full md:w-1/2">
+
+            <motion.p
+              className="text-sm mt-4 w-full md:w-1/2"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.55,
+              }}
+            >
               By using BITSS services, you agree to the following terms. Please
               read them carefully before proceeding.
-            </p>
-            <div className="flex gap-3 mt-5 flex-wrap">
-              <Badge variant="secondary" className="text-xs">
-                9 Sections
-              </Badge>
-              <Badge variant="secondary" className="text-xs">
-                Last Updated: 2025
-              </Badge>
-              <Badge variant="secondary" className="text-xs">
-                <ShieldCheck size={11} className="mr-1" /> Legally Binding
-              </Badge>
-            </div>
+            </motion.p>
+
+            <motion.div className="flex gap-3 mt-5 flex-wrap">
+              {[
+                <Badge key="a" variant="secondary" className="text-xs">
+                  9 Sections
+                </Badge>,
+                <Badge key="b" variant="secondary" className="text-xs">
+                  Last Updated: 2025
+                </Badge>,
+                <Badge key="c" variant="secondary" className="text-xs">
+                  <ShieldCheck size={11} className="mr-1" /> Legally Binding
+                </Badge>,
+              ].map((badge, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.45,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.7 + i * 0.08,
+                  }}
+                >
+                  {badge}
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Terms List */}
           <div className="w-full md:w-3/4 space-y-10">
-            {termsData.map((section) => {
+            {termsData.map((section, sIdx) => {
               const Icon = section.icon;
               return (
                 <div key={section.id}>
-                  {/* Section Title */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-primary text-xs font-mono font-bold">
-                      {section.id}
-                    </span>
-                    <Icon size={16} className="text-primary shrink-0" />
-                    <h3 className=" font-semibold text-base">
-                      {section.title}
-                    </h3>
-                  </div>
+                  {/* Section title row */}
+                  <AnimatedSection variants={fadeLeft(0)} className="mb-4">
+                    <div className="flex items-center gap-3">
+                      <motion.span
+                        className="text-primary text-xs font-mono font-bold"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-40px" }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        {section.id}
+                      </motion.span>
+                      <Icon size={16} className="text-primary shrink-0" />
+                      <h3 className="font-semibold text-base">
+                        {section.title}
+                      </h3>
+                    </div>
+                  </AnimatedSection>
 
-                  {/* Highlight text (Section 03 only) */}
                   {section.highlight && (
-                    <p className="text-sm mb-3 pl-13 italic">
-                      {section.highlight}
-                    </p>
+                    <AnimatedSection
+                      variants={fadeUp(0.05)}
+                      className="pl-13 mb-3"
+                    >
+                      <p className="text-sm italic">{section.highlight}</p>
+                    </AnimatedSection>
                   )}
 
-                  {/* Items */}
                   <ul className="pl-13 space-y-2.5">
                     {section.items.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                        {item}
-                      </li>
+                      <AnimatedSection key={i} variants={staggerItem(i * 0.06)}>
+                        <li className="flex items-start gap-3 text-sm">
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                          {item}
+                        </li>
+                      </AnimatedSection>
                     ))}
                   </ul>
 
                   {/* Divider */}
-                  <div className="mt-10 border-b border-primary/10" />
+                  <AnimatedSection variants={fadeUp(0)} className="mt-10">
+                    <div className="border-b border-primary/10" />
+                  </AnimatedSection>
                 </div>
               );
             })}
           </div>
 
-          {/* Footer note */}
-          <div className="mt-12 w-full md:w-3/4">
+          {/* ── Footer note ── */}
+          <AnimatedSection
+            variants={fadeUp(0)}
+            className="mt-12 w-full md:w-3/4"
+          >
             <p className="text-xs leading-relaxed">
               BITSS reserves the right to update these Terms & Conditions at any
               time. Continued use of our services constitutes acceptance of the
               most current version of these terms.
             </p>
-          </div>
+          </AnimatedSection>
         </div>
       </Container>
     </div>
