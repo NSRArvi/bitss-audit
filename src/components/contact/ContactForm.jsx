@@ -50,6 +50,7 @@ const ContactForm = () => {
       if (!credentialsData?.username || !credentialsData?.password) return;
       const servername = window.location.hostname;
       const data = { ...credentialsData, servername };
+
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

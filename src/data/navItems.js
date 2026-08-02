@@ -156,4 +156,9 @@ export const navItems = [
       { title: "Disclaimer", href: "/insights/disclaimer" },
     ],
   },
+  {
+    label: "Contact",
+    href: "/contact",
+    items: null,
+  },
 ];
