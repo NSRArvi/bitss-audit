@@ -16,13 +16,13 @@ const ExpertCryptoSecurityAudit = () => {
 
   return (
     <Container>
-      <div className="relative">
+      {/* <div className="relative">
         <CurrencyModal
           open={open || !hasSelectedCurrency}
           setOpen={setOpen}
           allowClose={hasSelectedCurrency}
         />
-      </div>
+      </div> */}
       <HeroBanner />
 
       <section className="py-20" id="features">

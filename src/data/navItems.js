@@ -39,26 +39,31 @@ export const navItems = [
       },
     ],
   },
+  // {
+  //   label: "Solutions",
+  //   href: "/solutions",
+  //   items: [
+  //     {
+  //       title: "Standard Audit",
+  //       href: "/order/standard-audit",
+  //       description: "All Features",
+  //     },
+  //     {
+  //       title: "Advanced Audit",
+  //       href: "/order/advanced-audit",
+  //       description: "All Features",
+  //     },
+  //     {
+  //       title: "Enterprise Audit",
+  //       href: "/order/enterprise-audit",
+  //       description: "All Features",
+  //     },
+  //   ],
+  // },
   {
     label: "Solutions",
     href: "/solutions",
-    items: [
-      {
-        title: "Standard Audit",
-        href: "/order/standard-audit",
-        description: "All Features",
-      },
-      {
-        title: "Advanced Audit",
-        href: "/order/advanced-audit",
-        description: "All Features",
-      },
-      {
-        title: "Enterprise Audit",
-        href: "/order/enterprise-audit",
-        description: "All Features",
-      },
-    ],
+    items: null,
   },
   {
     label: "Blockchains",

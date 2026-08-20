@@ -233,3 +233,63 @@ body {
     animation-play-state: paused;
   }
 }
+
+
+/* .my-custom-tailwind-wrapper .bcf-label{
+  font-family: ui-monospace, monospace;
+  @apply text-2xl
+} */
+
+
+@layer components {
+  .bcf-wrapper {
+    @apply mx-auto w-full max-w-150
+           border border-slate-200
+           border-t-[3px] border-t-blue-700
+           bg-white px-7 py-8;
+  }
+
+  .bcf-label {
+    @apply mb-2 block text-[11px] font-bold
+           uppercase tracking-[0.06em]
+           text-slate-600;
+  }
+
+  .bcf-input,
+  .bcf-textarea,
+  .bcf-select {
+    @apply w-full rounded-[10px]
+           border border-[#d9e2ef]
+           bg-white
+           px-4 py-2.5
+           text-[13px] text-slate-700
+           outline-none
+           transition-colors
+           duration-200
+           placeholder:text-[#b9c8da]
+           focus:border-blue-500
+           focus:ring-2
+           focus:ring-blue-500/10;
+  }
+
+  .bcf-input,
+  .bcf-select {
+    @apply h-9.5;
+  }
+
+  .bcf-textarea {
+    @apply min-h-22 resize-none;
+  }
+
+  .bcf-btn-submit {
+    @apply rounded-[6px]
+           bg-blue-600
+           px-6 py-3
+           text-[13px] font-semibold
+           text-white
+           transition-all duration-200
+           hover:bg-blue-700
+           hover:shadow-md
+           active:scale-[0.98];
+  }
+}

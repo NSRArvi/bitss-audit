@@ -38,7 +38,6 @@ function OrderPageContent() {
         throw data;
       }
       if (data.success) {
-        console.log(data?.data);
         setOrdersData(data?.data);
 
         setLoading(false);

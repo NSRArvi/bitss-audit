@@ -12,7 +12,7 @@ import { useCurrency } from "@/hooks/useCurrency";
 import { getProductPrice } from "@/lib/getProductPrice";
 import { BASE_URL } from "@/lib/base_url";
 
-export default function OrderForm({ setOpen = () => {}, title = "" }) {
+export default function OrderForm({ setOpen = () => {}, title = "", orderId }) {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [discountInfo, setDiscountInfo] = useState(null);
@@ -21,6 +21,7 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
   const [stripeClientSecret, setStripeClientSecret] = useState(null);
   const [pendingOrderData, setPendingOrderData] = useState(null);
   const [bitssCustomerEmail, setBitssCustomerEmail] = useState("");
+  const [priceData, setPriceData] = useState({});
 
   const { user } = useAuth();
   const { selectedCurrency } = useCurrency();
@@ -45,6 +46,8 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
     }
   }, [bitssCustomerEmail, setValue]);
 
+  const slug = toSlug(priceData?.order?.service_interest);
+
   useEffect(() => {
     const fetchProductData = async (title) => {
       const fetchUrl = `${BASE_URL}/public/package/${title}`;
@@ -58,11 +61,11 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
       }
     };
 
-    if (title) {
-      fetchProductData(title);
+    if (slug) {
+      fetchProductData(toSlug(slug));
     }
-  }, [title]);
-  const isLocked = !!title;
+  }, [slug]);
+  const isLocked = !!slug;
 
   const {
     price: originalPrice,
@@ -184,6 +187,20 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
     }
   };
 
+  // get the price
+  useEffect(() => {
+    try {
+      const loadPrice = async (orderId) => {
+        const res = await fetch(`${BASE_URL}/checkout/${orderId}`);
+        const data = await res.json();
+        setPriceData(data?.data);
+      };
+      loadPrice(orderId);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [orderId]);
+
   return (
     <div className="pb-10">
       {title && (
@@ -196,7 +213,7 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
               {productData?.name}
             </h1>
 
-            <div>
+            {/* <div>
               {isPriceAvailable ? (
                 <>
                   {discountInfo ? (
@@ -243,7 +260,7 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
                   {selectedCurrency?.abriviation_code || "this currency"}
                 </p>
               )}
-            </div>
+            </div> */}
           </div>
           <p className="text-sm text-muted-foreground mt-1">
             Review the details below and complete your audit request.
@@ -280,7 +297,7 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
           discountInfo={discountInfo}
           isLocked={isLocked}
           productData={productData}
-          finalPrice={finalPrice}
+          // finalPrice={finalPrice}
           loading={loading}
           payment_type={payment_type}
           stripeClientSecret={stripeClientSecret}
@@ -288,9 +305,9 @@ export default function OrderForm({ setOpen = () => {}, title = "" }) {
           setPendingOrderData={setPendingOrderData}
           pendingOrderData={pendingOrderData}
           errors={errors}
-          isPriceAvailable={isPriceAvailable}
+          // isPriceAvailable={isPriceAvailable}
           available={available}
-          originalPrice={originalPrice}
+          // originalPrice={originalPrice}
           title={title}
           bitssCustomerEmail={bitssCustomerEmail}
         />

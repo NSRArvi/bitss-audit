@@ -26,7 +26,6 @@ export default function OrderConfirmation() {
       // setNotFound(true);
     }
   }, [orderId]);
-  console.log(orderData);
 
   useEffect(() => {
     const fetchData = async (slug) => {

@@ -33,7 +33,7 @@ export default function AuditCard({ product, idx }) {
               <span>{product?.name}</span>
             </h3>
 
-            <div className="text-right">
+            {/* <div className="text-right">
               {isPriceAvailable ? (
                 <p className="font-black text-foreground leading-tight text-2xl flex items-center gap-0 justify-end">
                   <span
@@ -50,7 +50,7 @@ export default function AuditCard({ product, idx }) {
                   {selectedCurrency?.abriviation_code || "this currency"}
                 </p>
               )}
-            </div>
+            </div> */}
           </div>
 
           <div

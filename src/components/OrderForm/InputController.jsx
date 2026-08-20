@@ -49,11 +49,7 @@ export default function InputController({
 
   return (
     <div
-      className={
-        isCheckoutStep
-          ? "flex justify-between gap-10"
-          : "grid grid-cols-2 gap-10"
-      }
+      className={isCheckoutStep ? "flex justify-between gap-10" : "flex gap-10"}
     >
       {isCheckoutStep ? (
         <div className="flex-1">
@@ -76,7 +72,7 @@ export default function InputController({
           </Elements>
         </div>
       ) : (
-        <div className="space-y-8 bg-white px-4 py-10 shadow rounded h-fit">
+        <div className="space-y-8 bg-white px-4 py-10 shadow rounded h-fit w-full">
           <Controller
             name="payment_type"
             control={control}
@@ -92,7 +88,7 @@ export default function InputController({
                     <SelectGroup>
                       <SelectLabel>Payment Method</SelectLabel>
                       <SelectItem value="manual">Bank Transfer</SelectItem>
-                      {/* <SelectItem value="stripe">Stripe</SelectItem> */}
+                      <SelectItem value="stripe">Stripe</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -218,8 +214,8 @@ export default function InputController({
           <div className="flex justify-end">
             <Button
               type="submit"
-              disabled={loading || !available || !isPriceAvailable}
-              className={`bg-primary/90 hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300 ${
+              // disabled={loading || !available || !isPriceAvailable}
+              className={`bg-primary hover:bg-primary text-white font-semibold text-xs cursor-pointer hover:transition-all duration-300 ${
                 loading || !available || !isPriceAvailable
                   ? "cursor-not-allowed"
                   : ""
@@ -242,7 +238,7 @@ export default function InputController({
       )}
 
       <div
-        className={`bg-white p-4 shadow rounded ${
+        className={`bg-white p-4 shadow rounded w-full ${
           isCheckoutStep ? "flex-1" : ""
         }`}
       >
@@ -295,8 +291,10 @@ export default function InputController({
           <p className="text-xs text-red-500 mt-1">{errors.serviceInterest}</p>
         )}
 
-        {productData && (
-          <ul className="mt-2 px-4 py-3  rounded-lg flex flex-col gap-1.5">
+        {productData && productData?.items && (
+          <ul
+            className={`mt-2 px-4 py-3  rounded-lg flex flex-col gap-1.5 ${productData?.items.length > 3 ? "grid grid-cols-2" : " grid grid-cols-1"}`}
+          >
             {productData?.items?.map((group, j) => (
               <li key={j} className="flex flex-col gap-1">
                 <span className="text-xs font-semibold text-primary uppercase tracking-widest">

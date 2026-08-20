@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import ManualOrder from "./ManualOrder/ManualOrder";
+import ManualAuditForm from "./ManualAuditForm/ManualAuditForm";
 
 export function OrderModal({ open, setOpen, onClose }) {
   return (
@@ -18,7 +18,7 @@ export function OrderModal({ open, setOpen, onClose }) {
             and encrypted.
           </DialogDescription>
         </DialogHeader>
-        <ManualOrder setOpen={setOpen} />
+        <ManualAuditForm setOpen={setOpen} open={open} />
       </DialogContent>
     </Dialog>
   );

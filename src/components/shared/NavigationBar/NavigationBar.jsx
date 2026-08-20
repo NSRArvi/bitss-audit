@@ -19,7 +19,7 @@ import { BASE_URL } from "@/lib/base_url";
 import SolutionsMenu from "./SolutionsMenu";
 import TopNav from "./TopNav";
 import { useAuth } from "@/hooks/useAuth";
-import { ArrowRight, CircleUserIcon } from "lucide-react";
+import { CircleUserIcon } from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -195,7 +195,7 @@ export default function NavigationBar({ onOpenDialog }) {
               <CircleUserIcon stroke="#6E758C" opacity={50} size={28} />
             </Link>
 
-            <TopNav />
+            {/* <TopNav /> */}
             <Button
               onClick={onOpenDialog}
               className="w-full sm:w-40 flex items-center justify-center gap-2.5 py-2 px-4 rounded-sm bg-primary/80 hover:bg-primary text-white text-sm font-semibold cursor-pointer transition-all duration-300"

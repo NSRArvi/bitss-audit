@@ -355,7 +355,8 @@ const ContactForm = () => {
                     value={formData.captchaInput}
                     onChange={handleChange}
                     placeholder="Enter the answer above"
-                    className={inputBase}
+                    // className={inputBase }
+                    className="h-12 text-2xl"
                   />
                 </div>
 

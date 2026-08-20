@@ -24,7 +24,7 @@ export default function TopNav() {
         </button>
       </div>
 
-      <CurrencyModal open={open} setOpen={setOpen} allowClose />
+      {/* <CurrencyModal open={open} setOpen={setOpen} allowClose /> */}
     </>
   );
 }
